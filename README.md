@@ -2,7 +2,7 @@
 
 ![Preview](./preview.png)
 
-This repository contains **Orbital**, a demonstration of of you can build reusable view components for Ruby on Rails using the [ORB Template Language](https://github.com/kuyio/orb_template) together with [TailwindCSS](https://tailwindcss.com/), along with a sample Rails application that showcases how the components and component styles can be imported and used in a real app.
+This repository contains **Orbital**, a demonstration of you can build reusable view components for Ruby on Rails using the [ORB Template Language](https://github.com/kuyio/orb_template) together with [TailwindCSS](https://tailwindcss.com/), along with a sample Rails application that showcases how the components and component styles can be imported and used in a real app.
 
 ## Project Structure
 
@@ -27,7 +27,6 @@ Run the following commands to set up the demo application after cloning the repo
    npm install
    # or bun install
    ```
-
 
 ### Running the Demo
 
@@ -84,3 +83,4 @@ The components are built with Tailwind CSS v4 and can be easily customized throu
 ## License
 
 This project is open source and available under the [MIT License](LICENSE.txt).
+
