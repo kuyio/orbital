@@ -1,0 +1,22 @@
+# frozen_string_literal: true
+
+class Demo::Page < Orbital::Component
+  attribute :title, :string, default: "Orbital Demo"
+
+  renders_one :header
+
+  orb_template <<-ORB
+    <div class="bg-background relative z-10 flex flex min-h-svh flex-col p-2">
+      <header class="bg-background sticky top-0 z-50 w-full">
+        <div class="container-wrapper 3xl:fixed:px-0 px-6">
+          <div class="3xl:fixed:container flex h-(--header-height) items-center">
+            {{header}}
+          </div>
+        </div>
+      </header>
+      <main class="flex flex-col">
+        {{content}}
+      </main>
+    </div>
+  ORB
+end

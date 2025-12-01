@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@layer base {
+  :not(pre)>code {
+    @apply font-mono text-sm px-1.5 py-0.5 rounded-sm bg-gray-100 text-gray-800 border border-gray-200;
+
+    /* Or use your custom semantic variables if you prefer: */
+    /* @apply bg-muted/20 text-tone-regular border border-border; */
+  }
+
+  /* Optional: Fix font alignment */
+  code {
+    font-family: var(--font-mono);
+    /* Ensures it uses your mono stack */
+  }
+}
+
+:root {
+  --header-height: calc(.25rem * 14);
+}
+
+.container-wrapper {
+  width: 100%;
+  padding-inline: calc(var(--spacing) * 2);
+  margin-inline: auto;
+}
+
+.border-grid {
+  border-color: color-mix(in oklab, var(--border) 50%, transparent);
+}
+
+div#\31p-live-region {
+  margin: -1px;
+}

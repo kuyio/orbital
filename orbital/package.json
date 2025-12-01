@@ -1,0 +1,39 @@
+{
+  "name": "orbital",
+  "description": "The Orbital View Components library",
+  "license": "MIT",
+  "version": "0.0.1",
+  "author": {
+    "name": "KUY.io Inc.",
+    "email": "dev@kuy.io",
+    "url": "https://kuy.io/"
+  },
+  "targets": {
+    "js": {
+      "source": "frontend/javascript/index.js",
+      "distDir": "app/assets/javascripts/orbital/",
+      "outputFormat": "global"
+    },
+    "css": {
+      "source": "frontend/stylesheets/index.css",
+      "distDir": "app/assets/stylesheets/orbital/"
+    }
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "watch": "parcel watch --no-hmr --no-cache",
+    "build": "parcel build"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "2.16.1",
+    "@tailwindcss/postcss": "^4.1.17",
+    "@types/bun": "latest",
+    "parcel": "^2.16.1",
+    "postcss": "^8.5.6",
+    "tailwindcss": "4",
+    "tw-animate": "^1.0.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

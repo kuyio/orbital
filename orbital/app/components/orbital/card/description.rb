@@ -1,0 +1,22 @@
+# frozen_string_literal: true
+
+module Orbital
+  class Card
+    class Description < Component
+      orb_template <<-ORB
+        <div **html_attributes>{{content}}</div>
+      ORB
+
+      private
+
+      def default_attributes
+        super.merge(
+          class: class_names(
+            "text-sm text-muted-foreground",
+            system_attributes[:class]
+          )
+        )
+      end
+    end
+  end
+end

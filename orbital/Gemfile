@@ -1,0 +1,11 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+# Specify your gem's dependencies in orbital.gemspec
+gemspec
+
+gem "irb"
+gem "kuyio-rubocop", github: "kuyio/kuyio-rubocop"
+gem "rake", "~> 13.0"
+gem "rspec", "~> 3.0"
