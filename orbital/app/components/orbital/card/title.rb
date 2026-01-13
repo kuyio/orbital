@@ -10,12 +10,7 @@ module Orbital
       private
 
       def default_attributes
-        super.merge(
-          class: class_names(
-            "text-2xl font-semibold leading-none tracking-tight",
-            system_attributes[:class]
-          )
-        )
+        super.merge(class: "Orbital-Card-Title")
       end
     end
   end

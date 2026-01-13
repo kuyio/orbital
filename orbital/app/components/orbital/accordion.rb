@@ -15,16 +15,9 @@ class Orbital::Accordion < Orbital::Component
 
   def default_attributes
     super.merge(
-      class: default_classes,
+      class: "Orbital-Accordion",
       role: "region",
-      data: { controller: "o-accordion" },
-    )
-  end
-
-  def default_classes
-    class_names(
-      'Orbital-Accordion',
-      'flex flex-col gap-4 w-full',
+      data: { controller: "o-accordion" }
     )
   end
 end

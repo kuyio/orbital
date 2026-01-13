@@ -11,25 +11,10 @@ module Orbital
     private
 
     def default_attributes
-      super.merge(class: default_classes)
-    end
-
-    def default_classes
-      [
-        # Base styles
-        "flex items-stretch",
-        # Orientation styles
-        orientation_classes
-      ]
-    end
-
-    def orientation_classes
-      case @orientation
-      when :vertical
-        "flex-col [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none"
-      else # :horizontal
-        "[&>*:not(:first-child)]:rounded-l-none [&>*:not(:first-child)]:border-l-0 [&>*:not(:last-child)]:rounded-r-none"
-      end
+      super.merge(
+        class: "Orbital-ButtonGroup",
+        "data-orientation": @orientation
+      )
     end
   end
 end

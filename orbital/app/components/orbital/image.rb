@@ -13,11 +13,6 @@ class Orbital::Image < Orbital::Component
   private
 
   def default_attributes
-    super.merge(
-      class: class_names(
-        'Orbital-Image',
-        'inline-block',
-      )
-    )
+    super.merge(class: 'Orbital-Image')
   end
 end

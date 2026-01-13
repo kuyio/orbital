@@ -1,0 +1,25 @@
+@layer components {
+  .Orbital-ButtonGroup {
+    @apply flex items-stretch;
+  }
+
+  .Orbital-ButtonGroup[data-orientation="horizontal"] > *:not(:first-child) {
+    @apply rounded-l-none border-l-0;
+  }
+
+  .Orbital-ButtonGroup[data-orientation="horizontal"] > *:not(:last-child) {
+    @apply rounded-r-none;
+  }
+
+  .Orbital-ButtonGroup[data-orientation="vertical"] {
+    @apply flex-col;
+  }
+
+  .Orbital-ButtonGroup[data-orientation="vertical"] > *:not(:first-child) {
+    @apply rounded-t-none border-t-0;
+  }
+
+  .Orbital-ButtonGroup[data-orientation="vertical"] > *:not(:last-child) {
+    @apply rounded-b-none;
+  }
+}

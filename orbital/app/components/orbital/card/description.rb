@@ -10,12 +10,7 @@ module Orbital
       private
 
       def default_attributes
-        super.merge(
-          class: class_names(
-            "text-sm text-muted-foreground",
-            system_attributes[:class]
-          )
-        )
+        super.merge(class: "Orbital-Card-Description")
       end
     end
   end

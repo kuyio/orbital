@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+/* Import component styles */
+@import "./components/icon.css";
+@import "./components/separator.css";
+@import "./components/spinner.css";
+@import "./components/kbd.css";
+@import "./components/button.css";
+@import "./components/badge.css";
+@import "./components/text.css";
+@import "./components/heading.css";
+@import "./components/text-field.css";
+@import "./components/checkbox.css";
+@import "./components/card.css";
+@import "./components/button-group.css";
+@import "./components/accordion.css";
+@import "./components/image.css";
+@import "./components/navigation-menu.css";
+@import "./components/typography.css";
+
 @theme {
   /* Default Colors */
   --color-border: var(--border);
@@ -29,6 +47,7 @@
   --color-tone-warning: var(--tone-warning);
   --color-tone-danger: var(--tone-danger);
   --color-tone-magic: var(--tone-magic);
+  --color-tone-info: var(--tone-info);
   --color-tone-inverted: var(--tone-inverted);
 
   /* --- The "Text" Component Scale --- */
@@ -95,6 +114,7 @@
   --tone-warning: #ca8a04;
   --tone-danger: #dc2626;
   --tone-magic: #9333ea;
+  --tone-info: #0ea5e9;
 }
 
 .dark {
@@ -123,6 +143,7 @@
   --tone-warning: #eab308;
   --tone-danger: #ef4444;
   --tone-magic: #a855f7;
+  --tone-info: #38bdf8;
 }
 
 @layer base {

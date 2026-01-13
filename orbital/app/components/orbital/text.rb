@@ -20,10 +20,10 @@ class Orbital::Text < Orbital::Component
       class: class_names(
         'Orbital-Text',
         size_classes,
-        weight_classes,
-        alignment_classes,
-        tone_classes
-      )
+        weight_classes
+      ),
+      "data-tone": @tone,
+      "data-align": @align
     )
   end
 
@@ -54,36 +54,6 @@ class Orbital::Text < Orbital::Component
       "font-semibold"
     when :bold
       "font-bold"
-    end
-  end
-
-  def alignment_classes
-    case @align
-    when :left
-      "text-left"
-    when :center
-      "text-center"
-    when :right
-      "text-right"
-    end
-  end
-
-  def tone_classes
-    case @tone
-    when :default
-      "text-tone-regular"
-    when :subdued
-      "text-tone-subdued"
-    when :success
-      "text-tone-success"
-    when :warning
-      "text-tone-warning"
-    when :danger
-      "text-tone-danger"
-    when :info
-      "text-tone-info"
-    when :magic
-      "text-tone-magic"
     end
   end
 end

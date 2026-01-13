@@ -18,12 +18,7 @@ module Orbital
       private
 
       def default_attributes
-        super.merge(
-          class: class_names(
-            "flex flex-col space-y-1.5 p-6",
-            system_attributes[:class]
-          )
-        )
+        super.merge(class: "Orbital-Card-Header")
       end
     end
   end

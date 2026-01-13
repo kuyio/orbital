@@ -17,11 +17,7 @@ module Orbital
     private
 
     def default_attributes
-      super.merge(
-        class: class_names(
-          "rounded-lg border bg-card text-card-foreground shadow-sm"
-        )
-      )
+      super.merge(class: "Orbital-Card")
     end
   end
 end

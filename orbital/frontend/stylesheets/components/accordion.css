@@ -1,0 +1,17 @@
+@layer components {
+  .Orbital-Accordion {
+    @apply flex flex-col gap-4 w-full;
+  }
+
+  .Orbital-Accordion-Item {
+    @apply w-full border-b last:border-b-0 py-4;
+  }
+
+  .Orbital-Accordion-Item-Content[data-state="closed"] {
+    @apply hidden;
+  }
+
+  .Orbital-Accordion-Item-Content {
+    @apply flex flex-col items-start gap-2 mt-2;
+  }
+}

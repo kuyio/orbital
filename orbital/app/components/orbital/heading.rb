@@ -20,10 +20,10 @@ class Orbital::Heading < Orbital::Component
       class: class_names(
         'Orbital-Heading',
         size_classes,
-        weight_classes,
-        alignment_classes,
-        @tone == :subdued ? 'text-subdued' : 'text-default',
-      )
+        weight_classes
+      ),
+      "data-tone": @tone,
+      "data-align": @align
     )
   end
 
@@ -60,17 +60,6 @@ class Orbital::Heading < Orbital::Component
       "font-semibold"
     when :bold
       "font-bold"
-    end
-  end
-
-  def alignment_classes
-    case @align
-    when :left
-      "text-left"
-    when :center
-      "text-center"
-    when :right
-      "text-right"
     end
   end
 end

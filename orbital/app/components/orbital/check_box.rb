@@ -11,12 +11,12 @@ class Orbital::CheckBox < Orbital::Component
   attribute :id, :string, default: nil
 
   orb_template <<-ORB
-    <div class={wrapper_classes}>
-      <label for={input_id} class={label_classes}>
-        <div class={control_classes}>
+    <div class="Orbital-CheckBox">
+      <label for={input_id} class="Orbital-CheckBox-Label">
+        <div class="Orbital-CheckBox-Control">
           <input **html_attributes />
-          <span class={indicator_classes}/>
-          <Icon name="check" size="sm" class={icon_classes} />
+          <span class="Orbital-CheckBox-Indicator"/>
+          <Icon name="check" size="sm" class="Orbital-CheckBox-Icon" />
         </div>
         <Text>{{ label_text }}</Text>
       </label>
@@ -38,42 +38,10 @@ class Orbital::CheckBox < Orbital::Component
       name: @name,
       value: @value,
       id: input_id,
-      class: "peer sr-only",
+      class: "Orbital-CheckBox-Input",
       type: "checkbox",
       checked: @checked,
       disabled: @disabled
-    )
-  end
-
-  def wrapper_classes
-    class_names(
-      "grid gap-1.5 leading-none"
-    )
-  end
-
-  def control_classes
-    class_names(
-      "flex relative items-center gap-2 cursor-pointer",
-    )
-  end
-
-  def indicator_classes
-    class_names(
-      "peer-checked:bg-primary",
-      "relative h-4 w-4 rounded-sm border border-gray-800 bg-white"
-    )
-  end
-
-  def icon_classes
-    class_names(
-      "peer-checked:inline-flex absolute left-0 p-1 text-white",
-      "hidden"
-    )
-  end
-
-  def label_classes
-    class_names(
-      "flex items-center gap-2 cursor-pointer select-none"
     )
   end
 
@@ -83,14 +51,6 @@ class Orbital::CheckBox < Orbital::Component
 
   def input_id
     @id ||= SecureRandom.hex(4)
-  end
-
-  def checked_attribute
-    @checked ? "checked" : ""
-  end
-
-  def disabled_attribute
-    @disabled ? "disabled" : ""
   end
 
   def help?

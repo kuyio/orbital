@@ -1,0 +1,5 @@
+@layer components {
+  .Orbital-NavigationMenu {
+    @apply items-center hidden lg:flex;
+  }
+}

@@ -6,3 +6,5 @@ demo/storage/test.sqlite3
 demo/tmp/cache/bootsnap
 orbital/node_modules
 orbital/.parcel-cache
+demo/log
+demo/tmp/pids

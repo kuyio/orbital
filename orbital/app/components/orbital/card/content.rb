@@ -10,12 +10,7 @@ module Orbital
       private
 
       def default_attributes
-        super.merge(
-          class: class_names(
-            "p-6 pt-0",
-            system_attributes[:class]
-          )
-        )
+        super.merge(class: "Orbital-Card-Content")
       end
     end
   end

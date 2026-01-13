@@ -10,11 +10,6 @@ class Orbital::KbdGroup < Orbital::Component
   private
 
   def default_attributes
-    super.merge(
-      class: class_names(
-        'Orbital-KbdGroup',
-        'inline-flex items-center gap-1',
-      )
-    )
+    super.merge(class: 'Orbital-KbdGroup')
   end
 end

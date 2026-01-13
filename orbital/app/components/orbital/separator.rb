@@ -13,23 +13,10 @@ module Orbital
 
     def default_attributes
       super.merge(
-        class: default_classes,
+        class: "Orbital-Separator",
         "data-orientation": @orientation,
-        role: @decorative ? "none" : "separator",
+        role: @decorative ? "none" : "separator"
       )
-    end
-
-    def default_classes
-      [
-        # Base styles
-        "bg-border shrink-0",
-        # Orientation styles
-        orientation_classes
-      ]
-    end
-
-    def orientation_classes
-      "bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px"
     end
   end
 end

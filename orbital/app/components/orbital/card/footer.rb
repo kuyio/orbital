@@ -10,12 +10,7 @@ module Orbital
       private
 
       def default_attributes
-        super.merge(
-          class: class_names(
-            "flex items-center p-6 pt-0",
-            system_attributes[:class]
-          )
-        )
+        super.merge(class: "Orbital-Card-Footer")
       end
     end
   end

@@ -12,7 +12,7 @@ class Orbital::Accordion::Item < Orbital::Component
         {{trigger}}
         <Icon name="chevron-down" size="small"/>
       </Heading>
-      <div class="Orbital-Accordion-Item-Content data-[state=closed]:hidden flex flex-col items-start gap-2 mt-2" data-state={state}>
+      <div class="Orbital-Accordion-Item-Content" data-state={state}>
         {{content}}
       </div>
     </div>
@@ -25,15 +25,6 @@ class Orbital::Accordion::Item < Orbital::Component
   end
 
   def default_attributes
-    super.merge(
-      class: default_classes
-    )
-  end
-
-  def default_classes
-    [
-      # Base styles
-      "Orbital-Accordion-Item w-full border-b last:border-b-0 py-4",
-    ]
+    super.merge(class: "Orbital-Accordion-Item")
   end
 end
