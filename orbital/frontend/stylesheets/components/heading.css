@@ -2,7 +2,7 @@
   /* Heading component uses typography system for sizes, only need weight/align/tone */
   
   .Orbital-Heading[data-tone="default"] {
-    @apply text-foreground;
+    @apply text-card-foreground;
   }
 
   .Orbital-Heading[data-tone="subdued"] {

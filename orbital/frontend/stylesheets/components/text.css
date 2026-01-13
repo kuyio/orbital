@@ -2,11 +2,11 @@
   /* Text component uses typography system for sizes, only need weight/align/tone */
   
   .Orbital-Text[data-tone="default"] {
-    @apply text-tone-regular;
+    @apply text-card-foreground;
   }
 
   .Orbital-Text[data-tone="subdued"] {
-    @apply text-tone-subdued;
+    @apply text-muted-foreground;
   }
 
   .Orbital-Text[data-tone="success"] {

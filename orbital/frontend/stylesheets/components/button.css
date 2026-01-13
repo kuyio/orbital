@@ -20,7 +20,7 @@
   }
 
   .Orbital-Button[data-variant="outline"] {
-    @apply border border-input bg-background;
+    @apply border border-input bg-card;
     @apply hover:bg-accent hover:text-accent-foreground;
   }
 

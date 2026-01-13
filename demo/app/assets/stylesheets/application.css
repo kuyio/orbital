@@ -17,6 +17,9 @@
 
 :root {
   --header-height: calc(.25rem * 14);
+
+  /* Override the default Orbital primary color to customize the theme */
+  /* --color-primary: #4F3C83; */
 }
 
 .container-wrapper {

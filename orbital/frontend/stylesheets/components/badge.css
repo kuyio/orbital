@@ -17,7 +17,7 @@
   }
 
   .Orbital-Badge[data-variant="outline"] {
-    @apply text-foreground;
+    @apply text-card-foreground;
   }
 
   .Orbital-Badge[data-variant="ghost"] {
