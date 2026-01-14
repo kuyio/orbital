@@ -1,5 +1,5 @@
 @layer components {
   .Orbital-NavigationMenu {
-    @apply items-center hidden lg:flex;
+    @apply items-center hidden lg:flex w-full;
   }
 }
