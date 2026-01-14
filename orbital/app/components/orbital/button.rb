@@ -6,6 +6,7 @@ module Orbital
     attribute :size, :symbol, default: :sm, only: [:sm, :default, :lg, :icon]
     attribute :url, :string, default: nil
     attribute :disabled, :boolean, default: false
+    attribute :modal, :boolean, default: false
 
     def call
       build_tag(**html_attributes) do
@@ -16,12 +17,17 @@ module Orbital
     private
 
     def default_attributes
-      super.merge(
+      attrs = super.merge(
         class: "Orbital-Button",
         "data-variant": @variant,
         "data-size": @size,
         "data-disabled": @disabled || nil
       )
+
+      # Add turbo-frame targeting for modal dialogs
+      attrs["data-turbo-frame"] = Orbital.configuration.dialog_portal_id if @modal
+
+      attrs
     end
 
     def build_tag(**opts)

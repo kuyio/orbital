@@ -19,6 +19,19 @@
 @import "./components/typography.css";
 @import "./components/expander.css";
 
+/* Dialog components */
+@import "./components/dialog.css";
+@import "./components/alert.css";
+@import "./components/confirmation-dialog.css";
+@import "./components/delete-dialog.css";
+
+/* Popover components */
+@import "./components/popover.css";
+@import "./components/dropdown.css";
+@import "./components/menu.css";
+@import "./components/tooltip.css";
+@import "./components/popcard.css";
+
 /* ============================================
    ORBITAL COMPONENT LIBRARY - THEME DEFAULTS
    ============================================

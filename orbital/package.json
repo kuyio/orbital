@@ -24,6 +24,10 @@
     "watch": "parcel watch --no-hmr --no-cache",
     "build": "parcel build"
   },
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@floating-ui/dom": "^1.6.0"
+  },
   "devDependencies": {
     "@parcel/transformer-sass": "2.16.1",
     "@tailwindcss/postcss": "^4.1.17",

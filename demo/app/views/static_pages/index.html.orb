@@ -25,10 +25,17 @@
   <div class="flex flex-col mx-auto py-6">
     <div class="grid grid-cols-3 gap-8">
       <div class="border p-4 rounded-lg flex flex-col gap-6 w-96">
-        <Heading size="sm">Payment Method</Heading>
+        <div class="flex w-full items-center justify-between">
+          <Heading size="sm">Payment Method</Heading>
+          <Tooltip text="We accept Visa, MasterCard, American Express, and Discover cards.">
+            <Icon name="circle-info"/>
+          </Tooltip>
+        </div>
+
         <Text tone="subdued">
           All transactions are secure and encrypted. We do not store your credit card information.
         </Text>
+
         <TextField name="card_name" label="Name on card" placeholder="John Doe" />
 
         <div class="grid grid-cols-5 gap-4">
@@ -103,7 +110,23 @@
               <Icon name="robot"/>
               <Text>Copilot</Text>
             </Button>
-            <Button variant="outline"><Icon name="chevron-down" size=sm/></Button>
+            <Dropdown variant="outline">
+              <Menu>
+                <Menu:Item icon="edit">
+                  Edit
+                </Menu:Item>
+
+                <Menu:Item icon="copy">
+                  Duplicate
+                </Menu:Item>
+
+                <Menu:Separator/>
+
+                <Menu:Item icon="trash" variant="danger">
+                  Delete
+                </Menu:Item>
+              </Menu>
+            </Dropdown>
           </ButtonGroup>
         </div>
 
@@ -126,8 +149,6 @@
           </div>
           <Button variant="outline">Cancel</Button>
         </div>
-
-
       </div>
 
       <div class="border p-4 rounded-lg flex flex-col gap-8 w-96 items-center justify-center">
@@ -138,7 +159,110 @@
           You see, this is just a demo of Orbital's components. There is no backend here to process payments or handle data. But imagine what you could build with these components as your foundation!
         </Text>
 
-        <Button url="https://github.com/kuyio/orb_template">Let's make it happen today!</Button>
+        <Button modal url="/contact">Let's make it happen today!</Button>
+
+        <Separator/>
+
+        <Heading size="sm">Menu States & Variants</Heading>
+
+        <div class="grid grid-cols-2 gap-4">
+          <Dropdown variant="outline" label="Navigation Menu" fullwidth>
+            <Menu>
+              <Menu:Item active url="/dashboard" icon="home">
+                Dashboard
+              </Menu:Item>
+              <Menu:Item url="/projects" icon="folder">
+                Projects
+              </Menu:Item>
+              <Menu:Item url="/team" icon="users">
+                Team
+              </Menu:Item>
+              <Menu:Item url="/settings" icon="cog">
+                Settings
+              </Menu:Item>
+            </Menu>
+          </Dropdown>
+
+          <Dropdown variant="outline" label="View Options" fullwidth>
+            <Menu>
+              <Menu:Label>Display</Menu:Label>
+              <Menu:Item selected icon="list">
+                List View
+              </Menu:Item>
+              <Menu:Item icon="table-cells">
+                Grid View
+              </Menu:Item>
+              <Menu:Item icon="table">
+                Table View
+              </Menu:Item>
+
+              <Menu:Separator/>
+
+              <Menu:Label>Sort By</Menu:Label>
+              <Menu:Item selected>
+                Name
+              </Menu:Item>
+              <Menu:Item>
+                Date Modified
+              </Menu:Item>
+              <Menu:Item>
+                Size
+              </Menu:Item>
+            </Menu>
+          </Dropdown>
+
+          <Dropdown variant="outline" label="Account Actions" fullwidth>
+            <Menu>
+              <Menu:Item icon="user" url="/profile">
+                Profile Settings
+              </Menu:Item>
+              <Menu:Item icon="credit-card" url="/billing">
+                Billing
+              </Menu:Item>
+              <Menu:Item icon="bell" disabled>
+                Notifications (Coming Soon)
+              </Menu:Item>
+
+              <Menu:Separator/>
+
+              <Menu:Item destructive icon="trash" url="/delete-account">
+                Delete Account
+              </Menu:Item>
+              <Menu:Item icon="door-open" url="/logout">
+                Sign Out
+              </Menu:Item>
+            </Menu>
+          </Dropdown>
+
+          <Dropdown variant="outline" label="File Menu" fullwidth>
+            <Menu>
+              <Menu:Item icon="file" shortcut="⌘N">
+                New File
+              </Menu:Item>
+              <Menu:Item icon="folder-open" shortcut="⌘O">
+                Open...
+              </Menu:Item>
+              <Menu:Item icon="save" shortcut="⌘S">
+                Save
+              </Menu:Item>
+
+              <Menu:Separator/>
+
+              <Menu:Item modal url="/share" icon="share">
+                Share...
+              </Menu:Item>
+              <Menu:Item modal url="/export" icon="download">
+                Export...
+              </Menu:Item>
+
+              <Menu:Separator/>
+
+              <Menu:Item destructive icon="trash">
+                Delete
+              </Menu:Item>
+            </Menu>
+          </Dropdown>
+        </div>
       </div>
     </div>
   </d.>

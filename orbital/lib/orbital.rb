@@ -14,4 +14,35 @@ require_relative "orbital/type/symbol"
 
 module Orbital
   class Error < StandardError; end
+
+  class << self
+    attr_accessor :configuration
+  end
+
+  def self.configure
+    self.configuration ||= Configuration.new
+    yield(configuration)
+  end
+
+  class Configuration
+    attr_accessor :dialog_portal_id
+
+    def initialize
+      @dialog_portal_id = "dialogs"
+    end
+
+    # Backward compatibility for modal_portal_id (deprecated)
+    def modal_portal_id
+      warn "[DEPRECATION] `modal_portal_id` is deprecated. Please use `dialog_portal_id` instead."
+      @dialog_portal_id
+    end
+
+    def modal_portal_id=(value)
+      warn "[DEPRECATION] `modal_portal_id=` is deprecated. Please use `dialog_portal_id=` instead."
+      @dialog_portal_id = value
+    end
+  end
+
+  # Default configuration
+  self.configuration = Configuration.new
 end

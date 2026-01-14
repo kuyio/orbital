@@ -260,6 +260,9 @@
   .inline {
     display: inline;
   }
+  .table {
+    display: table;
+  }
   .h-\(--header-height\) {
     height: var(--header-height);
   }
@@ -313,6 +316,9 @@
   }
   .items-center {
     align-items: center;
+  }
+  .justify-between {
+    justify-content: space-between;
   }
   .justify-between\! {
     justify-content: space-between !important;
@@ -419,11 +425,6 @@
   .md\:py-16 {
     @media (width >= 48rem) {
       padding-block: calc(var(--spacing) * 16);
-    }
-  }
-  .lg\:block {
-    @media (width >= 64rem) {
-      display: block;
     }
   }
   .lg\:py-20 {
