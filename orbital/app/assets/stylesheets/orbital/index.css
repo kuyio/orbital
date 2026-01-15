@@ -94,8 +94,6 @@
     --radius-sm: .25rem;
     --radius-md: .375rem;
     --radius-lg: .5rem;
-    --ease-in: cubic-bezier(.4, 0, 1, 1);
-    --ease-out: cubic-bezier(0, 0, .2, 1);
     --animate-spin: spin 1s linear infinite;
     --default-transition-duration: .15s;
     --default-transition-timing-function: cubic-bezier(.4, 0, .2, 1);
@@ -995,6 +993,10 @@
     right: calc(var(--spacing) * 2);
   }
 
+  .Orbital-Input textarea.noresize {
+    resize: none;
+  }
+
   .Orbital-CheckBox {
     gap: calc(var(--spacing) * 1.5);
     --tw-leading: 1;
@@ -1782,7 +1784,7 @@
   }
 
   .Orbital-Menu {
-    gap: calc(var(--spacing) * 1);
+    gap: calc(var(--spacing) * 0);
     padding: calc(var(--spacing) * 1);
     flex-direction: column;
     min-width: 12rem;
@@ -1825,9 +1827,6 @@
   }
 
   .Orbital-Menu-Item {
-    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
     text-decoration-line: none;
   }
 
@@ -2057,6 +2056,51 @@
       max-width: 90vw;
     }
   }
+
+  .Orbital-Select {
+    position: relative;
+  }
+
+  .Orbital-Select--fullwidth {
+    width: 100%;
+  }
+
+  .Orbital-Select-Input {
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border-width: 0;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    position: absolute;
+    overflow: hidden;
+  }
+
+  .Orbital-Select-Trigger {
+    justify-content: space-between;
+  }
+
+  .Orbital-Select[data-error="true"] .Orbital-Select-Trigger {
+    border-color: var(--color-red-500);
+  }
+
+  .Orbital-Select-Placeholder {
+    color: var(--color-muted-foreground);
+  }
+
+  .Orbital-Select-Label {
+    color: var(--color-card-foreground);
+  }
+
+  .Orbital-Select--fullwidth .Orbital-Button {
+    width: 100%;
+  }
+
+  .Orbital-Select-Trigger {
+    --tw-font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-normal);
+  }
 }
 
 @layer utilities {
@@ -2155,6 +2199,10 @@
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
+  }
+
+  .border-red-500 {
+    border-color: var(--color-red-500);
   }
 
   .p-1 {

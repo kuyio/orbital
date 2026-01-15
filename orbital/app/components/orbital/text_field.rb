@@ -21,6 +21,7 @@ module Orbital
     attribute :autofocus, :boolean, default: false
     attribute :fullwidth, :boolean, default: false
     attribute :rightAligned, :boolean, default: false
+    attribute :resizable, :boolean, default: false
 
     orb_template <<-ORB
     <div class="Orbital-Field" data-fullwidth={@fullwidth || nil}>
@@ -81,7 +82,7 @@ module Orbital
         placeholder: @placeholder,
         autofocus: @autofocus,
         autocomplete: "off",
-        class: input_padding_classes,
+        class: input_classes,
         "data-error": error? || nil,
         "data-align": @rightAligned ? "right" : nil
       }
@@ -113,13 +114,14 @@ module Orbital
       end
     end
 
-    def input_padding_classes
+    def input_classes
       padding_left = input_padding_left
       padding_right = input_padding_right
 
       class_names(
         padding_left,
-        padding_right
+        padding_right,
+        "noresize" => !@resizable,
       )
     end
 

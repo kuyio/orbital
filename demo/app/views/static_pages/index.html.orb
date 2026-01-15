@@ -45,10 +45,40 @@
           <TextField name="card_ccv" label="CCV" placeholder="123" type="password" />
         </div>
 
-        <div class="grid grid-cols-3 gap-4">
-          <TextField name="card_expiry_month" label="Expiry Month" placeholder="MM" />
-          <TextField name="card_expiry_year" label="Expiry Year" placeholder="YYYY" />
-          <TextField name="card_zip" label="ZIP / Postal" placeholder="12345"/>
+        <div class="grid grid-cols-2 gap-4">
+          <Select
+            name="expiry_month"
+            label="Month"
+            placeholder="MM"
+            fullwidth
+            options={[
+              {label: "January", value: "01"},
+              {label: "February", value: "02"},
+              {label: "March", value: "03"},
+              {label: "April", value: "04"},
+              {label: "May", value: "05"},
+              {label: "June", value: "06"},
+              {label: "July", value: "07"},
+              {label: "August", value: "08"},
+              {label: "September", value: "09"},
+              {label: "October", value: "10"},
+              {label: "November", value: "11"},
+              {label: "December", value: "12"}
+            ]}
+          />
+          <Select
+            name="expiry_year"
+            label="Year"
+            placeholder="YYYY"
+            fullwidth
+            options={[
+              {label: "2024", value: "2024"},
+              {label: "2025", value: "2025"},
+              {label: "2026", value: "2026"},
+              {label: "2027", value: "2027"},
+              {label: "2028", value: "2028"}
+            ]}
+          />
         </div>
 
         <Separator/>
@@ -61,7 +91,7 @@
 
         <Separator/>
 
-        <TextField name="comments" multiline=3 placeholder="any additional comments" />
+        <TextField name="comments" multiline=3 placeholder="any additional comments" resizable/>
 
         <div class="grid grid-cols-2 gap-4">
           <Button variant="primary">Submit</Button>
@@ -111,21 +141,19 @@
               <Text>Copilot</Text>
             </Button>
             <Dropdown variant="outline">
-              <Menu>
-                <Menu:Item icon="edit">
-                  Edit
-                </Menu:Item>
-
-                <Menu:Item icon="copy">
-                  Duplicate
-                </Menu:Item>
-
-                <Menu:Separator/>
-
-                <Menu:Item icon="trash" variant="danger">
-                  Delete
-                </Menu:Item>
-              </Menu>
+              <div class="flex flex-col max-w-72">
+                <div class="px-3 py-3">
+                  <Heading size="sm">Agent Tasks</Heading>
+                </div>
+                <Separator/>
+                <div class="px-3 py-3 flex flex-col gap-3">
+                  <TextField name="tasks" labelHidden multiline=2 placeholder="Describe your task in natural language."/>
+                  <Text weight="bold">Start a new task with Copilot</Text>
+                  <Text tone="subdued">
+                    Describe your task in natural language. Copilot handles the processing in the background.
+                  </Text>
+                </div>
+              </div>
             </Dropdown>
           </ButtonGroup>
         </div>
@@ -137,8 +165,8 @@
           </Text>
         </div>
 
-        <div class="flex flex-col justify-center items-center gap-6 py-8 rounded-lg border border-dashed p-4 ">
-          <Button variant="secondary" size="icon">
+        <div class="flex flex-col justify-center items-center gap-6 py-8 rounded-lg border border-dashed p-4">
+          <Button variant="ghost" size="icon">
             <Spinner/>
           </Button>
           <div class="flex flex-col gap-4 items-center">
@@ -147,7 +175,7 @@
               Please wait while we process your request. This may take a few moments. Do not refresh or navigate away from this page.
             </Text>
           </div>
-          <Button variant="outline">Cancel</Button>
+          <Button variant="secondary">Cancel</Button>
         </div>
       </div>
 

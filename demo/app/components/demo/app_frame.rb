@@ -5,9 +5,10 @@ class Demo::AppFrame < Orbital::Component
     <div **html_attributes>
       <Page>
         <Page:Header>
-          <Button variant="ghost" size="icon" url="/">
+          <Button variant="ghost" url="/">
             <Image asset="logo.svg" width=28 height=28/>
           </Button>
+
           <NavigationMenu>
             <Button url="/docs" variant="ghost">Docs</Button>
             <Button url="/components" variant="ghost">Components</Button>
@@ -16,11 +17,11 @@ class Demo::AppFrame < Orbital::Component
             <Button url="/directory" variant="ghost">Directory</Button>
             <Button url="/themes" variant="ghost">Themes</Button>
             <Button url="/colors" variant="ghost">Colors</Button>
-            <Expander/>
           </NavigationMenu>
+
           <div class="ml-auto flex items-center gap-2 h-6">
-            <Button variant="secondary" class="font-normal w-64 justify-between!">
-              <span>Search documentation...</span>
+            <Button variant="secondary" class="font-normal w-40 justify-between!">
+              <span>Search...</span>
               <KbdGroup>
                 <Kbd>⌘</Kbd>
                 <Kbd>K</Kbd>

@@ -59,4 +59,9 @@
   .Orbital-Input-Icon[data-position="right"] {
     @apply right-2;
   }
+
+  .Orbital-Input textarea.noresize {
+    resize: none;
+  }
+
 }

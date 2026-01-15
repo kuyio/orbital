@@ -19,10 +19,12 @@ import DialogController from "./controllers/dialog_controller"
 import PopoverController from "./controllers/popover_controller"
 import MenuController from "./controllers/menu_controller"
 import MenuSubController from "./controllers/menu_sub_controller"
+import SelectController from "./controllers/select_controller"
 
 application.register("orbital-dialog", DialogController)
 application.register("orbital-popover", PopoverController)
 application.register("orbital-menu", MenuController)
 application.register("orbital-menu-sub", MenuSubController)
+application.register("orbital-select", SelectController)
 
 export { application }

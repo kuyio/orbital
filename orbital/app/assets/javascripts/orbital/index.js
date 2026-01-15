@@ -221,6 +221,8 @@ var _menuController = require("./controllers/menu_controller");
 var _menuControllerDefault = parcelHelpers.interopDefault(_menuController);
 var _menuSubController = require("./controllers/menu_sub_controller");
 var _menuSubControllerDefault = parcelHelpers.interopDefault(_menuSubController);
+var _selectController = require("./controllers/select_controller");
+var _selectControllerDefault = parcelHelpers.interopDefault(_selectController);
 // Check if host app already has Stimulus initialized
 let application;
 if (window.Stimulus) {
@@ -238,8 +240,9 @@ application.register("orbital-dialog", (0, _dialogControllerDefault.default));
 application.register("orbital-popover", (0, _popoverControllerDefault.default));
 application.register("orbital-menu", (0, _menuControllerDefault.default));
 application.register("orbital-menu-sub", (0, _menuSubControllerDefault.default));
+application.register("orbital-select", (0, _selectControllerDefault.default));
 
-},{"@hotwired/stimulus":"hVNih","./controllers/dialog_controller":"fL4B3","./controllers/popover_controller":"8Qta5","./controllers/menu_controller":"23v7l","./controllers/menu_sub_controller":"i9fGq","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"hVNih":[function(require,module,exports,__globalThis) {
+},{"@hotwired/stimulus":"hVNih","./controllers/dialog_controller":"fL4B3","./controllers/popover_controller":"8Qta5","./controllers/menu_controller":"23v7l","./controllers/menu_sub_controller":"i9fGq","./controllers/select_controller":"4Up7y","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"hVNih":[function(require,module,exports,__globalThis) {
 /*
 Stimulus 3.2.1
 Copyright © 2023 Basecamp, LLC
@@ -4954,6 +4957,93 @@ exports.default = class extends (0, _stimulus.Controller) {
         this.triggerTarget.setAttribute('aria-expanded', 'false');
         // Return focus to trigger
         this.triggerTarget.focus();
+    }
+};
+
+},{"@hotwired/stimulus":"hVNih","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"4Up7y":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _stimulus = require("@hotwired/stimulus");
+// Connects to data-controller="orbital-select"
+exports.default = class extends (0, _stimulus.Controller) {
+    static targets = [
+        "input",
+        "label"
+    ];
+    static values = {
+        selected: String
+    };
+    connect() {
+        // Initialize menu item states on connect
+        this.updateMenuStates(this.selectedValue);
+    }
+    handleItemClick(event) {
+        event.preventDefault();
+        const menuItem = event.currentTarget;
+        // Don't select disabled items
+        if (menuItem.dataset.disabled === "true" || menuItem.getAttribute("aria-disabled") === "true") return;
+        const value = menuItem.dataset.value;
+        const label = menuItem.dataset.label;
+        this.selectOption(value, label);
+        this.closeDropdown();
+    }
+    selectOption(value, label) {
+        // Update hidden input value
+        if (this.hasInputTarget) this.inputTarget.value = value;
+        // Update trigger label
+        if (this.hasLabelTarget) {
+            this.labelTarget.textContent = label;
+            this.labelTarget.classList.remove('Orbital-Select-Placeholder');
+            this.labelTarget.classList.add('Orbital-Select-Label');
+        }
+        // Update stored value
+        this.selectedValue = value;
+        // Update menu item selected states
+        this.updateMenuStates(value);
+        // Dispatch custom event for external listeners
+        this.element.dispatchEvent(new CustomEvent('orbital:select:changed', {
+            bubbles: true,
+            detail: {
+                value,
+                label
+            }
+        }));
+        // Trigger native change event on hidden input for form integration
+        if (this.hasInputTarget) this.inputTarget.dispatchEvent(new Event('change', {
+            bubbles: true
+        }));
+    }
+    updateMenuStates(selectedValue) {
+        const menuItems = this.element.querySelectorAll('.Orbital-Menu-Item');
+        menuItems.forEach((item)=>{
+            const itemValue = item.dataset.value;
+            const isSelected = itemValue === selectedValue;
+            // Update data attribute for CSS styling
+            if (isSelected) {
+                item.setAttribute('data-selected', 'true');
+                item.setAttribute('aria-selected', 'true');
+            } else {
+                item.removeAttribute('data-selected');
+                item.setAttribute('aria-selected', 'false');
+            }
+            // Update checkmark visibility (the SVG with class Orbital-Menu-Item-Check)
+            const checkmark = item.querySelector('.Orbital-Menu-Item-Check');
+            if (checkmark) checkmark.style.display = isSelected ? 'block' : 'none';
+        });
+    }
+    closeDropdown() {
+        // Find the popover element and close it
+        const popover = this.element.querySelector('[popover]');
+        if (popover) try {
+            popover.hidePopover();
+        } catch (e) {
+            // Popover API not supported or already closed
+            console.warn('Could not close popover:', e);
+        }
+    }
+    // Lifecycle callback when selected value changes externally
+    selectedValueChanged() {
+        this.updateMenuStates(this.selectedValue);
     }
 };
 

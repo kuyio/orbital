@@ -1,0 +1,233 @@
+<AppFrame>
+  <div class="container mx-auto py-8 px-4 max-w-4xl">
+    <div class="mb-8">
+      <Heading size="2xl" class="mb-2">Select Component</Heading>
+      <Text tone="subdued">
+        A customizable select dropdown component built on top of Dropdown and Menu components.
+      </Text>
+    </div>
+
+    <div class="flex flex-col gap-12">
+      <!-- Basic Select -->
+      <div class="flex flex-col gap-4">
+        <Heading size="lg">Basic Select</Heading>
+        <div class="border p-6 rounded-lg bg-card">
+          <Select
+            name="country"
+            label="Country"
+            placeholder="Select a country..."
+            help="Choose your country of residence"
+            options={[
+              {label: "United States", value: "us"},
+              {label: "Canada", value: "ca"},
+              {label: "United Kingdom", value: "uk"},
+              {label: "Germany", value: "de"},
+              {label: "France", value: "fr"},
+              {label: "Japan", value: "jp"},
+              {label: "Australia", value: "au"}
+            ]}
+          />
+        </div>
+      </div>
+
+      <!-- Select with Pre-selected Value -->
+      <div class="flex flex-col gap-4">
+        <Heading size="lg">Pre-selected Value</Heading>
+        <div class="border p-6 rounded-lg bg-card">
+          <Select
+            name="language"
+            label="Preferred Language"
+            selected="en"
+            options={[
+              {label: "English", value: "en"},
+              {label: "Spanish", value: "es"},
+              {label: "French", value: "fr"},
+              {label: "German", value: "de"},
+              {label: "Italian", value: "it"}
+            ]}
+          />
+        </div>
+      </div>
+
+      <!-- Select with Disabled Options -->
+      <div class="flex flex-col gap-4">
+        <Heading size="lg">Disabled Options</Heading>
+        <div class="border p-6 rounded-lg bg-card">
+          <Select
+            name="plan"
+            label="Subscription Plan"
+            placeholder="Choose a plan..."
+            help="Some plans are currently unavailable"
+            options={[
+              {label: "Free Plan", value: "free"},
+              {label: "Pro Plan", value: "pro"},
+              {label: "Enterprise Plan", value: "enterprise", disabled: true},
+              {label: "Team Plan", value: "team"},
+              {label: "Ultimate Plan", value: "ultimate", disabled: true}
+            ]}
+          />
+        </div>
+      </div>
+
+      <!-- Select with Error State -->
+      <div class="flex flex-col gap-4">
+        <Heading size="lg">Error State</Heading>
+        <div class="border p-6 rounded-lg bg-card">
+          <Select
+            name="category"
+            label="Category"
+            placeholder="Select a category..."
+            error="Please select a category to continue"
+            options={[
+              {label: "Technology", value: "tech"},
+              {label: "Business", value: "business"},
+              {label: "Science", value: "science"},
+              {label: "Arts", value: "arts"}
+            ]}
+          />
+        </div>
+      </div>
+
+      <!-- Full Width Select -->
+      <div class="flex flex-col gap-4">
+        <Heading size="lg">Full Width</Heading>
+        <div class="border p-6 rounded-lg bg-card">
+          <Select
+            name="timezone"
+            label="Time Zone"
+            placeholder="Select your timezone..."
+            fullwidth
+            options={[
+              {label: "Pacific Time (PT)", value: "pt"},
+              {label: "Mountain Time (MT)", value: "mt"},
+              {label: "Central Time (CT)", value: "ct"},
+              {label: "Eastern Time (ET)", value: "et"},
+              {label: "Greenwich Mean Time (GMT)", value: "gmt"}
+            ]}
+          />
+        </div>
+      </div>
+
+      <!-- Multiple Selects in a Row -->
+      <div class="flex flex-col gap-4">
+        <Heading size="lg">Multiple Selects (Form Example)</Heading>
+        <div class="border p-6 rounded-lg bg-card">
+          <form class="flex flex-col gap-4">
+            <TextField
+              name="full_name"
+              label="Full Name"
+              placeholder="John Doe"
+            />
+            
+            <div class="grid grid-cols-2 gap-4">
+              <Select
+                name="birth_month"
+                label="Birth Month"
+                placeholder="Month"
+                options={[
+                  {label: "January", value: "01"},
+                  {label: "February", value: "02"},
+                  {label: "March", value: "03"},
+                  {label: "April", value: "04"},
+                  {label: "May", value: "05"},
+                  {label: "June", value: "06"},
+                  {label: "July", value: "07"},
+                  {label: "August", value: "08"},
+                  {label: "September", value: "09"},
+                  {label: "October", value: "10"},
+                  {label: "November", value: "11"},
+                  {label: "December", value: "12"}
+                ]}
+              />
+              <Select
+                name="birth_year"
+                label="Birth Year"
+                placeholder="Year"
+                options={[
+                  {label: "2000", value: "2000"},
+                  {label: "1999", value: "1999"},
+                  {label: "1998", value: "1998"},
+                  {label: "1997", value: "1997"},
+                  {label: "1996", value: "1996"},
+                  {label: "1995", value: "1995"},
+                  {label: "1994", value: "1994"},
+                  {label: "1993", value: "1993"},
+                  {label: "1992", value: "1992"},
+                  {label: "1991", value: "1991"},
+                  {label: "1990", value: "1990"}
+                ]}
+              />
+            </div>
+
+            <Select
+              name="gender"
+              label="Gender"
+              placeholder="Select..."
+              help="Optional field"
+              options={[
+                {label: "Male", value: "male"},
+                {label: "Female", value: "female"},
+                {label: "Non-binary", value: "non-binary"},
+                {label: "Prefer not to say", value: "prefer-not"}
+              ]}
+            />
+
+            <div class="flex gap-2 pt-4">
+              <Button type="submit">Submit</Button>
+              <Button variant="secondary" type="reset">Reset</Button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Different Positions -->
+      <div class="flex flex-col gap-4">
+        <Heading size="lg">Position Variants</Heading>
+        <div class="border p-6 rounded-lg bg-card">
+          <div class="grid grid-cols-2 gap-4">
+            <Select
+              name="position_top"
+              label="Open Upwards"
+              placeholder="Select..."
+              position={:top}
+              options={[
+                {label: "Option 1", value: "1"},
+                {label: "Option 2", value: "2"},
+                {label: "Option 3", value: "3"}
+              ]}
+            />
+            <Select
+              name="position_bottom"
+              label="Open Downwards (Default)"
+              placeholder="Select..."
+              position={:bottom}
+              options={[
+                {label: "Option 1", value: "1"},
+                {label: "Option 2", value: "2"},
+                {label: "Option 3", value: "3"}
+              ]}
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Disabled Select -->
+      <div class="flex flex-col gap-4">
+        <Heading size="lg">Disabled Select</Heading>
+        <div class="border p-6 rounded-lg bg-card">
+          <Select
+            name="disabled_select"
+            label="Unavailable Option"
+            placeholder="Cannot select..."
+            disabled
+            help="This select is currently disabled"
+            options={[
+              {label: "Option 1", value: "1"},
+              {label: "Option 2", value: "2"}
+            ]}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</AppFrame>
