@@ -30,4 +30,16 @@
   .Orbital-CheckBox-Input:checked ~ .Orbital-CheckBox-Icon {
     @apply inline-flex;
   }
+
+  .Orbital-CheckBox-Input:disabled ~ .Orbital-CheckBox-Icon {
+    @apply opacity-75;
+  }
+
+  .Orbital-CheckBox-Input:disabled + .Orbital-CheckBox-Indicator {
+    @apply opacity-75 cursor-not-allowed;
+  }
+
+  .Orbital-CheckBox:has(.Orbital-CheckBox-Input:disabled) .Orbital-CheckBox-Label {
+    @apply opacity-75 cursor-not-allowed;
+  }
 }

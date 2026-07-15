@@ -2,9 +2,9 @@
 
 class Orbital::Kbd < Orbital::Component
   orb_template <<-ORB
-    <div **html_attributes>
+    <kbd **html_attributes>
       {{content}}
-    </div>
+    </kbd>
   ORB
 
   private

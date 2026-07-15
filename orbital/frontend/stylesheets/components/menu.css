@@ -1,7 +1,7 @@
 @layer components {
   /* Base menu container */
   .Orbital-Menu {
-    @apply flex flex-col gap-0 p-1;
+    @apply flex flex-col gap-0 p-1 overflow-visible;
     @apply min-w-[12rem];
   }
   
@@ -14,7 +14,7 @@
     @apply flex items-center gap-2 px-3 py-2 rounded-sm;
     @apply text-sm cursor-pointer w-full text-left;
     @apply hover:bg-accent hover:text-accent-foreground;
-    @apply focus:bg-accent focus:text-accent-foreground;
+    @apply focus-visible:bg-accent focus-visible:text-accent-foreground;
     @apply focus-visible:outline-none;
     /* @apply transition-colors; */
     @apply no-underline;
@@ -40,9 +40,13 @@
     @apply text-xs text-muted-foreground ml-auto pl-4;
   }
   
-  /* Checkmark icon for selected state */
+  /* Checkmark icon for selected state — hidden by default, shown via data-selected */
   .Orbital-Menu-Item-Check {
-    @apply w-4 h-4 flex-shrink-0 ml-auto;
+    @apply w-4 h-4 flex-shrink-0 ml-auto hidden;
+  }
+
+  .Orbital-Menu-Item[data-selected="true"] .Orbital-Menu-Item-Check {
+    @apply block;
   }
   
   /* Active state - light blue background */
@@ -94,21 +98,21 @@
   .Orbital-Menu-Sub {
     @apply relative;
   }
-  
+
   /* Submenu trigger chevron */
   .Orbital-Menu-Sub-Icon {
-    @apply ml-auto transition-transform;
+    @apply ml-auto;
   }
-  
-  .Orbital-Menu-Sub[data-state="open"] .Orbital-Menu-Sub-Icon {
-    @apply rotate-90;
-  }
-  
-  /* Submenu content - hidden by default */
+
+  /* Submenu content - flyout to the right */
   .Orbital-Menu-Sub-Content {
-    @apply hidden pl-4 mt-1;
+    @apply hidden flex-col;
+    @apply absolute left-full top-0;
+    @apply min-w-[12rem] p-1;
+    @apply border rounded-md bg-popover text-popover-foreground shadow-md;
+    @apply z-10;
   }
-  
+
   .Orbital-Menu-Sub[data-state="open"] .Orbital-Menu-Sub-Content {
     @apply flex;
   }

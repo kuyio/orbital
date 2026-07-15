@@ -64,4 +64,15 @@
     resize: none;
   }
 
+  .Orbital-Input input[readonly],
+  .Orbital-Input textarea[readonly] {
+    background: color-mix(in oklab, var(--muted) 40%, var(--card));
+    @apply cursor-default;
+  }
+
+  .Orbital-Input input[readonly]:hover,
+  .Orbital-Input textarea[readonly]:hover {
+    background: color-mix(in oklab, var(--muted) 40%, var(--card));
+  }
+
 }

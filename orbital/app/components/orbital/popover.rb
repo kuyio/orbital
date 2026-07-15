@@ -4,21 +4,15 @@ module Orbital
   class Popover < Component
     attribute :id, :string, default: -> { "popover-#{SecureRandom.hex(4)}" }
     attribute :on, :symbol, default: :click, only: [:click, :hover]
-    attribute :position, :symbol, default: :auto, only: [:auto, :top, :bottom, :left, :right]
+    attribute :position, :symbol, default: :auto, only: [:auto, :n, :ne, :e, :se, :s, :sw, :w, :nw]
 
     renders_one :trigger
 
     orb_template <<-ORB
-      <div
-        data-controller="orbital-popover"
-        data-orbital-popover-trigger-value={@on}
-        data-orbital-popover-position-value={@position}
-        **html_attributes>
+      <div **html_attributes>
         {#if trigger}
           <div
-            data-orbital-popover-target="trigger"
-            popovertarget={@id}
-            popovertargetaction=toggle>
+            data-orbital-popover-target="trigger">
             {{trigger}}
           </div>
         {/if}
@@ -27,7 +21,7 @@ module Orbital
             popover
             id={@id}
             data-orbital-popover-target="content"
-            class="Orbital-Popover"
+            class={content_class}
             data-position={@position}>
             {{content}}
           </div>
@@ -37,13 +31,20 @@ module Orbital
 
     private
 
+    def content_class
+      "Orbital-Popover"
+    end
+
     def default_attributes
-      {
+      super.merge(
         class: "Orbital-Popover-Container",
         data: {
+          controller: "orbital-popover",
+          "orbital-popover-trigger-value": @on,
+          "orbital-popover-position-value": @position,
           state: "closed"
         }
-      }.merge_html_attributes(super)
+      )
     end
   end
 end

@@ -13,7 +13,7 @@ module Orbital
     attribute :error, :string, default: nil
     attribute :disabled, :boolean, default: false
     attribute :required, :boolean, default: false
-    attribute :position, :symbol, default: :bottom
+    attribute :position, :symbol, default: :s
     attribute :fullwidth, :boolean, default: false
 
     orb_template <<-ORB
@@ -34,17 +34,13 @@ module Orbital
 
           <Dropdown
             position={@position}
-            fullwidth={@fullwidth}
+            fullwidth
             id={dropdown_id}>
 
             <Dropdown:Trigger>
               <Button
-                slot="trigger"
                 variant="outline"
-                popovertarget={dropdown_id}
-                popovertargetaction="toggle"
                 disabled={@disabled}
-                data-orbital-popover-target="trigger"
                 class={button_classes}>
                 <span
                   data-orbital-select-target="label"

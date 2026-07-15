@@ -3,30 +3,37 @@
 module Orbital
   class Menu
     class Item < Component
+      include Orbital::Concerns::IconProp
       attribute :url, :string, default: nil
       attribute :disabled, :boolean, default: false
       attribute :selected, :boolean, default: false
       attribute :active, :boolean, default: false
       attribute :destructive, :boolean, default: false
-      attribute :modal, :boolean, default: false
+      attribute :modal, :any, default: nil
       attribute :shortcut, :string, default: nil
-      attribute :icon, :string, default: nil
+      attribute :icon, :any, default: nil
 
       renders_one :icon_slot, Orbital::Icon
 
-      orb_template <<-ORB
-        <component(tag_name) **html_attributes>
-          <Icon :if={@icon} name={@icon} size="sm"/>
-          {{icon_slot}}
-          <span class="Orbital-Menu-Item-Content">{{content}}</span>
-          <Text :if={@shortcut} size="sm" tone="subdued">{{@shortcut}}</Text>
-          <svg :if={@selected} class="Orbital-Menu-Item-Check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-        </component>
-      ORB
+      def call
+        content_tag tag_name, **html_attributes do
+          safe_join([
+            render_icon,
+            icon_slot,
+            content_tag(:span, content, class: "Orbital-Menu-Item-Content"),
+            (@shortcut ? render(Orbital::Text.new(size: :sm, tone: :subdued)) { @shortcut } : nil),
+            check_icon
+          ].compact)
+        end
+      end
 
       private
+
+      def check_icon
+        content_tag(:svg, class: "Orbital-Menu-Item-Check", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round") do
+          tag.polyline(points: "20 6 9 17 4 12")
+        end
+      end
 
       def tag_name
         @url.present? ? :a : :button
@@ -48,8 +55,11 @@ module Orbital
         attrs[:href] = @url if @url.present?
         attrs[:type] = "button" unless @url.present?
 
-        # Add turbo-frame targeting for modal dialogs
-        attrs["data-turbo-frame"] = Orbital.configuration.dialog_portal_id if @modal
+        if @modal.is_a?(String) && !%w[true false].include?(@modal)
+          attrs["data-open-modal"] = @modal
+        elsif @modal && @url.present?
+          attrs["data-turbo-frame"] = Orbital.configuration.dialog_portal_id
+        end
 
         attrs
       end

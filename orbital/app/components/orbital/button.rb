@@ -3,10 +3,10 @@
 module Orbital
   class Button < Component
     attribute :variant, :symbol, default: :default, only: [:default, :destructive, :outline, :secondary, :ghost, :link]
-    attribute :size, :symbol, default: :sm, only: [:sm, :default, :lg, :icon]
+    attribute :size, :symbol, default: :default, only: [:sm, :default, :lg, :icon]
     attribute :url, :string, default: nil
     attribute :disabled, :boolean, default: false
-    attribute :modal, :boolean, default: false
+    attribute :modal, :any, default: nil
 
     def call
       build_tag(**html_attributes) do
@@ -24,8 +24,11 @@ module Orbital
         "data-disabled": @disabled || nil
       )
 
-      # Add turbo-frame targeting for modal dialogs
-      attrs["data-turbo-frame"] = Orbital.configuration.dialog_portal_id if @modal
+      if @modal.is_a?(String) && !%w[true false].include?(@modal)
+        attrs["data-open-modal"] = @modal
+      elsif @modal && @url.present?
+        attrs["data-turbo-frame"] = Orbital.configuration.dialog_portal_id
+      end
 
       attrs
     end

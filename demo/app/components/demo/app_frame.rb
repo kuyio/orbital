@@ -5,41 +5,49 @@ class Demo::AppFrame < Orbital::Component
     <div **html_attributes>
       <Page>
         <Page:Header>
-          <Button variant="ghost" url="/">
-            <Image asset="logo.svg" width=28 height=28/>
-          </Button>
-
           <NavigationMenu>
-            <Button url="/docs" variant="ghost">Docs</Button>
+            <NavigationMenu:Brand>
+              <Button variant="link" url="/" class="mr-2">
+                <Image asset="logo.svg" width=28 height=28/>
+                <Text weight="bold">Orbital</Text>
+              </Button>
+            </NavigationMenu:Brand>
+
+            <NavigationMenu:Mobile>
+              <Menu>
+                <Menu:Item url="/components" icon="cube">Components</Menu:Item>
+                <Menu:Item url="/blocks" icon="table-cells">Blocks</Menu:Item>
+                <Menu:Item url="/themes" icon="palette">Theming</Menu:Item>
+                <Menu:Separator/>
+                <Menu:Item url="https://github.com/kuyio/orb_template" icon={{name: "github", variant: "brands"}}>GitHub</Menu:Item>
+                <Menu:Item url="https://kuy.io" icon="compass">kuy.io</Menu:Item>
+              </Menu>
+            </NavigationMenu:Mobile>
+
             <Button url="/components" variant="ghost">Components</Button>
             <Button url="/blocks" variant="ghost">Blocks</Button>
-            <Button url="/charts" variant="ghost">Charts</Button>
-            <Button url="/directory" variant="ghost">Directory</Button>
-            <Button url="/themes" variant="ghost">Themes</Button>
-            <Button url="/colors" variant="ghost">Colors</Button>
-          </NavigationMenu>
-
-          <div class="ml-auto flex items-center gap-2 h-6">
-            <Button variant="secondary" class="font-normal w-40 justify-between!">
+            <Button url="/themes" variant="ghost">Theming</Button>
+            <Expander/>
+            <Button variant="outline" class="font-normal w-48 justify-between!">
               <span>Search...</span>
               <KbdGroup>
                 <Kbd>⌘</Kbd>
                 <Kbd>K</Kbd>
               </KbdGroup>
             </Button>
-            <Separator orientation="vertical"/>
+            <Separator orientation="vertical" class="h-8"/>
             <Button variant="ghost" size="icon" url="https://github.com/kuyio/orb_template">
-              <Icon name="github" variant="brands" />
+              <Icon name="github" variant="brands"/>
             </Button>
-            <Separator orientation="vertical"/>
+            <Separator orientation="vertical" class="h-8"/>
             <Button variant="ghost" size="icon" url="https://kuy.io">
               <Icon name="compass" variant="regular"/>
             </Button>
-            <Separator orientation="vertical"/>
+            <Separator orientation="vertical" class="h-8"/>
             <Button variant="ghost" size="icon">
               <Icon name="moon" variant="regular"/>
             </Button>
-          </div>
+          </NavigationMenu>
         </Page:Header>
 
         {{content}}
@@ -52,7 +60,7 @@ class Demo::AppFrame < Orbital::Component
   def default_attributes
     super.merge(
       class: class_names(
-        "Orbital-App h-full w-full overflow-hidden",
+        "Orbital-App h-full w-full",
       )
     )
   end

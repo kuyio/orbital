@@ -8,22 +8,32 @@
   .Orbital-Popcard {
     @apply rounded-lg border bg-card text-card-foreground shadow-lg;
     @apply p-6 min-w-[20rem] max-w-md;
-    
-    /* Smooth transitions */
+
+    position: absolute;
+    margin: 0;
+    z-index: 50;
+
     @starting-style {
       opacity: 0;
-      transform: translateY(-8px) scale(0.95);
     }
-    
+
     opacity: 1;
-    transform: translateY(0) scale(1);
-    transition: opacity 150ms ease-out, transform 150ms ease-out, display 150ms ease-out allow-discrete, overlay 150ms ease-out allow-discrete;
+    transition: opacity 150ms ease-out, display 150ms ease-out allow-discrete, overlay 150ms ease-out allow-discrete;
   }
 
-  /* Open state */
   .Orbital-Popcard:popover-open {
     opacity: 1;
-    transform: translateY(0) scale(1);
+  }
+
+  /* Hide until positioned by JS */
+  .Orbital-Popcard:popover-open:not([data-positioned]) {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .Orbital-Popcard:popover-open[data-positioned] {
+    opacity: 1;
+    pointer-events: auto;
   }
 
   /* Popcard structural components */

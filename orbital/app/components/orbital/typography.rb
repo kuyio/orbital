@@ -18,20 +18,20 @@ module Orbital
 
     attribute :variant, :symbol, default: :p, only: TAG_MAPPING.keys
 
-    orb_template <<-ORB
-      <{{tag_name}} **html_attributes>{{content}}</{{tag_name}}>
-    ORB
+    def call
+      content_tag(tag_name, content, **html_attributes)
+    end
 
     private
 
     def tag_name
-      system_attributes.delete(:tag) || TAG_MAPPING[variant] || :p
+      TAG_MAPPING[@variant] || :p
     end
 
     def default_attributes
       super.merge(
         class: "Orbital-Typography",
-        "data-variant": variant
+        "data-variant": @variant
       )
     end
   end

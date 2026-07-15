@@ -38,7 +38,7 @@
 
   /* Sizes */
   .Orbital-Button[data-size="sm"] {
-    @apply h-8 rounded-md gap-1.5 px-3;
+    @apply h-6 rounded-md gap-1.5 px-3 text-xs;
   }
 
   .Orbital-Button[data-size="default"] {
@@ -46,10 +46,10 @@
   }
 
   .Orbital-Button[data-size="lg"] {
-    @apply h-10 rounded-md px-6;
+    @apply h-11 rounded-md px-6 text-base;
   }
 
   .Orbital-Button[data-size="icon"] {
-    @apply size-8;
+    @apply size-8 p-0 shrink-0;
   }
 }

@@ -76,25 +76,17 @@ export default class extends Controller {
         item.setAttribute('aria-selected', 'false')
       }
 
-      // Update checkmark visibility (the SVG with class Orbital-Menu-Item-Check)
-      const checkmark = item.querySelector('.Orbital-Menu-Item-Check')
-      if (checkmark) {
-        checkmark.style.display = isSelected ? 'block' : 'none'
-      }
     })
   }
 
   closeDropdown() {
-    // Find the popover element and close it
-    const popover = this.element.querySelector('[popover]')
-    
-    if (popover) {
-      try {
-        popover.hidePopover()
-      } catch (e) {
-        // Popover API not supported or already closed
-        console.warn('Could not close popover:', e)
-      }
+    const container = this.element.querySelector('[data-controller="orbital-popover"]')
+    if (!container) return
+
+    const app = this.application
+    const popoverCtrl = app.getControllerForElementAndIdentifier(container, 'orbital-popover')
+    if (popoverCtrl) {
+      popoverCtrl.hide()
     }
   }
 

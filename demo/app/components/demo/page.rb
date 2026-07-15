@@ -6,8 +6,8 @@ class Demo::Page < Orbital::Component
   renders_one :header
 
   orb_template <<-ORB
-    <div class="bg-background relative z-10 flex flex min-h-svh flex-col p-2">
-      <header class="bg-background sticky top-0 z-50 w-full">
+    <div class="bg-background relative z-10 flex flex min-h-svh flex-col px-2 pb-2">
+      <header class="bg-background/90 backdrop-blur-sm border-b sticky top-0 z-50 w-full">
         <div class="container-wrapper 3xl:fixed:px-0 px-0">
           <div class="3xl:fixed:container flex h-(--header-height) items-center">
             {{header}}

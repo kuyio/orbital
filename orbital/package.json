@@ -19,6 +19,9 @@
       "distDir": "app/assets/stylesheets/orbital/"
     }
   },
+  "exports": {
+    "./theme": "./app/assets/stylesheets/orbital/theme.css"
+  },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "watch": "parcel watch --no-hmr --no-cache",

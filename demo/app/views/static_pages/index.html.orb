@@ -128,7 +128,6 @@
 
           <ButtonGroup>
             <Button variant="outline">Archive</Button>
-            <Button variant="outline"><Icon name="ellipsis" size=sm/></Button>
           </ButtonGroup>
 
           <Button variant="outline" size="icon"><Icon name="arrow-right" size=sm/></Button>

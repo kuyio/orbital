@@ -2,7 +2,7 @@
 
   /* Dropdown popover container */
   .Orbital-Dropdown {
-    @apply p-0;
+    @apply p-0 overflow-visible;
     /* Remove padding, let Menu handle it */
     .Orbital-Button[data-size="default"] {
       @apply justify-between pl-3 pr-2;

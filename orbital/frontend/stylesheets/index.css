@@ -6,6 +6,7 @@
 @import "./components/spinner.css";
 @import "./components/kbd.css";
 @import "./components/button.css";
+@import "./components/avatar.css";
 @import "./components/badge.css";
 @import "./components/text.css";
 @import "./components/heading.css";
@@ -16,10 +17,12 @@
 @import "./components/accordion.css";
 @import "./components/image.css";
 @import "./components/navigation-menu.css";
+@import "./components/prose.css";
 @import "./components/typography.css";
 @import "./components/expander.css";
 
 /* Dialog components */
+@import "./components/modal.css";
 @import "./components/dialog.css";
 @import "./components/alert.css";
 @import "./components/confirmation-dialog.css";
@@ -33,174 +36,12 @@
 @import "./components/popcard.css";
 @import "./components/select.css";
 
-/* ============================================
-   ORBITAL COMPONENT LIBRARY - THEME DEFAULTS
-   ============================================
+/* Theme: default values, dark mode, and Tailwind @theme integration.
+   Shipped as orbital/theme.css for host apps to import directly. */
+@import "../../app/assets/stylesheets/orbital/theme.css";
 
-   These CSS variables provide default styling for Orbital components.
-   Host applications can override any of these by defining their own
-   :root { } block AFTER importing orbital's CSS.
-
-   Example override:
-
-   @import "orbital/index.css";
-
-   :root {
-     --primary: hotpink;
-     --primary-foreground: white;
-     --radius: 0.25rem;
-   }
-
-   See demo/custom-theme.css for a complete example.
-*/
-
-/* ====================================
-   COMPONENT-ESSENTIAL VARIABLES
-   Host apps should override these to customize the theme
-   ==================================== */
-:root {
-  /* === Color Semantics === */
-
-  /* Primary: Used by buttons, badges, links, form inputs */
-  --primary: #171717;
-  --primary-foreground: #fafafa;
-
-  /* Secondary: Used by secondary buttons, badges, input hover states */
-  --secondary: #f5f5f5;
-  --secondary-foreground: #171717;
-
-  /* Destructive: Used by error states, destructive buttons */
-  --destructive: #e40014;
-  --destructive-foreground: #ffffff;
-
-  /* Muted: Used for subdued text and backgrounds */
-  --muted: #ececec;
-  --muted-foreground: #737373;
-
-  /* Accent: Used for hover states */
-  --accent: #f5f5f5;
-  --accent-foreground: #171717;
-
-  /* Card/Popover: Component backgrounds with distinct appearance */
-  --card: #ffffff;
-  --card-foreground: #0a0a0a;
-  --popover: #ffffff;
-  --popover-foreground: #0a0a0a;
-
-  /* Borders and Form Elements */
-  --border: #e5e5e5;
-  --input: #e5e5e5;
-  --ring: #8b8b8b;
-
-  /* === Semantic Feedback Colors === */
-  /* Used by Text component for status/feedback */
-  --tone-success: #16a34a;
-  --tone-warning: #ca8a04;
-  --tone-danger: #dc2626;
-  --tone-magic: #9333ea;
-  --tone-info: #0ea5e9;
-
-  /* === Layout & Sizing === */
-  --radius: 0.5rem;
-
-  /* === Typography === */
-  --font-weight-normal: 350;
-  --font-weight-medium: 450;
-  --font-weight-semibold: 550;
-  --font-weight-bold: 600;
-
-  /* Text component scale */
-  --text-body-xs: 11px;
-  --text-body-xs--line-height: 16px;
-  --text-body-sm: 12px;
-  --text-body-sm--line-height: 16px;
-  --text-body-md: 14px;
-  --text-body-md--line-height: 20px;
-  --text-body-lg: 16px;
-  --text-body-lg--line-height: 24px;
-  --text-body-xl: 18px;
-  --text-body-xl--line-height: 28px;
-
-  /* Heading component scale */
-  --text-heading-xs: 12px;
-  --text-heading-xs--line-height: 16px;
-  --text-heading-sm: 14px;
-  --text-heading-sm--line-height: 20px;
-  --text-heading-md: 16px;
-  --text-heading-md--line-height: 24px;
-  --text-heading-lg: 18px;
-  --text-heading-lg--line-height: 24px;
-  --text-heading-xl: 20px;
-  --text-heading-xl--line-height: 28px;
-  --text-heading-2xl: 24px;
-  --text-heading-2xl--line-height: 32px;
-  --text-heading-3xl: 30px;
-  --text-heading-3xl--line-height: 36px;
-  --text-heading-4xl: 36px;
-  --text-heading-4xl--line-height: 40px;
-}
-
-/* === OPTIONAL: Dark Mode === */
-/* Host app can add class="dark" to <html> or <body> to enable dark mode */
-.dark {
-  --primary: #fafafa;
-  --primary-foreground: #18181b;
-  --secondary: #27272a;
-  --secondary-foreground: #fafafa;
-  --muted: #27272a;
-  --muted-foreground: #a1a1aa;
-  --accent: #27272a;
-  --accent-foreground: #fafafa;
-  --destructive: #7f1d1d;
-  --destructive-foreground: #fafafa;
-  --card: #09090b;
-  --card-foreground: #fafafa;
-  --popover: #09090b;
-  --popover-foreground: #fafafa;
-  --border: #27272a;
-  --input: #27272a;
-  --ring: #d4d4d8;
-
-  /* Dark mode semantic colors (brighter variants) */
-  --tone-success: #22c55e;
-  --tone-warning: #eab308;
-  --tone-danger: #ef4444;
-  --tone-magic: #a855f7;
-  --tone-info: #38bdf8;
-}
-
-/* ====================================
-   TAILWIND THEME INTEGRATION
-   Maps Tailwind utility classes to our CSS variables
-   ==================================== */
+/* Typography scales (used by component @apply rules) */
 @theme {
-  /* Color mappings */
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-
-  /* Tone mappings */
-  --color-tone-success: var(--tone-success);
-  --color-tone-warning: var(--tone-warning);
-  --color-tone-danger: var(--tone-danger);
-  --color-tone-magic: var(--tone-magic);
-  --color-tone-info: var(--tone-info);
-
-  /* Typography scales */
   --text-body-xs: 11px;
   --text-body-xs--line-height: 16px;
   --text-body-sm: 12px;

@@ -11,6 +11,10 @@
     @apply p-6 pt-0;
   }
 
+  .Orbital-Card-Content:first-child {
+    @apply pt-6;
+  }
+
   .Orbital-Card-Footer {
     @apply flex items-center p-6 pt-0;
   }

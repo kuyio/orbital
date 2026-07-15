@@ -4,7 +4,7 @@ module Orbital
   class Dropdown < Component
     attribute :id, :string, default: -> { "popover-#{SecureRandom.hex(4)}" }
     attribute :on, :symbol, default: :click, only: [:click, :hover]
-    attribute :position, :symbol, default: :bottom, only: [:auto, :top, :bottom, :left, :right]
+    attribute :position, :symbol, default: :s, only: [:auto, :n, :ne, :e, :se, :s, :sw, :w, :nw]
     attribute :label, :string
     attribute :variant, :symbol, default: :nil
     attribute :fullwidth, :boolean, default: false
@@ -22,8 +22,6 @@ module Orbital
           variant={@variant}
           size={@label.blank? ? :icon : :default}
           data-orbital-popover-target="trigger"
-          popovertarget={@id}
-          popovertargetaction="toggle"
           :if={!trigger}>
           <span :if={@label}>{{@label}}</span>
           <Icon name="chevron-down" size="sm"/>

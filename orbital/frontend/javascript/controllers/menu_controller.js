@@ -5,8 +5,7 @@ export default class extends Controller {
   static targets = ["item"]
   
   connect() {
-    this.currentIndex = 0
-    this.updateFocus()
+    this.currentIndex = -1
   }
   
   handleKeydown(event) {
@@ -30,6 +29,12 @@ export default class extends Controller {
         event.preventDefault()
         this.focusLast(items)
         break
+      case "ArrowRight":
+        if (event.target.hasAttribute('aria-haspopup')) {
+          event.preventDefault()
+          this.activateItem(event.target)
+        }
+        break
       case "Enter":
       case " ": // Space
         event.preventDefault()
@@ -48,24 +53,29 @@ export default class extends Controller {
   }
   
   getEnabledItems() {
-    return this.itemTargets.filter(item => 
-      !item.hasAttribute('data-disabled') &&
-      item.getAttribute('aria-disabled') !== 'true' &&
-      this.isVisible(item)
-    )
-  }
-  
-  isVisible(element) {
-    return element.offsetParent !== null
+    const items = []
+    for (const child of this.element.children) {
+      if (child.getAttribute('role') === 'menuitem' &&
+          !child.hasAttribute('data-disabled') &&
+          child.getAttribute('aria-disabled') !== 'true') {
+        items.push(child)
+      } else if (child.classList.contains('Orbital-Menu-Sub')) {
+        const trigger = child.querySelector(':scope > .Orbital-Menu-Sub-Trigger')
+        if (trigger) items.push(trigger)
+      }
+    }
+    return items
   }
   
   focusNext(items) {
-    this.currentIndex = (this.currentIndex + 1) % items.length
+    const active = items.indexOf(document.activeElement)
+    this.currentIndex = active < items.length - 1 ? active + 1 : 0
     this.updateFocus(items)
   }
-  
+
   focusPrevious(items) {
-    this.currentIndex = (this.currentIndex - 1 + items.length) % items.length
+    const active = items.indexOf(document.activeElement)
+    this.currentIndex = active > 0 ? active - 1 : items.length - 1
     this.updateFocus(items)
   }
   

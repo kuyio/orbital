@@ -1,40 +1,12 @@
 @layer components {
-  /* Base dialog styles using native <dialog> element */
   .Orbital-Dialog {
     @apply border-none p-0 shadow-2xl rounded-lg;
     @apply bg-card text-card-foreground;
-    @apply max-w-[90vw] max-h-[85vh];
     @apply overflow-hidden;
-    @apply relative;
-    
-    /* Remove default dialog styles */
-    margin: auto;
+    position: relative;
+    width: 100%;
   }
 
-  /* Backdrop */
-  .Orbital-Dialog::backdrop {
-    @apply bg-black/50;
-    animation: orbitalDialogBackdropFadeIn 200ms ease-out;
-  }
-
-  /* Dialog opening animation */
-  .Orbital-Dialog[data-state="open"] {
-    animation: orbitalDialogSlideIn 200ms ease-out;
-  }
-
-  /* Dialog closing animation */
-  .Orbital-Dialog[data-state="closed"] {
-    animation: orbitalDialogSlideOut 150ms ease-in;
-  }
-
-  /* Size variants */
-  .Orbital-Dialog[data-size="sm"] { @apply max-w-sm; }
-  .Orbital-Dialog[data-size="default"] { @apply max-w-lg; }
-  .Orbital-Dialog[data-size="lg"] { @apply max-w-2xl; }
-  .Orbital-Dialog[data-size="xl"] { @apply max-w-4xl; }
-  .Orbital-Dialog[data-size="full"] { @apply max-w-[95vw] max-h-[95vh]; }
-
-  /* Close button */
   .Orbital-Dialog-Close {
     @apply absolute top-4 right-4 z-10;
     @apply text-muted-foreground hover:text-card-foreground;
@@ -49,7 +21,6 @@
     @apply w-4 h-4;
   }
 
-  /* Dialog parts */
   .Orbital-Dialog-Header {
     @apply px-6 pt-6 pb-4;
     @apply flex flex-col;
@@ -58,7 +29,6 @@
   .Orbital-Dialog-Body {
     @apply px-6 py-4;
     @apply overflow-y-auto;
-    @apply max-h-[calc(85vh-12rem)];
   }
 
   .Orbital-Dialog-Footer {
@@ -74,35 +44,6 @@
     @apply text-sm text-muted-foreground mt-2;
   }
 
-  /* Animations */
-  @keyframes orbitalDialogBackdropFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  @keyframes orbitalDialogSlideIn {
-    from {
-      opacity: 0;
-      transform: translateY(-2rem) scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
-
-  @keyframes orbitalDialogSlideOut {
-    from {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-    to {
-      opacity: 0;
-      transform: translateY(-2rem) scale(0.95);
-    }
-  }
-
-  /* Responsive: Full width on small screens */
   @media (max-width: 640px) {
     .Orbital-Dialog {
       @apply max-w-[95vw];

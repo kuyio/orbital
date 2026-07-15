@@ -8,12 +8,14 @@ class Orbital::Accordion::Item < Orbital::Component
 
   orb_template <<-ORB
     <div **html_attributes>
-      <Heading as="button" size="sm" class="flex justify-between cursor-pointer w-full" data-accordion-trigger>
-        {{trigger}}
-        <Icon name="chevron-down" size="small"/>
+      <Heading as="button" size="sm" class="flex justify-between cursor-pointer w-full py-4 gap-2" data-accordion-trigger>
+        <span class="flex items-center gap-2">{{trigger}}</span>
+        <Icon name="chevron-down" size="small" class="shrink-0" data-accordion-chevron/>
       </Heading>
       <div class="Orbital-Accordion-Item-Content" data-state={state}>
-        {{content}}
+        <div class="Orbital-Accordion-Item-Inner">
+          {{content}}
+        </div>
       </div>
     </div>
   ORB

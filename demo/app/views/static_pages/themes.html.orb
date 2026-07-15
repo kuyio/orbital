@@ -1,0 +1,10 @@
+<AppFrame>
+  <div class="container mx-auto py-8 px-4 max-w-4xl">
+    <div class="mb-8">
+      <Heading size="2xl" as="h1" class="mb-2">Themes</Heading>
+      <Text tone="subdued" as="p">
+        Explore and customize the Orbital CSS variable theme system.
+      </Text>
+    </div>
+  </div>
+</AppFrame>

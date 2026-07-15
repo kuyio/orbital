@@ -3,43 +3,51 @@
 module Orbital
   class Menu
     class Sub < Component
+      include Orbital::Concerns::IconProp
       attribute :label, :string, required: true
+      attribute :icon, :any, default: nil
 
       renders_many :items, types: {
-        item: Menu::Item,
-        label: Menu::Label,
-        separator: Menu::Separator
+        item: {renders: Menu::Item, as: :item},
+        label: {renders: Menu::Label, as: :label},
+        separator: {renders: Menu::Separator, as: :separator}
       }
 
-      renders_one :icon, Orbital::Icon
+      def call
+        content_tag(:div, **html_attributes) do
+          safe_join([trigger_button, sub_content])
+        end
+      end
 
-      orb_template <<-ORB
-        <div **html_attributes>
-          <button
-            class="Orbital-Menu-Item Orbital-Menu-Sub-Trigger"
-            role="menuitem"
-            tabindex="-1"
-            aria-haspopup="true"
-            aria-expanded={expanded}
-            data-orbital-menu-target="item"
-            data-orbital-menu-sub-target="trigger"
-            data-action="click->orbital-menu-sub#toggle keydown->orbital-menu#handleKeydown">
-            {{icon}}
-            <span class="Orbital-Menu-Item-Content">{{@label}}</span>
-            <Icon name="chevron-right" size="sm" class="Orbital-Menu-Sub-Icon"/>
-          </button>
-        #{'  '}
-          <div
-            class="Orbital-Menu Orbital-Menu-Sub-Content"
-            role="menu"
-            data-orbital-menu-sub-target="content"
-            data-action="keydown->orbital-menu#handleKeydown">
-            {#for item in items}
-              {{item}}
-            {/for}
-          </div>
-        </div>
-      ORB
+      private
+
+      def trigger_button
+        content_tag(:button,
+          class: "Orbital-Menu-Item Orbital-Menu-Sub-Trigger",
+          role: "menuitem",
+          tabindex: "-1",
+          "aria-haspopup": "true",
+          "aria-expanded": "false",
+          "data-orbital-menu-target": "item",
+          "data-orbital-menu-sub-target": "trigger",
+          "data-action": "click->orbital-menu-sub#toggle") do
+          safe_join([
+            render_icon,
+            content_tag(:span, @label, class: "Orbital-Menu-Item-Content"),
+            render(Orbital::Icon.new(name: "chevron-right", size: :sm, class: "Orbital-Menu-Sub-Icon"))
+          ].compact)
+        end
+      end
+
+      def sub_content
+        content_tag(:div,
+          class: "Orbital-Menu-Sub-Content",
+          role: "menu",
+          "data-orbital-menu-sub-target": "content",
+          "data-action": "keydown->orbital-menu-sub#handleKeydown") do
+          safe_join(items)
+        end
+      end
 
       private
 
