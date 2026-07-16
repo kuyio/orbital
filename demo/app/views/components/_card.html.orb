@@ -97,14 +97,14 @@
           <Header:Title>Team Members</Header:Title>
           <Header:Description>Manage your team and invite new members.</Header:Description>
           <Header:Action>
-            <Button variant="outline" size="sm"><Icon name="plus" size="sm"/> Add Member</Button>
+            <Button variant="outline" size="sm"><Icon name="plus" size="sm"/>Add</Button>
           </Header:Action>
         </Card:Header>
         <Card:Body>
           <Text as="p">You currently have 5 team members across 2 projects.</Text>
         </Card:Body>
         <Card:Footer>
-          <Button variant="ghost">View all members</Button>
+          <Button variant="secondary">View all members</Button>
         </Card:Footer>
       </Card>
     '}/>

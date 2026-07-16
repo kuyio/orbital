@@ -16,44 +16,26 @@ class Orbital::Text < Orbital::Component
   private
 
   def default_attributes
-    super.merge(
+    attrs = super.merge(
       class: class_names(
         'Orbital-Text',
         size_classes,
         weight_classes
-      ),
-      "data-tone": @tone,
-      "data-align": @align
+      )
     )
+    attrs[:"data-tone"] = @tone unless @tone == :default
+    attrs[:"data-align"] = @align unless @align == :left
+    attrs
   end
 
+  SIZE_CLASSES = { xs: "text-body-xs", sm: "text-body-sm", lg: "text-body-lg", xl: "text-body-xl" }.freeze
+  WEIGHT_CLASSES = { light: "font-light", medium: "font-medium", semibold: "font-semibold", bold: "font-bold" }.freeze
+
   def size_classes
-    case @size
-    when :xs
-      "text-body-xs"
-    when :sm
-      "text-body-sm"
-    when :md
-      "text-body-md"
-    when :lg
-      "text-body-lg"
-    when :xl
-      "text-body-xl"
-    end
+    SIZE_CLASSES[@size]
   end
 
   def weight_classes
-    case @weight
-    when :light
-      "font-light"
-    when :normal
-      "font-normal"
-    when :medium
-      "font-medium"
-    when :semibold
-      "font-semibold"
-    when :bold
-      "font-bold"
-    end
+    WEIGHT_CLASSES[@weight]
   end
 end

@@ -2,13 +2,20 @@
 
 module Orbital
   module Icons
+    VARIANTS = %w[solid regular brands].freeze
+
     def self.render(name, variant: 'solid')
-      method_name = :"icon_#{variant}__#{name.underscore}"
-      if respond_to?(method_name)
-        send(method_name)
-      else
-        raise ArgumentError, "Icon '#{name}' with variant '#{variant}' not found."
+      normalized = name.to_s.underscore
+      method_name = :"icon_#{variant}__#{normalized}"
+      return send(method_name) if respond_to?(method_name)
+
+      VARIANTS.each do |fallback|
+        next if fallback == variant.to_s
+        fallback_method = :"icon_#{fallback}__#{normalized}"
+        return send(fallback_method) if respond_to?(fallback_method)
       end
+
+      raise ArgumentError, "Icon '#{name}' not found in any variant (tried: #{VARIANTS.join(', ')})."
     end
 
     def self.icon_brands__11ty

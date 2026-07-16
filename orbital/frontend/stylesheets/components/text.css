@@ -1,8 +1,12 @@
 @layer components {
-  /* Text component uses typography system for sizes, only need weight/align/tone */
-  
-  .Orbital-Text[data-tone="default"] {
-    @apply text-card-foreground;
+  .Orbital-Text {
+    font-size: var(--text-body-md);
+    line-height: var(--text-body-md--line-height);
+  }
+
+  .Orbital-Text .Orbital-Text {
+    font-size: inherit;
+    line-height: inherit;
   }
 
   .Orbital-Text[data-tone="subdued"] {
@@ -27,10 +31,6 @@
 
   .Orbital-Text[data-tone="magic"] {
     @apply text-tone-magic;
-  }
-
-  .Orbital-Text[data-align="left"] {
-    @apply text-left;
   }
 
   .Orbital-Text[data-align="center"] {

@@ -1,6 +1,6 @@
 @layer components {
   .Orbital-Card {
-    @apply rounded-lg border bg-card text-card-foreground shadow-sm;
+    @apply rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col;
   }
 
   .Orbital-Card-Header {
@@ -8,7 +8,7 @@
   }
 
   .Orbital-Card-Content {
-    @apply p-6 pt-0;
+    @apply p-6 pt-0 flex-1;
   }
 
   .Orbital-Card-Content:first-child {
@@ -16,11 +16,11 @@
   }
 
   .Orbital-Card-Footer {
-    @apply flex items-center p-6 pt-0;
+    @apply flex items-center p-6 pt-0 mt-auto;
   }
 
   .Orbital-Card-Title {
-    @apply text-2xl font-semibold leading-none tracking-tight;
+    @apply font-bold leading-none tracking-tight;
   }
 
   .Orbital-Card-Description {
