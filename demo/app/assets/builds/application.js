@@ -6496,13 +6496,13 @@ class AttributeObserver {
   }
 }
 function add(map, key, value) {
-  fetch(map, key).add(value);
+  fetch2(map, key).add(value);
 }
 function del(map, key, value) {
-  fetch(map, key).delete(value);
+  fetch2(map, key).delete(value);
   prune(map, key);
 }
-function fetch(map, key) {
+function fetch2(map, key) {
   let values = map.get(key);
   if (!values) {
     values = new Set;
@@ -8416,6 +8416,109 @@ class dark_mode_controller_default extends Controller {
   }
 }
 
+// app/javascript/controllers/command_palette_controller.js
+class command_palette_controller_default extends Controller {
+  static targets = ["dialog", "input", "results", "item"];
+  connect() {
+    this.boundKeydown = this.handleKeydown.bind(this);
+    document.addEventListener("keydown", this.boundKeydown);
+    this.debounceTimer = null;
+    this.activeIndex = -1;
+  }
+  disconnect() {
+    document.removeEventListener("keydown", this.boundKeydown);
+    if (this.debounceTimer)
+      clearTimeout(this.debounceTimer);
+  }
+  handleKeydown(event) {
+    if ((event.metaKey || event.ctrlKey) && event.key === "k") {
+      event.preventDefault();
+      this.open();
+    }
+  }
+  open() {
+    this.dialogTarget.showModal();
+    this.inputTarget.value = "";
+    this.activeIndex = -1;
+    this.search("");
+    requestAnimationFrame(() => this.inputTarget.focus());
+  }
+  close() {
+    this.dialogTarget.close();
+    this.activeIndex = -1;
+  }
+  backdropClick(event) {
+    if (event.target === this.dialogTarget)
+      this.close();
+  }
+  onInput() {
+    const query = this.inputTarget.value;
+    if (this.debounceTimer)
+      clearTimeout(this.debounceTimer);
+    this.debounceTimer = setTimeout(() => this.search(query), 150);
+  }
+  async search(query) {
+    const url = `/search?q=${encodeURIComponent(query)}`;
+    const response = await fetch(url, {
+      headers: { Accept: "text/html", "X-Requested-With": "XMLHttpRequest" }
+    });
+    if (response.ok) {
+      this.resultsTarget.innerHTML = await response.text();
+      this.activeIndex = -1;
+      this.updateHighlight();
+    }
+  }
+  onKeydown(event) {
+    const items = this.itemTargets;
+    switch (event.key) {
+      case "ArrowDown":
+        event.preventDefault();
+        this.activeIndex = Math.min(this.activeIndex + 1, items.length - 1);
+        this.updateHighlight();
+        break;
+      case "ArrowUp":
+        event.preventDefault();
+        this.activeIndex = Math.max(this.activeIndex - 1, 0);
+        this.updateHighlight();
+        break;
+      case "Enter":
+        event.preventDefault();
+        if (this.activeIndex >= 0 && items[this.activeIndex]) {
+          this.navigateTo(items[this.activeIndex].href);
+        }
+        break;
+      case "Escape":
+        event.preventDefault();
+        this.close();
+        break;
+    }
+  }
+  highlightItem(event) {
+    const items = this.itemTargets;
+    const index = items.indexOf(event.currentTarget);
+    if (index >= 0) {
+      this.activeIndex = index;
+      this.updateHighlight();
+    }
+  }
+  navigate(event) {
+    event.preventDefault();
+    this.navigateTo(event.currentTarget.href);
+  }
+  navigateTo(url) {
+    this.close();
+    window.Turbo.visit(url);
+  }
+  updateHighlight() {
+    this.itemTargets.forEach((item, i) => {
+      item.classList.toggle("active", i === this.activeIndex);
+    });
+    const active = this.itemTargets[this.activeIndex];
+    if (active)
+      active.scrollIntoView({ block: "nearest" });
+  }
+}
+
 // app/javascript/controllers/theme_controller.js
 var THEMES = {
   default: {},
@@ -8474,6 +8577,7 @@ class theme_controller_default extends Controller {
 // app/javascript/controllers/index.js
 application.register("hello", hello_controller_default);
 application.register("dark-mode", dark_mode_controller_default);
+application.register("command-palette", command_palette_controller_default);
 application.register("theme", theme_controller_default);
 
-//# debugId=FE30F05E7F0C4D4C64756E2164756E21
+//# debugId=5A9D965129C455E564756E2164756E21

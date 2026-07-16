@@ -40,7 +40,7 @@ class Demo::AppFrame < Orbital::Component
               </Menu>
             </Dropdown>
             <Expander/>
-            <Button variant="outline" class="font-normal w-48 justify-between!">
+            <Button variant="outline" class="font-normal w-48 justify-between!" data-action="click->command-palette#open">
               <span>Search...</span>
               <KbdGroup>
                 <Kbd>⌘</Kbd>
@@ -67,6 +67,25 @@ class Demo::AppFrame < Orbital::Component
 
         {{content}}
       </Page>
+
+      <dialog class="command-palette-dialog" data-command-palette-target="dialog" data-action="click->command-palette#backdropClick">
+        <div class="command-palette">
+          <div class="command-palette-header">
+            <Icon name="magnifying-glass" size="sm" class="command-palette-search-icon"/>
+            <input
+              type="text"
+              class="command-palette-input"
+              placeholder="Search components, pages..."
+              autocomplete="off"
+              data-command-palette-target="input"
+              data-action="input->command-palette#onInput keydown->command-palette#onKeydown"
+            />
+            <Kbd>ESC</Kbd>
+          </div>
+          <div class="command-palette-body" data-command-palette-target="results">
+          </div>
+        </div>
+      </dialog>
     </div>
   ORB
 
@@ -76,7 +95,10 @@ class Demo::AppFrame < Orbital::Component
     super.merge(
       class: class_names(
         "Orbital-App h-full w-full",
-      )
+      ),
+      data: {
+        controller: "command-palette"
+      }
     )
   end
 end
