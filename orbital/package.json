@@ -20,7 +20,12 @@
     }
   },
   "exports": {
-    "./theme": "./app/assets/stylesheets/orbital/theme.css"
+    "./theme": "./app/assets/stylesheets/orbital/theme.css",
+    "./themes/blue": "./app/assets/stylesheets/orbital/themes/blue.css",
+    "./themes/green": "./app/assets/stylesheets/orbital/themes/green.css",
+    "./themes/rose": "./app/assets/stylesheets/orbital/themes/rose.css",
+    "./themes/violet": "./app/assets/stylesheets/orbital/themes/violet.css",
+    "./themes/orange": "./app/assets/stylesheets/orbital/themes/orange.css"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {

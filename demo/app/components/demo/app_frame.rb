@@ -8,7 +8,13 @@ class Demo::AppFrame < Orbital::Component
           <NavigationMenu>
             <NavigationMenu:Brand>
               <Button variant="link" url="/" class="mr-2">
-                <Image asset="logo.svg" width=28 height=28/>
+                <svg width="28" height="28" viewBox="0 0 390 390" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="194.5" cy="195.5" r="157" stroke="currentColor" stroke-width="8"/>
+                  <circle cx="194.5" cy="195.5" r="90.42" stroke="currentColor" stroke-width="8"/>
+                  <circle cx="194.5" cy="195.5" r="43.58" fill="currentColor"/>
+                  <circle cx="297.39" cy="76.87" r="24.21" fill="currentColor"/>
+                  <circle cx="118.39" cy="241.87" r="16" fill="currentColor"/>
+                </svg>
                 <Text weight="bold">Orbital</Text>
               </Button>
             </NavigationMenu:Brand>
@@ -17,7 +23,8 @@ class Demo::AppFrame < Orbital::Component
               <Menu>
                 <Menu:Item url="/components" icon="cube">Components</Menu:Item>
                 <Menu:Item url="/blocks" icon="table-cells">Blocks</Menu:Item>
-                <Menu:Item url="/themes" icon="palette">Theming</Menu:Item>
+                <Menu:Item url="/themes" icon="palette">Themes</Menu:Item>
+                <Menu:Item url="/colors" icon="swatchbook">Colors</Menu:Item>
                 <Menu:Separator/>
                 <Menu:Item url="https://github.com/kuyio/orb_template" icon={{name: "github", variant: "brands"}}>GitHub</Menu:Item>
                 <Menu:Item url="https://kuy.io" icon="compass">kuy.io</Menu:Item>
@@ -26,7 +33,12 @@ class Demo::AppFrame < Orbital::Component
 
             <Button url="/components" variant="ghost">Components</Button>
             <Button url="/blocks" variant="ghost">Blocks</Button>
-            <Button url="/themes" variant="ghost">Theming</Button>
+            <Dropdown label="Customization" variant="ghost">
+              <Menu>
+                <Menu:Item url="/themes" icon="palette">Themes</Menu:Item>
+                <Menu:Item url="/colors" icon="swatchbook">Colors</Menu:Item>
+              </Menu>
+            </Dropdown>
             <Expander/>
             <Button variant="outline" class="font-normal w-48 justify-between!">
               <span>Search...</span>
@@ -44,9 +56,12 @@ class Demo::AppFrame < Orbital::Component
               <Icon name="compass" variant="regular"/>
             </Button>
             <Separator orientation="vertical" class="h-8"/>
-            <Button variant="ghost" size="icon">
-              <Icon name="moon" variant="regular"/>
-            </Button>
+            <div data-controller="dark-mode">
+              <Button variant="ghost" size="icon" data-action="click->dark-mode#toggle">
+                <span data-icon="moon"><Icon name="moon" variant="regular"/></span>
+                <span data-icon="sun" style="display:none"><Icon name="sun" variant="regular"/></span>
+              </Button>
+            </div>
           </NavigationMenu>
         </Page:Header>
 

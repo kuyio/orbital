@@ -7,10 +7,10 @@ html {
 
 @layer base {
   :not(pre) > code {
-    @apply font-mono text-sm px-1.5 py-0.5 rounded-sm bg-gray-100 text-gray-800 border border-gray-200;
-
-    /* Or use your custom semantic variables if you prefer: */
-    /* @apply bg-muted/20 text-tone-regular border border-border; */
+    @apply font-mono text-sm px-1.5 py-0.5 rounded-sm border;
+    background: color-mix(in oklab, var(--muted) 50%, var(--card));
+    color: var(--foreground);
+    border-color: var(--border);
   }
 
   /* Optional: Fix font alignment */
