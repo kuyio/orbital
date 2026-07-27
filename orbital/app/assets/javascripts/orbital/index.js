@@ -251,7 +251,7 @@ document.addEventListener("click", (event)=>{
     if (controller) controller.show();
 });
 
-},{"@hotwired/stimulus":"hVNih","./controllers/avatar_controller":"cujyC","./controllers/accordion_controller":"dE16L","./controllers/modal_controller":"cr6MB","./controllers/popover_controller":"8Qta5","./controllers/menu_controller":"23v7l","./controllers/menu_sub_controller":"i9fGq","./controllers/select_controller":"4Up7y","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"hVNih":[function(require,module,exports,__globalThis) {
+},{"@hotwired/stimulus":"hVNih","./controllers/accordion_controller":"dE16L","./controllers/avatar_controller":"cujyC","./controllers/menu_controller":"23v7l","./controllers/menu_sub_controller":"i9fGq","./controllers/modal_controller":"cr6MB","./controllers/popover_controller":"8Qta5","./controllers/select_controller":"4Up7y","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"hVNih":[function(require,module,exports,__globalThis) {
 /*
 Stimulus 3.2.1
 Copyright © 2023 Basecamp, LLC
@@ -2660,22 +2660,7 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"cujyC":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _stimulus = require("@hotwired/stimulus");
-exports.default = class extends (0, _stimulus.Controller) {
-    static targets = [
-        "image",
-        "fallback"
-    ];
-    imageError() {
-        if (this.hasImageTarget) this.imageTarget.style.display = "none";
-        if (this.hasFallbackTarget) this.fallbackTarget.style.display = "flex";
-    }
-};
-
-},{"@hotwired/stimulus":"hVNih","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"dE16L":[function(require,module,exports,__globalThis) {
+},{}],"dE16L":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _stimulus = require("@hotwired/stimulus");
@@ -2713,6 +2698,220 @@ exports.default = class extends (0, _stimulus.Controller) {
             }, {
                 once: true
             });
+        }
+    }
+};
+
+},{"@hotwired/stimulus":"hVNih","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"cujyC":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _stimulus = require("@hotwired/stimulus");
+exports.default = class extends (0, _stimulus.Controller) {
+    static targets = [
+        "image",
+        "fallback"
+    ];
+    imageError() {
+        if (this.hasImageTarget) this.imageTarget.style.display = "none";
+        if (this.hasFallbackTarget) this.fallbackTarget.style.display = "flex";
+    }
+};
+
+},{"@hotwired/stimulus":"hVNih","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"23v7l":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _stimulus = require("@hotwired/stimulus");
+// Connects to data-controller="orbital-menu"
+exports.default = class extends (0, _stimulus.Controller) {
+    static targets = [
+        "item"
+    ];
+    connect() {
+        this.currentIndex = -1;
+    }
+    handleKeydown(event) {
+        const items = this.getEnabledItems();
+        if (items.length === 0) return;
+        switch(event.key){
+            case "ArrowDown":
+                event.preventDefault();
+                this.focusNext(items);
+                break;
+            case "ArrowUp":
+                event.preventDefault();
+                this.focusPrevious(items);
+                break;
+            case "Home":
+                event.preventDefault();
+                this.focusFirst(items);
+                break;
+            case "End":
+                event.preventDefault();
+                this.focusLast(items);
+                break;
+            case "ArrowRight":
+                if (event.target.hasAttribute("aria-haspopup")) {
+                    event.preventDefault();
+                    this.activateItem(event.target);
+                }
+                break;
+            case "Enter":
+            case " ":
+                event.preventDefault();
+                this.activateItem(event.target);
+                break;
+            case "Escape":
+                event.preventDefault();
+                this.closeMenu();
+                break;
+            default:
+                // Type-ahead: focus item starting with pressed key
+                if (event.key.length === 1 && /^[a-z0-9]$/i.test(event.key)) this.focusItemStartingWith(items, event.key);
+        }
+    }
+    getEnabledItems() {
+        const items = [];
+        for (const child of this.element.children){
+            if (child.getAttribute("role") === "menuitem" && !child.hasAttribute("data-disabled") && child.getAttribute("aria-disabled") !== "true") items.push(child);
+            else if (child.classList.contains("Orbital-Menu-Sub")) {
+                const trigger = child.querySelector(":scope > .Orbital-Menu-Sub-Trigger");
+                if (trigger) items.push(trigger);
+            }
+        }
+        return items;
+    }
+    focusNext(items) {
+        const active = items.indexOf(document.activeElement);
+        this.currentIndex = active < items.length - 1 ? active + 1 : 0;
+        this.updateFocus(items);
+    }
+    focusPrevious(items) {
+        const active = items.indexOf(document.activeElement);
+        this.currentIndex = active > 0 ? active - 1 : items.length - 1;
+        this.updateFocus(items);
+    }
+    focusFirst(items) {
+        this.currentIndex = 0;
+        this.updateFocus(items);
+    }
+    focusLast(items) {
+        this.currentIndex = items.length - 1;
+        this.updateFocus(items);
+    }
+    updateFocus(items = null) {
+        const enabledItems = items || this.getEnabledItems();
+        if (enabledItems.length === 0) return;
+        // Ensure currentIndex is valid
+        this.currentIndex = Math.max(0, Math.min(this.currentIndex, enabledItems.length - 1));
+        // Update tabindex for roving tabindex pattern
+        enabledItems.forEach((item, index)=>{
+            if (index === this.currentIndex) {
+                item.setAttribute("tabindex", "0");
+                item.focus();
+            } else item.setAttribute("tabindex", "-1");
+        });
+    }
+    activateItem(item) {
+        // Check if it's a submenu trigger
+        if (item.hasAttribute("aria-haspopup")) {
+            const subController = this.application.getControllerForElementAndIdentifier(item.closest('[data-controller*="orbital-menu-sub"]'), "orbital-menu-sub");
+            if (subController) subController.toggle();
+        } else // Activate the menu item (trigger click)
+        item.click();
+    }
+    focusItemStartingWith(items, key) {
+        const lowerKey = key.toLowerCase();
+        const startIndex = (this.currentIndex + 1) % items.length;
+        // Search from current position forward
+        for(let i = 0; i < items.length; i++){
+            const index = (startIndex + i) % items.length;
+            const item = items[index];
+            const text = item.textContent.trim().toLowerCase();
+            if (text.startsWith(lowerKey)) {
+                this.currentIndex = index;
+                this.updateFocus(items);
+                return;
+            }
+        }
+    }
+    closeMenu() {
+        // If inside a popover, close it
+        const popover = this.element.closest("[popover]");
+        if (popover) popover.hidePopover();
+        // If inside a submenu, close it
+        const submenu = this.element.closest(".Orbital-Menu-Sub");
+        if (submenu) {
+            const subController = this.application.getControllerForElementAndIdentifier(submenu, "orbital-menu-sub");
+            if (subController) subController.close();
+        }
+    }
+};
+
+},{"@hotwired/stimulus":"hVNih","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"i9fGq":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _stimulus = require("@hotwired/stimulus");
+// Connects to data-controller="orbital-menu-sub"
+exports.default = class extends (0, _stimulus.Controller) {
+    static targets = [
+        "trigger",
+        "content"
+    ];
+    connect() {
+        this._onClickOutside = (e)=>{
+            if (this.element.getAttribute("data-state") === "open" && !this.element.contains(e.target)) this.close(false);
+        };
+    }
+    disconnect() {
+        document.removeEventListener("click", this._onClickOutside);
+    }
+    toggle() {
+        const isOpen = this.element.getAttribute("data-state") === "open";
+        if (isOpen) this.close();
+        else this.open();
+    }
+    open() {
+        this.element.setAttribute("data-state", "open");
+        this.triggerTarget.setAttribute("aria-expanded", "true");
+        document.addEventListener("click", this._onClickOutside);
+        requestAnimationFrame(()=>{
+            const firstItem = this.contentTarget.querySelector('[role="menuitem"]');
+            if (firstItem) firstItem.focus();
+        });
+    }
+    close(refocus = true) {
+        this.element.setAttribute("data-state", "closed");
+        this.triggerTarget.setAttribute("aria-expanded", "false");
+        document.removeEventListener("click", this._onClickOutside);
+        if (refocus) this.triggerTarget.focus();
+    }
+    handleKeydown(event) {
+        const items = [
+            ...this.contentTarget.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])')
+        ];
+        if (!items.length) return;
+        const current = items.indexOf(document.activeElement);
+        switch(event.key){
+            case "ArrowDown":
+                event.preventDefault();
+                event.stopPropagation();
+                items[current < items.length - 1 ? current + 1 : 0].focus();
+                break;
+            case "ArrowUp":
+                event.preventDefault();
+                event.stopPropagation();
+                items[current > 0 ? current - 1 : items.length - 1].focus();
+                break;
+            case "ArrowLeft":
+            case "Escape":
+                event.preventDefault();
+                event.stopPropagation();
+                this.close();
+                break;
+            case "Enter":
+            case " ":
+                event.stopPropagation();
+                break;
         }
     }
 };
@@ -3170,7 +3369,7 @@ exports.default = class extends (0, _stimulus.Controller) {
     }
 };
 
-},{"@hotwired/stimulus":"hVNih","@floating-ui/dom":"33DIn","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"33DIn":[function(require,module,exports,__globalThis) {
+},{"@floating-ui/dom":"33DIn","@hotwired/stimulus":"hVNih","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"33DIn":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getOverflowAncestors", ()=>(0, _dom.getOverflowAncestors));
@@ -4946,206 +5145,7 @@ function getFrameElement(win) {
     return win.parent && Object.getPrototypeOf(win.parent) ? win.frameElement : null;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"23v7l":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _stimulus = require("@hotwired/stimulus");
-// Connects to data-controller="orbital-menu"
-exports.default = class extends (0, _stimulus.Controller) {
-    static targets = [
-        "item"
-    ];
-    connect() {
-        this.currentIndex = -1;
-    }
-    handleKeydown(event) {
-        const items = this.getEnabledItems();
-        if (items.length === 0) return;
-        switch(event.key){
-            case "ArrowDown":
-                event.preventDefault();
-                this.focusNext(items);
-                break;
-            case "ArrowUp":
-                event.preventDefault();
-                this.focusPrevious(items);
-                break;
-            case "Home":
-                event.preventDefault();
-                this.focusFirst(items);
-                break;
-            case "End":
-                event.preventDefault();
-                this.focusLast(items);
-                break;
-            case "ArrowRight":
-                if (event.target.hasAttribute("aria-haspopup")) {
-                    event.preventDefault();
-                    this.activateItem(event.target);
-                }
-                break;
-            case "Enter":
-            case " ":
-                event.preventDefault();
-                this.activateItem(event.target);
-                break;
-            case "Escape":
-                event.preventDefault();
-                this.closeMenu();
-                break;
-            default:
-                // Type-ahead: focus item starting with pressed key
-                if (event.key.length === 1 && /^[a-z0-9]$/i.test(event.key)) this.focusItemStartingWith(items, event.key);
-        }
-    }
-    getEnabledItems() {
-        const items = [];
-        for (const child of this.element.children){
-            if (child.getAttribute("role") === "menuitem" && !child.hasAttribute("data-disabled") && child.getAttribute("aria-disabled") !== "true") items.push(child);
-            else if (child.classList.contains("Orbital-Menu-Sub")) {
-                const trigger = child.querySelector(":scope > .Orbital-Menu-Sub-Trigger");
-                if (trigger) items.push(trigger);
-            }
-        }
-        return items;
-    }
-    focusNext(items) {
-        const active = items.indexOf(document.activeElement);
-        this.currentIndex = active < items.length - 1 ? active + 1 : 0;
-        this.updateFocus(items);
-    }
-    focusPrevious(items) {
-        const active = items.indexOf(document.activeElement);
-        this.currentIndex = active > 0 ? active - 1 : items.length - 1;
-        this.updateFocus(items);
-    }
-    focusFirst(items) {
-        this.currentIndex = 0;
-        this.updateFocus(items);
-    }
-    focusLast(items) {
-        this.currentIndex = items.length - 1;
-        this.updateFocus(items);
-    }
-    updateFocus(items = null) {
-        const enabledItems = items || this.getEnabledItems();
-        if (enabledItems.length === 0) return;
-        // Ensure currentIndex is valid
-        this.currentIndex = Math.max(0, Math.min(this.currentIndex, enabledItems.length - 1));
-        // Update tabindex for roving tabindex pattern
-        enabledItems.forEach((item, index)=>{
-            if (index === this.currentIndex) {
-                item.setAttribute("tabindex", "0");
-                item.focus();
-            } else item.setAttribute("tabindex", "-1");
-        });
-    }
-    activateItem(item) {
-        // Check if it's a submenu trigger
-        if (item.hasAttribute("aria-haspopup")) {
-            const subController = this.application.getControllerForElementAndIdentifier(item.closest('[data-controller*="orbital-menu-sub"]'), "orbital-menu-sub");
-            if (subController) subController.toggle();
-        } else // Activate the menu item (trigger click)
-        item.click();
-    }
-    focusItemStartingWith(items, key) {
-        const lowerKey = key.toLowerCase();
-        const startIndex = (this.currentIndex + 1) % items.length;
-        // Search from current position forward
-        for(let i = 0; i < items.length; i++){
-            const index = (startIndex + i) % items.length;
-            const item = items[index];
-            const text = item.textContent.trim().toLowerCase();
-            if (text.startsWith(lowerKey)) {
-                this.currentIndex = index;
-                this.updateFocus(items);
-                return;
-            }
-        }
-    }
-    closeMenu() {
-        // If inside a popover, close it
-        const popover = this.element.closest("[popover]");
-        if (popover) popover.hidePopover();
-        // If inside a submenu, close it
-        const submenu = this.element.closest(".Orbital-Menu-Sub");
-        if (submenu) {
-            const subController = this.application.getControllerForElementAndIdentifier(submenu, "orbital-menu-sub");
-            if (subController) subController.close();
-        }
-    }
-};
-
-},{"@hotwired/stimulus":"hVNih","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"i9fGq":[function(require,module,exports,__globalThis) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _stimulus = require("@hotwired/stimulus");
-// Connects to data-controller="orbital-menu-sub"
-exports.default = class extends (0, _stimulus.Controller) {
-    static targets = [
-        "trigger",
-        "content"
-    ];
-    connect() {
-        this._onClickOutside = (e)=>{
-            if (this.element.getAttribute("data-state") === "open" && !this.element.contains(e.target)) this.close(false);
-        };
-    }
-    disconnect() {
-        document.removeEventListener("click", this._onClickOutside);
-    }
-    toggle() {
-        const isOpen = this.element.getAttribute("data-state") === "open";
-        if (isOpen) this.close();
-        else this.open();
-    }
-    open() {
-        this.element.setAttribute("data-state", "open");
-        this.triggerTarget.setAttribute("aria-expanded", "true");
-        document.addEventListener("click", this._onClickOutside);
-        requestAnimationFrame(()=>{
-            const firstItem = this.contentTarget.querySelector('[role="menuitem"]');
-            if (firstItem) firstItem.focus();
-        });
-    }
-    close(refocus = true) {
-        this.element.setAttribute("data-state", "closed");
-        this.triggerTarget.setAttribute("aria-expanded", "false");
-        document.removeEventListener("click", this._onClickOutside);
-        if (refocus) this.triggerTarget.focus();
-    }
-    handleKeydown(event) {
-        const items = [
-            ...this.contentTarget.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])')
-        ];
-        if (!items.length) return;
-        const current = items.indexOf(document.activeElement);
-        switch(event.key){
-            case "ArrowDown":
-                event.preventDefault();
-                event.stopPropagation();
-                items[current < items.length - 1 ? current + 1 : 0].focus();
-                break;
-            case "ArrowUp":
-                event.preventDefault();
-                event.stopPropagation();
-                items[current > 0 ? current - 1 : items.length - 1].focus();
-                break;
-            case "ArrowLeft":
-            case "Escape":
-                event.preventDefault();
-                event.stopPropagation();
-                this.close();
-                break;
-            case "Enter":
-            case " ":
-                event.stopPropagation();
-                break;
-        }
-    }
-};
-
-},{"@hotwired/stimulus":"hVNih","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"4Up7y":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"4Up7y":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _stimulus = require("@hotwired/stimulus");

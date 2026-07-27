@@ -45,7 +45,7 @@
   --tone-warning: #ca8a04;
   --tone-danger: #dc2626;
   --tone-magic: #9333ea;
-  --tone-info: #0ea5e9;
+  --tone-info: #2b7fff;
 
   --radius: 0.5rem;
 
@@ -80,7 +80,7 @@
   --tone-warning: #eab308;
   --tone-danger: #ef4444;
   --tone-magic: #a855f7;
-  --tone-info: #38bdf8;
+  --tone-info: #6db3ff;
 }
 
 /* --- Tailwind @theme Integration --- */

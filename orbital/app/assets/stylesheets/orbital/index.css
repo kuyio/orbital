@@ -792,6 +792,78 @@
     }
   }
 
+  .Orbital-Badge-Dot {
+    margin-right: calc(var(--spacing) * 1.5);
+    height: calc(var(--spacing) * 2);
+    width: calc(var(--spacing) * 2);
+    border-radius: 3.40282e38px;
+    display: inline-block;
+  }
+
+  .Orbital-Badge-Dot[data-tone="default"] {
+    background-color: currentColor;
+  }
+
+  .Orbital-Badge-Dot[data-tone="success"] {
+    background-color: var(--color-tone-success);
+  }
+
+  .Orbital-Badge-Dot[data-tone="warning"] {
+    background-color: var(--color-tone-warning);
+  }
+
+  .Orbital-Badge-Dot[data-tone="danger"] {
+    background-color: var(--color-tone-danger);
+  }
+
+  .Orbital-Badge-Dot[data-tone="info"] {
+    background-color: var(--color-tone-info);
+  }
+
+  .Orbital-Badge-Dot[data-tone="subdued"] {
+    background-color: var(--color-muted-foreground);
+  }
+
+  :is(.Orbital-Badge[data-variant="default"], .Orbital-Badge[data-variant="destructive"]) .Orbital-Badge-Dot[data-tone="success"] {
+    background-color: #22c55e;
+  }
+
+  :is(.Orbital-Badge[data-variant="default"], .Orbital-Badge[data-variant="destructive"]) .Orbital-Badge-Dot[data-tone="warning"] {
+    background-color: #eab308;
+  }
+
+  :is(.Orbital-Badge[data-variant="default"], .Orbital-Badge[data-variant="destructive"]) .Orbital-Badge-Dot[data-tone="danger"] {
+    background-color: #ef4444;
+  }
+
+  :is(.Orbital-Badge[data-variant="default"], .Orbital-Badge[data-variant="destructive"]) .Orbital-Badge-Dot[data-tone="info"] {
+    background-color: #6db3ff;
+  }
+
+  :is(.Orbital-Badge[data-variant="default"], .Orbital-Badge[data-variant="destructive"]) .Orbital-Badge-Dot[data-tone="subdued"] {
+    background-color: #a1a1aa;
+  }
+
+  .dark :is(.Orbital-Badge[data-variant="default"], .Orbital-Badge[data-variant="destructive"]) .Orbital-Badge-Dot[data-tone="success"] {
+    background-color: #16a34a;
+  }
+
+  .dark :is(.Orbital-Badge[data-variant="default"], .Orbital-Badge[data-variant="destructive"]) .Orbital-Badge-Dot[data-tone="warning"] {
+    background-color: #ca8a04;
+  }
+
+  .dark :is(.Orbital-Badge[data-variant="default"], .Orbital-Badge[data-variant="destructive"]) .Orbital-Badge-Dot[data-tone="danger"] {
+    background-color: #dc2626;
+  }
+
+  .dark :is(.Orbital-Badge[data-variant="default"], .Orbital-Badge[data-variant="destructive"]) .Orbital-Badge-Dot[data-tone="info"] {
+    background-color: #2b7fff;
+  }
+
+  .dark :is(.Orbital-Badge[data-variant="default"], .Orbital-Badge[data-variant="destructive"]) .Orbital-Badge-Dot[data-tone="subdued"] {
+    background-color: #71717a;
+  }
+
   .Orbital-Button {
     cursor: pointer;
     justify-content: center;
@@ -3370,7 +3442,7 @@
   --tone-warning: #ca8a04;
   --tone-danger: #dc2626;
   --tone-magic: #9333ea;
-  --tone-info: #0ea5e9;
+  --tone-info: #2b7fff;
   --radius: .5rem;
   --font-weight-normal: 350;
   --font-weight-medium: 450;
@@ -3402,7 +3474,7 @@
   --tone-warning: #eab308;
   --tone-danger: #ef4444;
   --tone-magic: #a855f7;
-  --tone-info: #38bdf8;
+  --tone-info: #6db3ff;
 }
 
 @property --tw-border-style {
