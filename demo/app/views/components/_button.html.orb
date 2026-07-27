@@ -145,6 +145,22 @@
   </div>
 
   <div>
+    <Heading size="md" as="h3" class="mb-2">Full Width</Heading>
+    <Prose class="mb-4">
+      <p>Use <code>fullwidth</code> to make the button span the entire width of its container.
+        Common in card footers, form layouts, and mobile UIs.</p>
+    </Prose>
+    <Example source={'
+      <div class="w-72 border rounded-md">
+        <Stack gap="2" padding=4>
+          <Button fullwidth>Save Preferences</Button>
+          <Button fullwidth variant="outline">Cancel</Button>
+        </Stack>
+      </div>
+    '}/>
+  </div>
+
+  <div>
     <Heading size="md" as="h3" class="mb-2">Modal Trigger</Heading>
     <Prose class="mb-4">
       <p>Pass an ID string to <code>modal</code> to open an inline dialog on the page. Combine
@@ -152,8 +168,8 @@
     </Prose>
     <Example source={'
       <div class="flex flex-wrap items-center gap-3">
-        <Button modal="demo-alert">Open Inline Alert</Button>
-        <Alert id="demo-alert" title="Hello!" description="This alert was opened by a button with modal= prop." variant="info"/>
+        <Button modal="demo-alert">Show Alert</Button>
+        <Alert id="demo-alert" title="Hello!" description="This alert was opened by a button with a modal prop." variant="info"/>
       </div>
     '}/>
   </div>
@@ -219,6 +235,12 @@
           <td class="px-4 py-2">String</td>
           <td class="px-4 py-2">Any URL</td>
           <td class="px-4 py-2 font-mono text-xs">nil</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">fullwidth</td>
+          <td class="px-4 py-2">Boolean</td>
+          <td class="px-4 py-2 font-mono text-xs">true, false</td>
+          <td class="px-4 py-2 font-mono text-xs">false</td>
         </tr>
         <tr>
           <td class="px-4 py-2 font-mono text-xs">disabled</td>

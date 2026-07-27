@@ -6,6 +6,7 @@ module Orbital
     attribute :size, :symbol, default: :default, only: [:sm, :default, :lg, :icon]
     attribute :url, :string, default: nil
     attribute :disabled, :boolean, default: false
+    attribute :fullwidth, :boolean, default: false
     attribute :modal, :any, default: nil
 
     def call
@@ -21,7 +22,8 @@ module Orbital
         class: "Orbital-Button",
         "data-variant": @variant,
         "data-size": @size,
-        "data-disabled": @disabled || nil
+        "data-disabled": @disabled || nil,
+        "data-fullwidth": @fullwidth || nil
       )
 
       if @modal.is_a?(String) && %w[true false].exclude?(@modal)

@@ -824,6 +824,10 @@
     opacity: .5;
   }
 
+  .Orbital-Button[data-fullwidth] {
+    width: 100%;
+  }
+
   .Orbital-Button[data-variant="default"] {
     background-color: var(--color-primary);
     color: var(--color-primary-foreground);

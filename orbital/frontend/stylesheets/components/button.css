@@ -10,6 +10,10 @@
     @apply pointer-events-none opacity-50;
   }
 
+  .Orbital-Button[data-fullwidth] {
+    @apply w-full;
+  }
+
   /* Variants */
   .Orbital-Button[data-variant="default"] {
     @apply bg-primary text-primary-foreground hover:bg-primary/90;
