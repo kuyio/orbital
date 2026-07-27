@@ -1,5 +1,9 @@
 ---
+name: orb-templates
 description: "ORB template syntax for Ruby ViewComponents — use when writing or editing .html.orb files"
+metadata:
+  author: nicbet
+  version: "1.0"
 ---
 
 # ORB Template Language
@@ -9,6 +13,7 @@ ORB is a JSX-inspired template language for Ruby ViewComponents. Files use the `
 ## Expressions
 
 **Print (HTML-escaped)** — double curly braces:
+
 ```orb
 <span>{{user.name}}</span>
 <span>{{@instance_var}}</span>
@@ -16,6 +21,7 @@ ORB is a JSX-inspired template language for Ruby ViewComponents. Files use the `
 ```
 
 **Non-printing (assignment)** — percent signs:
+
 ```orb
 {% user = current_user %}
 <span>{{user.name}}</span>
@@ -24,6 +30,7 @@ ORB is a JSX-inspired template language for Ruby ViewComponents. Files use the `
 ## Dynamic Attributes
 
 Single curly braces for attribute values:
+
 ```orb
 <div id={dom_id(record)} class={css_classes}>
   {{content}}
@@ -40,11 +47,13 @@ Single curly braces for attribute values:
 ## Conditionals
 
 **Directive form** (on the element):
+
 ```orb
 <div :if={user.admin?}>Admin only</div>
 ```
 
 **Block form**:
+
 ```orb
 {#if user.admin?}
   <div>Admin only</div>
@@ -56,11 +65,13 @@ Single curly braces for attribute values:
 ## Loops
 
 **Directive form**:
+
 ```orb
 <li :for="item in @items">{{item.name}}</li>
 ```
 
 **Block form**:
+
 ```orb
 {#for item in @items}
   <li>{{item.name}}</li>
@@ -78,23 +89,27 @@ Evaluation order: `:for` > `:if` > `:unwrap` (fixed, regardless of attribute ord
 ## The `:unwrap` Directive
 
 Conditionally strip the wrapper element, keeping children:
+
 ```orb
 <Tooltip description="Info" :unwrap={!@needs_tooltip}>
   <Button>Click</Button>
 </Tooltip>
 ```
+
 - `:unwrap` truthy → only `<Button>Click</Button>` renders
 - `:unwrap` falsy → full `<Tooltip>` wrapping `<Button>` renders
 
 ## Components
 
 Render ViewComponents as HTML tags. The `Component` suffix is omitted:
+
 ```orb
 <Button url="/action" variant="primary">Click me</Button>
 <Card title="Hello">Card content</Card>
 ```
 
 Self-closing:
+
 ```orb
 <Separator/>
 <Icon name="star" size="md"/>
@@ -103,6 +118,7 @@ Self-closing:
 ## Slots
 
 Use `Component:SlotName` syntax:
+
 ```orb
 <Card>
   <Card:Header>
@@ -115,6 +131,7 @@ Use `Component:SlotName` syntax:
 ```
 
 Slots are scoped to their **immediate parent** component tag — use the parent's tag name, not the full ancestry:
+
 ```orb
 <Accordion>
   <Accordion:Item value="item-1">
@@ -125,6 +142,7 @@ Slots are scoped to their **immediate parent** component tag — use the parent'
 ```
 
 Another example — Dropdown's trigger slot:
+
 ```orb
 <Dropdown>
   <Dropdown:Trigger>
@@ -139,11 +157,13 @@ Another example — Dropdown's trigger slot:
 ## Namespaces
 
 Dot notation for sub-namespaces:
+
 ```orb
 <Admin.Button url="/admin">Admin</Admin.Button>
 ```
 
 Configure in `config/initializers/orb.rb`:
+
 ```ruby
 ORB.namespaces = ['MyComponents', 'ThirdParty::UI']
 ```
@@ -151,11 +171,13 @@ ORB.namespaces = ['MyComponents', 'ThirdParty::UI']
 ## Comments
 
 **Public** (sent to browser):
+
 ```orb
 <!-- Visible in page source -->
 ```
 
 **Private** (stripped during render):
+
 ```orb
 {!-- Not sent to browser --}
 ```
@@ -172,6 +194,7 @@ ORB does not have a special partial syntax. Use the `{{render ...}}` expression 
 ## Inline Component Templates
 
 Define templates inside Ruby component classes:
+
 ```ruby
 class MyComponent < ViewComponent::Base
   orb_template <<~'ORB'
@@ -182,14 +205,14 @@ end
 
 ## Key Differences from ERB
 
-| ERB | ORB |
-|-----|-----|
-| `<%= expression %>` | `{{expression}}` |
-| `<% code %>` | `{% code %}` |
-| `<%= render Component.new(x: 1) %>` | `<Component x=1/>` |
+| ERB                                         | ORB                                                  |
+| ------------------------------------------- | ---------------------------------------------------- |
+| `<%= expression %>`                         | `{{expression}}`                                     |
+| `<% code %>`                                | `{% code %}`                                         |
+| `<%= render Component.new(x: 1) %>`         | `<Component x=1/>`                                   |
 | `<% @items.each do \|item\| %>...<% end %>` | `{#for item in @items}...{/for}` or `:for` directive |
-| `<% if condition %>...<% end %>` | `{#if condition}...{/if}` or `:if` directive |
-| `<%= render "partial" %>` | `{{render "partial"}}` |
+| `<% if condition %>...<% end %>`            | `{#if condition}...{/if}` or `:if` directive         |
+| `<%= render "partial" %>`                   | `{{render "partial"}}`                               |
 
 ## Common Mistakes
 

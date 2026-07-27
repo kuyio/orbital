@@ -1,3 +1,11 @@
+---
+name: orbital-docs
+description: Guidelines on writing docs for orbital components
+metadata:
+  author: nicbet
+  version: "1.0"
+---
+
 # Documentation Style Guide for Orbital Component Pages
 
 This guide defines the structure, conventions, and patterns for documenting Orbital components in the demo app. Every component page should follow this format consistently.
@@ -5,6 +13,7 @@ This guide defines the structure, conventions, and patterns for documenting Orbi
 ## Page Structure (in order)
 
 ### 1. Header
+
 ```orb
 <div class="mb-8">
   <Heading size="2xl" as="h1" class="mb-2">ComponentName</Heading>
@@ -15,6 +24,7 @@ This guide defines the structure, conventions, and patterns for documenting Orbi
 ```
 
 ### 2. Canonical Example
+
 A single, representative live example using `<Example>`. This should show the component in its most common, realistic usage — not the simplest possible version.
 
 ```orb
@@ -30,6 +40,7 @@ A single, representative live example using `<Example>`. This should show the co
 - Default alignment is center, which works for buttons, badges, icons, etc.
 
 ### 3. Usage
+
 Code snippet + prose explanation of the basic API.
 
 ```orb
@@ -53,6 +64,7 @@ If the component has a nested slot structure, add a tree diagram:
 ```
 
 ### 4. When to Use
+
 Prose section explaining when this component is the right choice, and what alternatives to consider.
 
 ```orb
@@ -71,6 +83,7 @@ Prose section explaining when this component is the right choice, and what alter
 - Mention at least one "don't use this for X, use Y instead"
 
 ### 5. Behaviour
+
 Prose section explaining how the component works at runtime.
 
 ```orb
@@ -85,6 +98,7 @@ Prose section explaining how the component works at runtime.
 ```
 
 ### 6. Examples
+
 Multiple live examples, each with a heading, prose description, and `<Example>` component.
 
 ```orb
@@ -108,6 +122,7 @@ Multiple live examples, each with a heading, prose description, and `<Example>` 
 - For components that need full width (Expander, NavigationMenu), add `w-full` to the wrapper div inside the source
 
 ### 7. Best Practices (Do / Don't)
+
 Two-column grid with green "Do" and red "Don't" cards.
 
 ```orb
@@ -140,9 +155,11 @@ Two-column grid with green "Do" and red "Don't" cards.
 - Be specific and actionable, not vague ("Use consistent sizes" not "Be consistent")
 
 ### 8. API Reference
+
 Tables for props and slots.
 
 **Props table:**
+
 ```orb
 <div>
   <Heading size="lg" as="h2" class="mb-4">API Reference</Heading>
@@ -170,6 +187,7 @@ Tables for props and slots.
 ```
 
 **Slots table** (for components with named slots):
+
 ```orb
 <Heading size="sm" as="h4" class="mb-2 mt-6">Slots</Heading>
 <div class="border rounded-lg overflow-hidden">

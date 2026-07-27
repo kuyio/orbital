@@ -13,6 +13,7 @@ class SearchController < ApplicationController
     { title: "Dialog", description: "Modal overlay for focused tasks", url: "/components/dialog", category: "Components" },
     { title: "Dropdown", description: "Button with floating menu panel", url: "/components/dropdown", category: "Components" },
     { title: "Expander", description: "Flexible space that pushes siblings apart", url: "/components/expander", category: "Components" },
+    { title: "Grid", description: "CSS Grid container with column and span control", url: "/components/grid", category: "Components" },
     { title: "Heading", description: "Title text with semantic heading levels", url: "/components/heading", category: "Components" },
     { title: "Icon", description: "SVG icon from Font Awesome library", url: "/components/icon", category: "Components" },
     { title: "Image", description: "Responsive image with asset pipeline integration", url: "/components/image", category: "Components" },

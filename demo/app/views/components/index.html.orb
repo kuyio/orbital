@@ -7,7 +7,7 @@
       </Text>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
 
       <ComponentCard name="accordion">
         <div class="w-full">
@@ -97,6 +97,17 @@
             <Text size="xs" tone="subdued" as="span">Panel</Text>
           </div>
         </div>
+      </ComponentCard>
+
+      <ComponentCard name="grid">
+        <Grid columns="3" gap="2" class="w-full max-w-48">
+          <div class="bg-primary/10 rounded p-1.5 text-xs text-center">1</div>
+          <div class="bg-primary/10 rounded p-1.5 text-xs text-center">2</div>
+          <div class="bg-primary/10 rounded p-1.5 text-xs text-center">3</div>
+          <div class="bg-primary/10 rounded p-1.5 text-xs text-center">4</div>
+          <div class="bg-primary/10 rounded p-1.5 text-xs text-center">5</div>
+          <div class="bg-primary/10 rounded p-1.5 text-xs text-center">6</div>
+        </Grid>
       </ComponentCard>
 
       <ComponentCard name="heading">
