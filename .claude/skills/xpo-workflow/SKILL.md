@@ -99,13 +99,19 @@ engineer explaining the changes to a junior developer:
 
 Write the walkthrough **after** any user-requested corrections are applied, so it reflects the final state.
 
-### 9. Complete
+### 9. Commit & Merge
 
-Do NOT transition to DONE without a walkthrough. If the user asks to close the issue, write the
+After the walkthrough is written:
+
+1. Create a commit with a **type-prefixed** message: `feature:`, `bugfix:`, `chore:`, `refactor:`, etc. Include a descriptive body explaining what changed and why.
+2. Use `mcp__xpo__merge` with `commit_message` to squash-merge the branch back to main. Always provide a proper `commit_message` — never rely on the auto-generated one.
+3. Set `delete_branch: true` to clean up after merge.
+
+Do NOT merge without a walkthrough. If the user asks to close the issue, write the
 walkthrough first — it is the only durable record of what was built and why. Without it, all
 context about the implementation is lost when the conversation ends.
 
-Transition to DONE only after: the user approves, tests pass, and the walkthrough is attached.
+Merge only after: the user approves, tests pass, and the walkthrough is attached.
 
 ## Status Graph
 
