@@ -1428,6 +1428,169 @@
     height: 100%;
   }
 
+  .Orbital-Stack {
+    flex-direction: column;
+    display: flex;
+  }
+
+  .Orbital-Stack[data-gap="0"] {
+    --stack-gap: 0px;
+  }
+
+  .Orbital-Stack[data-gap="0.5"] {
+    --stack-gap: .125rem;
+  }
+
+  .Orbital-Stack[data-gap="1"] {
+    --stack-gap: .25rem;
+  }
+
+  .Orbital-Stack[data-gap="1.5"] {
+    --stack-gap: .375rem;
+  }
+
+  .Orbital-Stack[data-gap="2"] {
+    --stack-gap: .5rem;
+  }
+
+  .Orbital-Stack[data-gap="3"] {
+    --stack-gap: .75rem;
+  }
+
+  .Orbital-Stack[data-gap="4"] {
+    --stack-gap: 1rem;
+  }
+
+  .Orbital-Stack[data-gap="5"] {
+    --stack-gap: 1.25rem;
+  }
+
+  .Orbital-Stack[data-gap="6"] {
+    --stack-gap: 1.5rem;
+  }
+
+  .Orbital-Stack[data-gap="8"] {
+    --stack-gap: 2rem;
+  }
+
+  .Orbital-Stack[data-gap="10"] {
+    --stack-gap: 2.5rem;
+  }
+
+  .Orbital-Stack[data-gap="12"] {
+    --stack-gap: 3rem;
+  }
+
+  .Orbital-Stack[data-gap="16"] {
+    --stack-gap: 4rem;
+  }
+
+  .Orbital-Stack {
+    gap: var(--stack-gap, 1rem);
+  }
+
+  .Orbital-Stack[data-align="start"] {
+    align-items: flex-start;
+  }
+
+  .Orbital-Stack[data-align="center"] {
+    align-items: center;
+  }
+
+  .Orbital-Stack[data-align="end"] {
+    align-items: flex-end;
+  }
+
+  .Orbital-Stack[data-align="stretch"] {
+    align-items: stretch;
+  }
+
+  .Orbital-Stack[data-justify="start"] {
+    justify-content: flex-start;
+  }
+
+  .Orbital-Stack[data-justify="center"] {
+    justify-content: center;
+  }
+
+  .Orbital-Stack[data-justify="end"] {
+    justify-content: flex-end;
+  }
+
+  .Orbital-Stack[data-justify="between"] {
+    justify-content: space-between;
+  }
+
+  .Orbital-Stack[data-justify="around"] {
+    justify-content: space-around;
+  }
+
+  .Orbital-Stack[data-justify="evenly"] {
+    justify-content: space-evenly;
+  }
+
+  .Orbital-Stack[data-padding="0.5"] {
+    padding: calc(var(--spacing) * .5);
+  }
+
+  .Orbital-Stack[data-padding="1"] {
+    padding: var(--spacing);
+  }
+
+  .Orbital-Stack[data-padding="1.5"] {
+    padding: calc(var(--spacing) * 1.5);
+  }
+
+  .Orbital-Stack[data-padding="2"] {
+    padding: calc(var(--spacing) * 2);
+  }
+
+  .Orbital-Stack[data-padding="3"] {
+    padding: calc(var(--spacing) * 3);
+  }
+
+  .Orbital-Stack[data-padding="4"] {
+    padding: calc(var(--spacing) * 4);
+  }
+
+  .Orbital-Stack[data-padding="5"] {
+    padding: calc(var(--spacing) * 5);
+  }
+
+  .Orbital-Stack[data-padding="6"] {
+    padding: calc(var(--spacing) * 6);
+  }
+
+  .Orbital-Stack[data-padding="8"] {
+    padding: calc(var(--spacing) * 8);
+  }
+
+  .Orbital-Stack[data-padding="10"] {
+    padding: calc(var(--spacing) * 10);
+  }
+
+  .Orbital-Stack[data-padding="12"] {
+    padding: calc(var(--spacing) * 12);
+  }
+
+  .Orbital-Stack[data-padding="16"] {
+    padding: calc(var(--spacing) * 16);
+  }
+
+  .Orbital-Stack[data-dividers] > * + * {
+    position: relative;
+  }
+
+  .Orbital-Stack[data-dividers] > * + :before {
+    content: "";
+    top: calc(-.5 * var(--stack-gap, 1rem) - .5px);
+    border-top: 1px solid var(--color-border);
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+
   .Orbital-Text {
     font-size: var(--text-body-md);
     line-height: var(--text-body-md--line-height);
