@@ -3,13 +3,12 @@
 module Orbital
   class Card < Component
     renders_one :header, Card::Header
-    renders_one :body, Card::Content
     renders_one :footer, Card::Footer
 
     orb_template <<-ORB
       <div **html_attributes>
         {{header}}
-        {{body}}
+        <div class="Orbital-Card-Content">{{content}}</div>
         {{footer}}
       </div>
     ORB

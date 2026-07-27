@@ -109,7 +109,7 @@ Use `Component:SlotName` syntax:
     <Card:Title>My Title</Card:Title>
     <Card:Description>Details here</Card:Description>
   </Card:Header>
-  <Card:Body>Content</Card:Body>
+  Content
   <Card:Footer>Footer</Card:Footer>
 </Card>
 ```

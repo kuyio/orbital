@@ -20,11 +20,11 @@
   }
 
   .Orbital-Card-Title {
-    @apply font-bold leading-none tracking-tight;
+    @apply font-semibold leading-none tracking-tight text-body-md;
   }
 
   .Orbital-Card-Description {
-    @apply text-sm text-muted-foreground;
+    @apply text-body-md text-muted-foreground;
   }
 
   .Orbital-Card-Action {

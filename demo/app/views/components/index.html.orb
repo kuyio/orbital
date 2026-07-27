@@ -53,9 +53,7 @@
             <Header:Title>Card Title</Header:Title>
             <Header:Description>Card description</Header:Description>
           </Card:Header>
-          <Card:Body>
-            <Text size="xs" tone="subdued" as="p">Content goes here.</Text>
-          </Card:Body>
+          <Text size="xs" tone="subdued" as="p">Content goes here.</Text>
         </Card>
       </ComponentCard>
 
@@ -184,6 +182,12 @@
               <div class="text-xs border rounded px-2 py-0.5 bg-background mt-0.5">auto</div>
             </div>
           </div>
+        </div>
+      </ComponentCard>
+
+      <ComponentCard name="progress-bar">
+        <div class="flex flex-col gap-3 w-full max-w-48">
+          <ProgressBar value=45 max=100 size="md"/>
         </div>
       </ComponentCard>
 

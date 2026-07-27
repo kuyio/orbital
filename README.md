@@ -1,76 +1,123 @@
-# Orbital - View Components
+# Orbital
 
 ![Preview](./preview.png)
 
-This repository contains **Orbital**, a demonstration of you can build reusable view components for Ruby on Rails using the [ORB Template Language](https://github.com/kuyio/orb_template) together with [TailwindCSS](https://tailwindcss.com/), along with a sample Rails application that showcases how the components and component styles can be imported and used in a real app.
+A modern design system and component library for Ruby on Rails, built with the [ORB Template Language](https://github.com/kuyio/orb_template) and [Tailwind CSS v4](https://tailwindcss.com/). Ship polished interfaces without leaving Rails.
 
 ## Project Structure
 
-- **`orbital/`** - The Orbital gem containing view components
-- **`demo/`** - A Rails demo application that uses and showcases Orbital components
+- **`orbital/`** — The Orbital gem: components, styles, and JavaScript
+- **`demo/`** — A Rails app that documents and showcases every component
 
 ## Getting Started
 
 ### Prerequisites
 
 - Ruby 3.x
-- Node.js (for Tailwind CSS processing)
-- Bundler gem
+- [Bun](https://bun.sh/) (or Node.js)
+- Bundler
 
 ### Installation
 
-Run the following commands to set up the demo application after cloning the repository:
-
-   ```bash
-   cd demo
-   bundle install
-   npm install
-   # or bun install
-   ```
+```bash
+cd demo
+bundle install
+bun install
+```
 
 ### Running the Demo
 
-   ```bash
-   cd demo
-   rails server
-   ```
+```bash
+cd demo
+foreman start -f Procfile.dev
+```
 
-Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to see the demo application in action.
+Open [http://localhost:3000](http://localhost:3000) to browse the component library.
 
-### Development
+## Components
 
-For development with live CSS reloading:
+### Layout & Structure
+- **Accordion** — Collapsible content sections with keyboard navigation
+- **Card** — Content containers with optional header and footer slots
+- **Expander** — Flexible spacer for distributing space in flex layouts
+- **Separator** — Horizontal or vertical dividers between content sections
 
-   ```bash
-   cd demo
-   foreman start -f Procfile.dev
-   ```
+### Navigation
+- **Navigation Menu** — Responsive site navigation with mobile drawer
+- **Dropdown** — Trigger/content pattern for menus and popovers
+- **Menu** — Structured menu with items, labels, separators, and submenus
 
-## Available Components
+### Data Display
+- **Avatar** — User avatars with initials or Gravatar integration
+- **Badge** — Small status indicators and labels
+- **Icon** — FontAwesome icon integration with size variants
+- **Image** — Asset pipeline image component
+- **Kbd** — Keyboard shortcut display
+- **Progress Bar** — Horizontal bar with value/max fill calculation
+- **Spinner** — Loading indicators
+- **Tooltip** — Contextual information on hover
 
-The Orbital gem includes a variety of demo components:
+### Typography
+- **Heading** — Semantic headings with size scale (xs–4xl)
+- **Text** — Body text with size, weight, tone, and alignment control
+- **Prose** — Long-form content styling
+- **Typography** — Display type for marketing pages
 
-- **Accordion** - Collapsible content sections
-- **Badge** - Small status indicators
-- **Button** - Interactive button elements
-- **Button Group** - Grouped button layouts
-- **Card** - Content containers with header, body, and footer
-- **Checkbox** - Form input controls
-- **Icon** - Icon display components
-- **Image** - Responsive image handling
-- **Navigation Menu** - Site navigation components
-- **Spinner** - Loading indicators
-- **Text** - Typography components
-- **Text Field** - Form input fields
-- **Typography** - Text styling utilities
+### Forms
+- **Button** — Primary, secondary, outline, ghost, and destructive variants
+- **Button Group** — Visually connected button sets
+- **Check Box** — Toggle inputs with labels and help text
+- **Select** — Custom dropdown select with search
+- **Text Field** — Inputs and textareas with icons, prefix/suffix, and validation
+
+### Feedback
+- **Alert** — Contextual messages with tone variants
+- **Dialog** — Modal dialogs with header, body, and footer
+- **Confirmation Dialog** — Confirm/cancel pattern
+- **Delete Dialog** — Destructive action confirmation
+
+### Overlay
+- **Modal** — Full-screen overlay container
+- **Popcard** — Hover card previews
+- **Popover** — Anchored floating content
 
 ## Customization
 
-The components are built with Tailwind CSS v4 and can be easily customized through:
+Orbital uses a semantic color system powered by CSS custom properties. Override any variable after importing the theme:
 
-- **Tailwind Configuration** - Modify `tailwind.config.js` in both directories
-- **Component Overrides** - Each component accepts custom CSS classes
-- **Theme Variables** - Adjust colors, spacing, and typography through Tailwind's theme system
+```css
+@import "orbital/theme";
+
+:root {
+  --primary: hotpink;
+  --primary-foreground: white;
+  --radius: 0.25rem;
+}
+```
+
+### Theme Variables
+
+Colors, surfaces, and radii are defined in `orbital/app/assets/stylesheets/orbital/theme.css`. The full set includes:
+
+- **Surfaces** — `--background`, `--card`, `--popover`, `--muted`, `--accent`
+- **Interactive** — `--primary`, `--secondary`, `--destructive`
+- **Semantic tones** — `--tone-success`, `--tone-warning`, `--tone-danger`, `--tone-info`, `--tone-magic`
+- **Borders & inputs** — `--border`, `--input`, `--ring`
+- **Typography** — `--font-weight-normal`, `--font-weight-medium`, `--font-weight-semibold`, `--font-weight-bold`
+- **Shape** — `--radius`
+
+### Dark Mode
+
+Add the `.dark` class to your root element. All theme variables swap automatically — no extra configuration needed. The demo app includes a toggle in the navbar.
+
+### Component Overrides
+
+Every component accepts a `class` attribute for one-off adjustments via Tailwind utilities:
+
+```orb
+<Button variant="outline" class="w-full">Full Width</Button>
+<Card class="border-primary">Highlighted Card</Card>
+```
 
 ## Contributing
 
@@ -83,4 +130,3 @@ The components are built with Tailwind CSS v4 and can be easily customized throu
 ## License
 
 This project is open source and available under the [MIT License](LICENSE.txt).
-

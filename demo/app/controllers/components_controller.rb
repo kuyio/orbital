@@ -4,8 +4,8 @@ class ComponentsController < ApplicationController
   COMPONENTS = %w[
     accordion alert avatar badge button button-group card checkbox
     dialog dropdown expander heading icon image kbd menu
-    navigation-menu popcard popover select separator spinner
-    text text-field tooltip typography
+    navigation-menu popcard popover progress-bar select separator
+    spinner text text-field tooltip typography
   ].freeze
 
   def index

@@ -62,7 +62,7 @@ div#\31p-live-region {
   align-items: center;
   justify-content: center;
   padding: 1rem 2rem;
-  background: #f1f2f3;
+  background: color-mix(in oklab, var(--muted) 50%, var(--card));
   overflow: hidden;
 }
 

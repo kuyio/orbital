@@ -40,8 +40,8 @@ class Demo::AppFrame < Orbital::Component
               </Menu>
             </Dropdown>
             <Expander/>
-            <Button variant="outline" class="font-normal w-48 justify-between!" data-action="click->command-palette#open">
-              <span>Search...</span>
+            <Button variant="outline" class="font-normal w-52 justify-between!" data-action="click->command-palette#open">
+              <Text tone=subdued>Search...</Text>
               <KbdGroup>
                 <Kbd>⌘</Kbd>
                 <Kbd>K</Kbd>
@@ -94,7 +94,7 @@ class Demo::AppFrame < Orbital::Component
   def default_attributes
     super.merge(
       class: class_names(
-        "Orbital-App h-full w-full",
+        "Orbital-App",
       ),
       data: {
         controller: "command-palette"

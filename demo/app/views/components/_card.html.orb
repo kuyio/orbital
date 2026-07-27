@@ -14,9 +14,9 @@
         <Header:Title>Card Title</Header:Title>
         <Header:Description>Card description</Header:Description>
       </Card:Header>
-      <Card:Body>
-        <Text as="p">This is the card body with some example content.</Text>
-      </Card:Body>
+
+      <Text as="p">This is the card body with some example content.</Text>
+
       <Card:Footer>
         <Button>Action</Button>
       </Card:Footer>
@@ -28,7 +28,7 @@
 <div class="mb-12">
   <Heading size="lg" as="h2" class="mb-4">Usage</Heading>
   <div class="border rounded-lg bg-card overflow-hidden">
-    <CodeBlock code={"<Card>\n  <Card:Header>\n    <Header:Title>Title</Header:Title>\n    <Header:Description>Description</Header:Description>\n  </Card:Header>\n  <Card:Body>Content here</Card:Body>\n  <Card:Footer>Footer content</Card:Footer>\n</Card>"}/>
+    <CodeBlock code={"<Card>\n  <Card:Header>\n    <Header:Title>Title</Header:Title>\n    <Header:Description>Description</Header:Description>\n  </Card:Header>\n  Content here\n  <Card:Footer>Footer content</Card:Footer>\n</Card>"}/>
   </div>
   <Prose class="mt-4">
     <p>
@@ -37,7 +37,7 @@
     </p>
   </Prose>
   <div class="border rounded-lg bg-muted/50 overflow-hidden mt-4">
-    <CodeBlock code={"Card\n├── Card:Header\n│   ├── Header:Title\n│   ├── Header:Description\n│   └── Header:Action\n├── Card:Body\n└── Card:Footer"}/>
+    <CodeBlock code={"Card\n├── Card:Header\n│   ├── Header:Title\n│   ├── Header:Description\n│   └── Header:Action\n├── content (direct)\n└── Card:Footer"}/>
   </div>
 </div>
 
@@ -100,9 +100,9 @@
             <Button variant="outline" size="sm"><Icon name="plus" size="sm"/>Add</Button>
           </Header:Action>
         </Card:Header>
-        <Card:Body>
-          <Text as="p">You currently have 5 team members across 2 projects.</Text>
-        </Card:Body>
+
+        <Text as="p">You currently have 5 team members across 2 projects.</Text>
+
         <Card:Footer>
           <Button variant="secondary">View all members</Button>
         </Card:Footer>
@@ -122,12 +122,12 @@
           <Header:Title>Create Project</Header:Title>
           <Header:Description>Fill in the details to start a new project.</Header:Description>
         </Card:Header>
-        <Card:Body>
-          <div class="flex flex-col gap-4">
-            <TextField label="Project Name" placeholder="Enter project name" fullwidth/>
-            <TextField label="Description" placeholder="Brief description" multiline=3 fullwidth/>
-          </div>
-        </Card:Body>
+
+        <div class="flex flex-col gap-4">
+          <TextField label="Project Name" placeholder="Enter project name" fullwidth/>
+          <TextField label="Description" placeholder="Brief description" multiline=3 fullwidth/>
+        </div>
+
         <Card:Footer>
           <div class="flex justify-between w-full">
             <Button variant="ghost">Cancel</Button>
@@ -146,12 +146,12 @@
     </Prose>
     <Example source={'
       <Card>
-        <Card:Body>
-          <div class="flex items-center gap-4">
-            <Icon name="circle-info" size="lg" class="text-blue-500"/>
-            <Text as="p">Your trial expires in 7 days. Upgrade to keep your data.</Text>
-          </div>
-        </Card:Body>
+
+        <div class="flex items-center gap-4">
+          <Icon name="circle-info" size="lg" class="text-blue-500"/>
+          <Text as="p">Your trial expires in 7 days. Upgrade to keep your data.</Text>
+        </div>
+
       </Card>
     '}/>
   </div>
@@ -203,10 +203,6 @@
         <tr>
           <td class="px-4 py-2 font-mono text-xs">Card:Header</td>
           <td class="px-4 py-2">Optional header section containing title, description, and action.</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-2 font-mono text-xs">Card:Body</td>
-          <td class="px-4 py-2">Main content area with padding.</td>
         </tr>
         <tr>
           <td class="px-4 py-2 font-mono text-xs">Card:Footer</td>
