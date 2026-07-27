@@ -13,3 +13,5 @@ demo/.opencode
 orbital/.opencode
 .xpo/issues.snapshot.json
 .xpo/git.lock
+/orbital/.rspec_status
+orbital/.rspec_status

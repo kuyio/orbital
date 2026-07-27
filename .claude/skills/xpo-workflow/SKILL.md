@@ -34,7 +34,7 @@ xpo MCP server's `spec` tool. See `references/spec-guide.md` for the full spec t
 
 The spec is a thinking tool — it collapses the design space so the user can steer decisions
 instead of discovering unwanted choices after the code is written. Scale the depth to the task:
-a bug fix gets a brief What/Why/How/AC spec; a feature gets the full template.
+a bug fix gets a brief What/Why/How/AC spec; a feature gets the full template. When updating a spec that has not yet been committed, you may directly write the corresponding `spec.md` file instead of using the MCP tool.
 
 **Interactive mode** (user present — CLI, IDE plugin): after writing the spec, surface open questions
 and uncertainties to the user and wait for answers before implementing. The spec is a conversation

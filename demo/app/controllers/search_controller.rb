@@ -16,6 +16,7 @@ class SearchController < ApplicationController
     { title: "Heading", description: "Title text with semantic heading levels", url: "/components/heading", category: "Components" },
     { title: "Icon", description: "SVG icon from Font Awesome library", url: "/components/icon", category: "Components" },
     { title: "Image", description: "Responsive image with asset pipeline integration", url: "/components/image", category: "Components" },
+    { title: "InlineStack", description: "Horizontal flex container with spacing and alignment", url: "/components/inline-stack", category: "Components" },
     { title: "Kbd", description: "Keyboard shortcut indicator", url: "/components/kbd", category: "Components" },
     { title: "Menu", description: "Vertical list of actions and navigation items", url: "/components/menu", category: "Components" },
     { title: "Navigation Menu", description: "Top-level site navigation bar", url: "/components/navigation-menu", category: "Components" },

@@ -19,6 +19,7 @@
 @import "./components/prose.css";
 @import "./components/separator.css";
 @import "./components/stack.css";
+@import "./components/inline-stack.css";
 @import "./components/text.css";
 @import "./components/text-field.css";
 @import "./components/typography.css";

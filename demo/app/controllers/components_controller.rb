@@ -3,7 +3,7 @@
 class ComponentsController < ApplicationController
   COMPONENTS = %w[
     accordion alert avatar badge button button-group card checkbox
-    dialog dropdown expander heading icon image kbd menu
+    dialog dropdown expander heading icon image inline-stack kbd menu
     navigation-menu popcard popover progress-bar select separator
     spinner stack text text-field tooltip typography
   ].freeze
