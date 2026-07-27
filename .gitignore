@@ -11,3 +11,5 @@ demo/tmp/pids
 .opencode
 demo/.opencode
 orbital/.opencode
+.xpo/issues.snapshot.json
+.xpo/git.lock

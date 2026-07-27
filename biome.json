@@ -1,0 +1,52 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.5/schema.json",
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended"
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 120
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double",
+      "semicolons": "asNeeded"
+    }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    },
+    "linter": {
+      "enabled": true
+    },
+    "formatter": {
+      "enabled": true,
+      "indentStyle": "space",
+      "indentWidth": 2
+    }
+  },
+  "files": {
+    "includes": [
+      "orbital/frontend/**/*.js",
+      "orbital/frontend/**/*.ts",
+      "orbital/frontend/**/*.css",
+      "demo/app/assets/**/*.js",
+      "demo/app/assets/**/*.ts",
+      "demo/app/assets/**/*.css",
+      "demo/app/javascript/**/*.js",
+      "demo/app/javascript/**/*.ts",
+      "!**/node_modules",
+      "!**/vendor",
+      "!**/.parcel-cache",
+      "!**/dist",
+      "!**/builds"
+    ]
+  }
+}
