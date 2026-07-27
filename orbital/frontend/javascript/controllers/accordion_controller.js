@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   connect() {
-    this.element.querySelectorAll("[data-accordion-trigger]").forEach(trigger => {
+    this.element.querySelectorAll("[data-accordion-trigger]").forEach((trigger) => {
       trigger.addEventListener("click", this.toggle.bind(this))
     })
   }
@@ -17,21 +17,29 @@ export default class extends Controller {
     const isOpen = content.dataset.state === "open"
 
     if (isOpen) {
-      content.style.height = content.scrollHeight + "px"
+      content.style.height = `${content.scrollHeight}px`
       content.offsetHeight // force reflow
       content.style.height = "0px"
-      content.addEventListener("transitionend", () => {
-        content.dataset.state = "closed"
-        content.style.height = ""
-      }, { once: true })
+      content.addEventListener(
+        "transitionend",
+        () => {
+          content.dataset.state = "closed"
+          content.style.height = ""
+        },
+        { once: true },
+      )
     } else {
       content.dataset.state = "open"
       content.style.height = "0px"
       content.offsetHeight // force reflow
-      content.style.height = content.scrollHeight + "px"
-      content.addEventListener("transitionend", () => {
-        content.style.height = ""
-      }, { once: true })
+      content.style.height = `${content.scrollHeight}px`
+      content.addEventListener(
+        "transitionend",
+        () => {
+          content.style.height = ""
+        },
+        { once: true },
+      )
     }
   }
 }

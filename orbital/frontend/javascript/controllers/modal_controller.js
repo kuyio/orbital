@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static values = {
     open: { type: Boolean, default: false },
-    dismissible: { type: Boolean, default: true }
+    dismissible: { type: Boolean, default: true },
   }
 
   static targets = ["panel"]
@@ -84,7 +84,7 @@ export default class extends Controller {
 
     this._originalStyles = {
       overflow: document.body.style.overflow,
-      paddingRight: document.body.style.paddingRight
+      paddingRight: document.body.style.paddingRight,
     }
     document.body.style.overflow = "hidden"
     if (!hasStableGutter) {
@@ -114,10 +114,11 @@ export default class extends Controller {
       "select:not([disabled])",
       "textarea:not([disabled])",
       "[tabindex]:not([tabindex='-1'])",
-      "[contenteditable]"
+      "[contenteditable]",
     ].join(", ")
-    return [...this.panelTarget.querySelectorAll(selector)]
-      .filter(el => !el.closest("[hidden]") && !el.closest("[aria-hidden='true']"))
+    return [...this.panelTarget.querySelectorAll(selector)].filter(
+      (el) => !el.closest("[hidden]") && !el.closest("[aria-hidden='true']"),
+    )
   }
 
   _focusFirst() {

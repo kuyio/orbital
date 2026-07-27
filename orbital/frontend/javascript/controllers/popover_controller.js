@@ -1,5 +1,5 @@
+import { autoPlacement, computePosition, flip, offset, shift } from "@floating-ui/dom"
 import { Controller } from "@hotwired/stimulus"
-import { computePosition, flip, shift, offset, autoPlacement } from "@floating-ui/dom"
 
 // Connects to data-controller="orbital-popover"
 export default class extends Controller {
@@ -7,9 +7,9 @@ export default class extends Controller {
     trigger: { type: String, default: "click" }, // "click" or "hover"
     position: { type: String, default: "auto" },
     showDelay: { type: Number, default: 0 },
-    hideDelay: { type: Number, default: 100 }
+    hideDelay: { type: Number, default: 100 },
   }
-  
+
   static targets = ["trigger", "content"]
 
   connect() {
@@ -29,7 +29,7 @@ export default class extends Controller {
 
     // Sync data-state when the native popover API light-dismisses
     if (this.hasContentTarget) {
-      this.contentTarget.addEventListener('toggle', this.boundOnNativeToggle)
+      this.contentTarget.addEventListener("toggle", this.boundOnNativeToggle)
     }
   }
 
@@ -41,14 +41,14 @@ export default class extends Controller {
       clearTimeout(this.hideTimeout)
     }
     if (this.hasContentTarget) {
-      this.contentTarget.removeEventListener('toggle', this.boundOnNativeToggle)
+      this.contentTarget.removeEventListener("toggle", this.boundOnNativeToggle)
     }
   }
 
   onNativeToggle(event) {
-    if (event.newState === 'closed' && this.element.getAttribute('data-state') === 'open') {
-      this.element.setAttribute('data-state', 'closed')
-      this.contentTarget.removeAttribute('data-positioned')
+    if (event.newState === "closed" && this.element.getAttribute("data-state") === "open") {
+      this.element.setAttribute("data-state", "closed")
+      this.contentTarget.removeAttribute("data-positioned")
       this.teardownPositioning()
     }
   }
@@ -60,14 +60,14 @@ export default class extends Controller {
       this.hideTimeout = null
     }
 
-    if (this.element.getAttribute('data-state') === 'open') return
+    if (this.element.getAttribute("data-state") === "open") return
 
     if (this.hasContentTarget) {
       try {
         // Show popover invisibly first (CSS gate hides it until data-positioned is set)
-        this.contentTarget.removeAttribute('data-positioned')
+        this.contentTarget.removeAttribute("data-positioned")
         this.contentTarget.showPopover()
-        this.element.setAttribute('data-state', 'open')
+        this.element.setAttribute("data-state", "open")
 
         // Now calculate position with the element visible and measurable
         const { x, y, placement } = await this.calculatePosition()
@@ -76,17 +76,19 @@ export default class extends Controller {
         this.contentTarget.dataset.placement = placement
 
         // Reveal at the correct position
-        this.contentTarget.setAttribute('data-positioned', 'true')
+        this.contentTarget.setAttribute("data-positioned", "true")
 
         this.setupPositioning()
 
-        this.element.dispatchEvent(new CustomEvent('orbital:popover:shown', {
-          bubbles: true,
-          detail: { popover: this.contentTarget }
-        }))
+        this.element.dispatchEvent(
+          new CustomEvent("orbital:popover:shown", {
+            bubbles: true,
+            detail: { popover: this.contentTarget },
+          }),
+        )
       } catch (e) {
         // Popover API not supported, fallback gracefully
-        console.warn('Popover API not supported:', e)
+        console.warn("Popover API not supported:", e)
       }
     }
   }
@@ -95,22 +97,24 @@ export default class extends Controller {
     if (this.hasContentTarget) {
       try {
         this.contentTarget.hidePopover()
-        this.element.setAttribute('data-state', 'closed')
-        
+        this.element.setAttribute("data-state", "closed")
+
         // Clear positioned flag for next open
-        this.contentTarget.removeAttribute('data-positioned')
-        
+        this.contentTarget.removeAttribute("data-positioned")
+
         // Clean up positioning listeners
         this.teardownPositioning()
-        
+
         // Dispatch custom event
-        this.element.dispatchEvent(new CustomEvent('orbital:popover:hidden', {
-          bubbles: true,
-          detail: { popover: this.contentTarget }
-        }))
+        this.element.dispatchEvent(
+          new CustomEvent("orbital:popover:hidden", {
+            bubbles: true,
+            detail: { popover: this.contentTarget },
+          }),
+        )
       } catch (e) {
         // Popover API not supported, fallback gracefully
-        console.warn('Popover API not supported:', e)
+        console.warn("Popover API not supported:", e)
       }
     }
   }
@@ -128,48 +132,48 @@ export default class extends Controller {
   async toggle() {
     if (this.hasContentTarget) {
       try {
-        const isOpen = this.element.getAttribute('data-state') === 'open'
-        
+        const isOpen = this.element.getAttribute("data-state") === "open"
+
         if (isOpen) {
           this.contentTarget.hidePopover()
-          this.element.setAttribute('data-state', 'closed')
-          this.contentTarget.removeAttribute('data-positioned')
+          this.element.setAttribute("data-state", "closed")
+          this.contentTarget.removeAttribute("data-positioned")
           this.teardownPositioning()
         } else {
-          this.contentTarget.removeAttribute('data-positioned')
+          this.contentTarget.removeAttribute("data-positioned")
           this.contentTarget.showPopover()
-          this.element.setAttribute('data-state', 'open')
+          this.element.setAttribute("data-state", "open")
 
           const { x, y, placement } = await this.calculatePosition()
           this.contentTarget.style.left = `${x}px`
           this.contentTarget.style.top = `${y}px`
           this.contentTarget.dataset.placement = placement
 
-          this.contentTarget.setAttribute('data-positioned', 'true')
+          this.contentTarget.setAttribute("data-positioned", "true")
           this.setupPositioning()
         }
       } catch (e) {
         // Popover API not supported, fallback gracefully
-        console.warn('Popover API not supported:', e)
+        console.warn("Popover API not supported:", e)
       }
     }
   }
 
   static COMPASS_TO_PLACEMENT = {
-    n:  'top',
-    ne: 'top-end',
-    e:  'right',
-    se: 'bottom-end',
-    s:  'bottom',
-    sw: 'bottom-start',
-    w:  'left',
-    nw: 'top-start'
+    n: "top",
+    ne: "top-end",
+    e: "right",
+    se: "bottom-end",
+    s: "bottom",
+    sw: "bottom-start",
+    w: "left",
+    nw: "top-start",
   }
 
   // Calculate position without applying it (for pre-positioning)
   async calculatePosition() {
     if (!this.hasTriggerTarget || !this.hasContentTarget) {
-      return { x: 0, y: 0, placement: 'bottom' }
+      return { x: 0, y: 0, placement: "bottom" }
     }
 
     const referenceEl = this.triggerTarget
@@ -177,42 +181,34 @@ export default class extends Controller {
 
     let middleware, placement
 
-    if (this.positionValue === 'auto') {
-      middleware = [
-        offset(8),
-        autoPlacement(),
-        shift({ padding: 8 })
-      ]
+    if (this.positionValue === "auto") {
+      middleware = [offset(8), autoPlacement(), shift({ padding: 8 })]
     } else {
       placement = this.constructor.COMPASS_TO_PLACEMENT[this.positionValue] || this.positionValue
-      middleware = [
-        offset(8),
-        flip(),
-        shift({ padding: 8 })
-      ]
+      middleware = [offset(8), flip(), shift({ padding: 8 })]
     }
 
     try {
       const result = await computePosition(referenceEl, floatingEl, {
         placement,
-        middleware
+        middleware,
       })
 
       return {
         x: result.x,
         y: result.y,
-        placement: result.placement || placement || 'bottom'
+        placement: result.placement || placement || "bottom",
       }
     } catch (e) {
-      console.warn('Failed to compute position:', e)
-      return { x: 0, y: 0, placement: 'bottom' }
+      console.warn("Failed to compute position:", e)
+      return { x: 0, y: 0, placement: "bottom" }
     }
   }
 
   // Apply position and placement data attribute
   async updatePosition() {
     const { x, y, placement } = await this.calculatePosition()
-    
+
     if (this.hasContentTarget) {
       Object.assign(this.contentTarget.style, {
         left: `${x}px`,
@@ -224,19 +220,19 @@ export default class extends Controller {
 
   setupPositioning() {
     // Reposition on scroll and resize
-    window.addEventListener('scroll', this.boundUpdatePosition, true)
-    window.addEventListener('resize', this.boundUpdatePosition)
+    window.addEventListener("scroll", this.boundUpdatePosition, true)
+    window.addEventListener("resize", this.boundUpdatePosition)
   }
 
   teardownPositioning() {
-    window.removeEventListener('scroll', this.boundUpdatePosition, true)
-    window.removeEventListener('resize', this.boundUpdatePosition)
+    window.removeEventListener("scroll", this.boundUpdatePosition, true)
+    window.removeEventListener("resize", this.boundUpdatePosition)
   }
 
   // Lifecycle callback when position value changes
   positionValueChanged() {
     // Reposition if popover is currently open
-    if (this.element.getAttribute('data-state') === 'open') {
+    if (this.element.getAttribute("data-state") === "open") {
       this.updatePosition()
     }
   }
@@ -264,14 +260,14 @@ export default class extends Controller {
     }
 
     if (this.hasTriggerTarget) {
-      this.triggerTarget.addEventListener('mouseenter', this.boundDelayedShow)
-      this.triggerTarget.addEventListener('mouseleave', this.boundDelayedHide)
-      this.triggerTarget.addEventListener('mouseleave', this.boundCancelShow)
+      this.triggerTarget.addEventListener("mouseenter", this.boundDelayedShow)
+      this.triggerTarget.addEventListener("mouseleave", this.boundDelayedHide)
+      this.triggerTarget.addEventListener("mouseleave", this.boundCancelShow)
     }
 
     if (this.hasContentTarget) {
-      this.contentTarget.addEventListener('mouseenter', this.boundCancelHide)
-      this.contentTarget.addEventListener('mouseleave', this.boundDelayedHide)
+      this.contentTarget.addEventListener("mouseenter", this.boundCancelHide)
+      this.contentTarget.addEventListener("mouseleave", this.boundDelayedHide)
     }
   }
 
@@ -284,21 +280,21 @@ export default class extends Controller {
 
   setupClickTrigger() {
     if (this.hasTriggerTarget) {
-      this.triggerTarget.addEventListener('click', this.handleClick.bind(this))
+      this.triggerTarget.addEventListener("click", this.handleClick.bind(this))
     }
   }
 
   teardownTrigger() {
     if (this.hasTriggerTarget) {
-      this.triggerTarget.removeEventListener('mouseenter', this.boundDelayedShow)
-      this.triggerTarget.removeEventListener('mouseleave', this.boundDelayedHide)
-      this.triggerTarget.removeEventListener('mouseleave', this.boundCancelShow)
-      this.triggerTarget.removeEventListener('click', this.handleClick.bind(this))
+      this.triggerTarget.removeEventListener("mouseenter", this.boundDelayedShow)
+      this.triggerTarget.removeEventListener("mouseleave", this.boundDelayedHide)
+      this.triggerTarget.removeEventListener("mouseleave", this.boundCancelShow)
+      this.triggerTarget.removeEventListener("click", this.handleClick.bind(this))
     }
 
     if (this.hasContentTarget) {
-      this.contentTarget.removeEventListener('mouseenter', this.boundCancelHide)
-      this.contentTarget.removeEventListener('mouseleave', this.boundDelayedHide)
+      this.contentTarget.removeEventListener("mouseenter", this.boundCancelHide)
+      this.contentTarget.removeEventListener("mouseleave", this.boundDelayedHide)
     }
   }
 
@@ -306,8 +302,11 @@ export default class extends Controller {
     if (!this.hasContentTarget) return
 
     // Don't open if the trigger (or a button inside it) is disabled
-    if (this.triggerTarget.closest('[data-disabled="true"]')
-      || this.triggerTarget.querySelector('[data-disabled="true"], [disabled], [aria-disabled="true"]')) return
+    if (
+      this.triggerTarget.closest('[data-disabled="true"]') ||
+      this.triggerTarget.querySelector('[data-disabled="true"], [disabled], [aria-disabled="true"]')
+    )
+      return
 
     event.preventDefault()
     this.toggle()
@@ -315,21 +314,21 @@ export default class extends Controller {
 
   async handleToggle(event) {
     const state = event.newState // "open" or "closed"
-    this.element.setAttribute('data-state', state)
-    
+    this.element.setAttribute("data-state", state)
+
     // Update position when opened via native toggle event
-    if (state === 'open') {
+    if (state === "open") {
       // Clear positioned flag during position calculation
-      this.contentTarget.removeAttribute('data-positioned')
-      
+      this.contentTarget.removeAttribute("data-positioned")
+
       // Position immediately (popover is already shown by native API)
       const { x, y, placement } = await this.calculatePosition()
       this.contentTarget.style.left = `${x}px`
       this.contentTarget.style.top = `${y}px`
       this.contentTarget.dataset.placement = placement
-      
+
       // Mark as positioned to trigger CSS visibility
-      this.contentTarget.setAttribute('data-positioned', 'true')
+      this.contentTarget.setAttribute("data-positioned", "true")
 
       this.setupPositioning()
 
@@ -341,12 +340,14 @@ export default class extends Controller {
     } else {
       this.teardownPositioning()
     }
-    
+
     // Dispatch custom event
-    const eventName = state === 'open' ? 'orbital:popover:shown' : 'orbital:popover:hidden'
-    this.element.dispatchEvent(new CustomEvent(eventName, {
-      bubbles: true,
-      detail: { popover: this.contentTarget }
-    }))
+    const eventName = state === "open" ? "orbital:popover:shown" : "orbital:popover:hidden"
+    this.element.dispatchEvent(
+      new CustomEvent(eventName, {
+        bubbles: true,
+        detail: { popover: this.contentTarget },
+      }),
+    )
   }
 }

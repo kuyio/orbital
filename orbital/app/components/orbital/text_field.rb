@@ -121,7 +121,7 @@ module Orbital
       class_names(
         padding_left,
         padding_right,
-        "noresize" => !@resizable,
+        "noresize" => !@resizable
       )
     end
 

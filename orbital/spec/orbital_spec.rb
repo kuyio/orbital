@@ -2,10 +2,10 @@
 
 RSpec.describe Orbital do
   it "has a version number" do
-    expect(Orbital::VERSION).not_to be nil
+    expect(Orbital::VERSION).not_to be_nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "provides a component base class" do
+    expect(Orbital::Component).to be < ViewComponent::Base
   end
 end

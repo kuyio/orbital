@@ -16,7 +16,8 @@ export default class extends Controller {
 
     // Re-apply current color theme for the new mode
     const themeCtrl = this.application.getControllerForElementAndIdentifier(
-      document.querySelector('[data-controller~="theme"]'), "theme"
+      document.querySelector('[data-controller~="theme"]'),
+      "theme",
     )
     if (themeCtrl) themeCtrl.apply(themeCtrl.currentValue)
   }

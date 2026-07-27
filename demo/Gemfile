@@ -68,5 +68,5 @@ group :test do
 end
 
 
-gem 'orb_template'
-gem 'orbital', path: '../orbital'
+gem "orb_template"
+gem "orbital", path: "../orbital"

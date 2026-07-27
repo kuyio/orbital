@@ -30,7 +30,12 @@ module Orbital
       private
 
       def check_icon
-        content_tag(:svg, class: "Orbital-Menu-Item-Check", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round") do
+        content_tag(
+          :svg,
+          class: "Orbital-Menu-Item-Check", width: "16", height: "16", viewBox: "0 0 24 24",
+          fill: "none", stroke: "currentColor", "stroke-width": "2",
+          "stroke-linecap": "round", "stroke-linejoin": "round"
+        ) do
           tag.polyline(points: "20 6 9 17 4 12")
         end
       end
@@ -55,7 +60,7 @@ module Orbital
         attrs[:href] = @url if @url.present?
         attrs[:type] = "button" unless @url.present?
 
-        if @modal.is_a?(String) && !%w[true false].include?(@modal)
+        if @modal.is_a?(String) && %w[true false].exclude?(@modal)
           attrs["data-open-modal"] = @modal
         elsif @modal && @url.present?
           attrs["data-turbo-frame"] = Orbital.configuration.dialog_portal_id

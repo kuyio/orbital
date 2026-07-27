@@ -1,5 +1,4 @@
 @layer components {
-
   /* Tooltip container */
   .Orbital-Tooltip {
     @apply inline-block;
@@ -26,7 +25,11 @@
 
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 100ms ease-out, transform 100ms ease-out, display 100ms ease-out allow-discrete, overlay 100ms ease-out allow-discrete;
+    transition:
+      opacity 100ms ease-out,
+      transform 100ms ease-out,
+      display 100ms ease-out allow-discrete,
+      overlay 100ms ease-out allow-discrete;
   }
 
   /* Open state */

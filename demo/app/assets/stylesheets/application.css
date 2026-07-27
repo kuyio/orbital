@@ -6,17 +6,15 @@ html {
 }
 
 @layer base {
+  code {
+    font-family: var(--font-mono);
+  }
+
   :not(pre) > code {
     @apply font-mono text-sm px-1.5 py-0.5 rounded-sm border;
     background: color-mix(in oklab, var(--muted) 50%, var(--card));
     color: var(--foreground);
     border-color: var(--border);
-  }
-
-  /* Optional: Fix font alignment */
-  code {
-    font-family: var(--font-mono);
-    /* Ensures it uses your mono stack */
   }
 }
 
@@ -147,11 +145,7 @@ div#\31p-live-region {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    color-mix(in oklab, var(--code-bg) 20%, transparent),
-    var(--code-bg)
-  );
+  background: linear-gradient(to bottom, color-mix(in oklab, var(--code-bg) 20%, transparent), var(--code-bg));
   pointer-events: none;
 }
 

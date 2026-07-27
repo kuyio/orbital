@@ -1174,6 +1174,9 @@ html {
   scrollbar-gutter: stable both-edges;
 }
 @layer base {
+  code {
+    font-family: var(--font-mono);
+  }
   :not(pre) > code {
     border-radius: var(--radius-sm);
     border-style: var(--tw-border-style);
@@ -1189,9 +1192,6 @@ html {
     }
     color: var(--foreground);
     border-color: var(--border);
-  }
-  code {
-    font-family: var(--font-mono);
   }
 }
 :root {
@@ -1312,17 +1312,9 @@ div#\31p-live-region {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    var(--code-bg),
-    var(--code-bg)
-  );
+  background: linear-gradient(to bottom, var(--code-bg), var(--code-bg));
   @supports (color: color-mix(in lab, red, red)) {
-    background: linear-gradient(
-    to bottom,
-    color-mix(in oklab, var(--code-bg) 20%, transparent),
-    var(--code-bg)
-  );
+    background: linear-gradient(to bottom, color-mix(in oklab, var(--code-bg) 20%, transparent), var(--code-bg));
   }
   pointer-events: none;
 }

@@ -6,18 +6,18 @@ export default class extends Controller {
 
   connect() {
     this._onClickOutside = (e) => {
-      if (this.element.getAttribute('data-state') === 'open' && !this.element.contains(e.target)) {
+      if (this.element.getAttribute("data-state") === "open" && !this.element.contains(e.target)) {
         this.close(false)
       }
     }
   }
 
   disconnect() {
-    document.removeEventListener('click', this._onClickOutside)
+    document.removeEventListener("click", this._onClickOutside)
   }
 
   toggle() {
-    const isOpen = this.element.getAttribute('data-state') === 'open'
+    const isOpen = this.element.getAttribute("data-state") === "open"
     if (isOpen) {
       this.close()
     } else {
@@ -26,9 +26,9 @@ export default class extends Controller {
   }
 
   open() {
-    this.element.setAttribute('data-state', 'open')
-    this.triggerTarget.setAttribute('aria-expanded', 'true')
-    document.addEventListener('click', this._onClickOutside)
+    this.element.setAttribute("data-state", "open")
+    this.triggerTarget.setAttribute("aria-expanded", "true")
+    document.addEventListener("click", this._onClickOutside)
 
     requestAnimationFrame(() => {
       const firstItem = this.contentTarget.querySelector('[role="menuitem"]')
@@ -37,38 +37,38 @@ export default class extends Controller {
   }
 
   close(refocus = true) {
-    this.element.setAttribute('data-state', 'closed')
-    this.triggerTarget.setAttribute('aria-expanded', 'false')
-    document.removeEventListener('click', this._onClickOutside)
+    this.element.setAttribute("data-state", "closed")
+    this.triggerTarget.setAttribute("aria-expanded", "false")
+    document.removeEventListener("click", this._onClickOutside)
 
     if (refocus) this.triggerTarget.focus()
   }
 
   handleKeydown(event) {
-    const items = [...this.contentTarget.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])')];
+    const items = [...this.contentTarget.querySelectorAll('[role="menuitem"]:not([aria-disabled="true"])')]
     if (!items.length) return
 
     const current = items.indexOf(document.activeElement)
 
     switch (event.key) {
-      case 'ArrowDown':
+      case "ArrowDown":
         event.preventDefault()
         event.stopPropagation()
         items[current < items.length - 1 ? current + 1 : 0].focus()
         break
-      case 'ArrowUp':
+      case "ArrowUp":
         event.preventDefault()
         event.stopPropagation()
         items[current > 0 ? current - 1 : items.length - 1].focus()
         break
-      case 'ArrowLeft':
-      case 'Escape':
+      case "ArrowLeft":
+      case "Escape":
         event.preventDefault()
         event.stopPropagation()
         this.close()
         break
-      case 'Enter':
-      case ' ':
+      case "Enter":
+      case " ":
         event.stopPropagation()
         break
     }

@@ -9,26 +9,26 @@
     @apply border border-border bg-popover text-popover-foreground;
     @apply rounded-md shadow-lg;
     @apply p-4;
-    
+
     /* Positioned by Floating UI */
     position: absolute;
     margin: 0;
     z-index: 50;
-    
+
     /* GPU acceleration hint - only when opening */
     will-change: opacity, transform;
-    
+
     /* Starting state - invisible, no transform yet */
     @starting-style {
       opacity: 0;
     }
-    
+
     /* Final state */
     opacity: 1;
     transform: translate(0);
-    
+
     /* Fast, snappy transitions with custom easing curve */
-    transition: 
+    transition:
       opacity 75ms cubic-bezier(0.16, 1, 0.3, 1),
       transform 75ms cubic-bezier(0.16, 1, 0.3, 1),
       display 75ms ease-out allow-discrete,
@@ -42,21 +42,21 @@
       transform: translateY(-4px);
     }
   }
-  
+
   /* Top placement - slide down from below (4px) */
   .Orbital-Popover:popover-open[data-placement^="top"] {
     @starting-style {
       transform: translateY(4px);
     }
   }
-  
+
   /* Left placement - slide right from left (4px) */
   .Orbital-Popover:popover-open[data-placement^="left"] {
     @starting-style {
       transform: translateX(4px);
     }
   }
-  
+
   /* Right placement - slide left from right (4px) */
   .Orbital-Popover:popover-open[data-placement^="right"] {
     @starting-style {

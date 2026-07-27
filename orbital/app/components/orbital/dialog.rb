@@ -47,11 +47,5 @@ module Orbital
       portal_id = Orbital.configuration.dialog_portal_id
       Turbo::StreamsHelper.turbo_stream.update(portal_id, dialog_instance)
     end
-
-    private
-
-    def default_attributes
-      super
-    end
   end
 end

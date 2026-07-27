@@ -76,9 +76,5 @@ module Orbital
 
       render Orbital::Icon.new(name: icon_name, size: :lg)
     end
-
-    def default_attributes
-      super
-    end
   end
 end

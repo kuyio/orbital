@@ -54,6 +54,7 @@ class Orbital::Avatar < Orbital::Component
 
   def gravatar_url
     return nil unless @email.present?
+
     hash = Digest::MD5.hexdigest(@email.strip.downcase)
     "https://www.gravatar.com/avatar/#{hash}?d=404&s=#{pixel_size}"
   end

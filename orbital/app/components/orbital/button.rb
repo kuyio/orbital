@@ -24,7 +24,7 @@ module Orbital
         "data-disabled": @disabled || nil
       )
 
-      if @modal.is_a?(String) && !%w[true false].include?(@modal)
+      if @modal.is_a?(String) && %w[true false].exclude?(@modal)
         attrs["data-open-modal"] = @modal
       elsif @modal && @url.present?
         attrs["data-turbo-frame"] = Orbital.configuration.dialog_portal_id

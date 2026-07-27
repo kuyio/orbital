@@ -32,10 +32,10 @@ module Orbital
         # Used to store the attribute definitions for the component
         def attribute_definitions
           @attribute_definitions ||= if superclass.respond_to?(:attribute_definitions)
-            superclass.attribute_definitions.dup
-          else
-            []
-          end
+                                       superclass.attribute_definitions.dup
+                                     else
+                                       []
+                                     end
         end
       end
 

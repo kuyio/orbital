@@ -36,15 +36,15 @@ module Orbital
       return nil unless @dismissible
 
       content_tag(:button, type: "button", data: { action: "orbital-modal#close" },
-                  class: "Orbital-Dialog-Close", "aria-label": "Close") do
+        class: "Orbital-Dialog-Close", "aria-label": "Close") do
         close_icon
       end
     end
 
     def close_icon
       tag.svg(class: "Orbital-Icon", width: "16", height: "16", viewBox: "0 0 24 24",
-              fill: "none", stroke: "currentColor", "stroke-width": "2",
-              "stroke-linecap": "round", "stroke-linejoin": "round") do
+        fill: "none", stroke: "currentColor", "stroke-width": "2",
+        "stroke-linecap": "round", "stroke-linejoin": "round") do
         safe_join([
           tag.line(x1: "18", y1: "6", x2: "6", y2: "18"),
           tag.line(x1: "6", y1: "6", x2: "18", y2: "18")
@@ -65,6 +65,7 @@ module Orbital
 
     def body_section
       return nil unless content?
+
       content_tag(:div, content, class: "Orbital-Dialog-Body")
     end
 
@@ -98,8 +99,8 @@ module Orbital
         cancel_action
       else
         content_tag(:button, @cancel_text, type: "button",
-                    data: { action: "orbital-modal#close" },
-                    class: "Orbital-Button", "data-variant": "outline", "data-size": "default")
+          data: { action: "orbital-modal#close" },
+          class: "Orbital-Button", "data-variant": "outline", "data-size": "default")
       end
     end
 
@@ -117,10 +118,11 @@ module Orbital
 
     def spinner_icon
       return nil unless @loading
+
       content_tag(:span, class: "Orbital-ConfirmationDialog-Spinner") do
         tag.svg(class: "Orbital-Icon animate-spin", width: "16", height: "16", viewBox: "0 0 24 24",
-                fill: "none", stroke: "currentColor", "stroke-width": "2",
-                "stroke-linecap": "round", "stroke-linejoin": "round") do
+          fill: "none", stroke: "currentColor", "stroke-width": "2",
+          "stroke-linecap": "round", "stroke-linejoin": "round") do
           tag.path(d: "M21 12a9 9 0 1 1-6.219-8.56")
         end
       end
@@ -128,16 +130,14 @@ module Orbital
 
     def csrf_hidden_field
       return nil unless defined?(Rails) && helpers.respond_to?(:form_authenticity_token)
+
       tag.input(type: "hidden", name: "authenticity_token", value: helpers.form_authenticity_token)
     end
 
     def method_hidden_field
       return nil if @method == :post || @method.nil?
-      tag.input(type: "hidden", name: "_method", value: @method)
-    end
 
-    def default_attributes
-      super
+      tag.input(type: "hidden", name: "_method", value: @method)
     end
   end
 end

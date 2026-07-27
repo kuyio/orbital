@@ -1,20 +1,20 @@
 import { Application } from "@hotwired/stimulus"
 
-let application;
+let application
 if (window.Stimulus) {
-  application = window.Stimulus;
+  application = window.Stimulus
 } else {
-  application = Application.start();
-  application.debug = false;
-  window.Stimulus = application;
+  application = Application.start()
+  application.debug = false
+  window.Stimulus = application
 }
 
-import AvatarController from "./controllers/avatar_controller"
 import AccordionController from "./controllers/accordion_controller"
-import ModalController from "./controllers/modal_controller"
-import PopoverController from "./controllers/popover_controller"
+import AvatarController from "./controllers/avatar_controller"
 import MenuController from "./controllers/menu_controller"
 import MenuSubController from "./controllers/menu_sub_controller"
+import ModalController from "./controllers/modal_controller"
+import PopoverController from "./controllers/popover_controller"
 import SelectController from "./controllers/select_controller"
 
 application.register("orbital-avatar", AvatarController)

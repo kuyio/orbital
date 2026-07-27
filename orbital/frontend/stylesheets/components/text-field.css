@@ -74,5 +74,4 @@
   .Orbital-Input textarea[readonly]:hover {
     background: color-mix(in oklab, var(--muted) 40%, var(--card));
   }
-
 }

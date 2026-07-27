@@ -1,6 +1,6 @@
 @layer components {
   /* Heading component uses typography system for sizes, only need weight/align/tone */
-  
+
   .Orbital-Heading[data-tone="default"] {
     @apply text-card-foreground;
   }

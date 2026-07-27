@@ -18,7 +18,10 @@
     }
 
     opacity: 1;
-    transition: opacity 150ms ease-out, display 150ms ease-out allow-discrete, overlay 150ms ease-out allow-discrete;
+    transition:
+      opacity 150ms ease-out,
+      display 150ms ease-out allow-discrete,
+      overlay 150ms ease-out allow-discrete;
   }
 
   .Orbital-Popcard:popover-open {

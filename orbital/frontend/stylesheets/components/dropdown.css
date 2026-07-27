@@ -1,5 +1,4 @@
 @layer components {
-
   /* Dropdown popover container */
   .Orbital-Dropdown {
     @apply p-0 overflow-visible;

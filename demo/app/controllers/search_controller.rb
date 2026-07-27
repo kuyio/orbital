@@ -30,7 +30,7 @@ class SearchController < ApplicationController
     { title: "Typography", description: "Semantic text elements with preset styles", url: "/components/typography", category: "Components" },
     { title: "Blocks", description: "Composed UI patterns from Orbital components", url: "/blocks", category: "Pages" },
     { title: "Themes", description: "Color theme presets and customization", url: "/themes", category: "Pages" },
-    { title: "Colors", description: "Semantic color palette reference", url: "/colors", category: "Pages" },
+    { title: "Colors", description: "Semantic color palette reference", url: "/colors", category: "Pages" }
   ].freeze
 
   def index

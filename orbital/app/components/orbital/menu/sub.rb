@@ -8,9 +8,9 @@ module Orbital
       attribute :icon, :any, default: nil
 
       renders_many :items, types: {
-        item: {renders: Menu::Item, as: :item},
-        label: {renders: Menu::Label, as: :label},
-        separator: {renders: Menu::Separator, as: :separator}
+        item: { renders: Menu::Item, as: :item },
+        label: { renders: Menu::Label, as: :label },
+        separator: { renders: Menu::Separator, as: :separator }
       }
 
       def call
@@ -48,8 +48,6 @@ module Orbital
           safe_join(items)
         end
       end
-
-      private
 
       def expanded
         @expanded || "false"

@@ -49,7 +49,7 @@ export default class extends Controller {
   async search(query) {
     const url = `/search?q=${encodeURIComponent(query)}`
     const response = await fetch(url, {
-      headers: { "Accept": "text/html", "X-Requested-With": "XMLHttpRequest" }
+      headers: { Accept: "text/html", "X-Requested-With": "XMLHttpRequest" },
     })
     if (response.ok) {
       this.resultsTarget.innerHTML = await response.text()

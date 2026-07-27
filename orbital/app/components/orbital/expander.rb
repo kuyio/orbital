@@ -13,7 +13,7 @@ class Orbital::Expander < Orbital::Component
     super.merge(
       class: class_names(
         "Orbital-Expander",
-        "Orbital-Expander--vertical": @vertical,
+        "Orbital-Expander--vertical": @vertical
       )
     )
   end

@@ -4,7 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["input", "label"]
   static values = {
-    selected: String
+    selected: String,
   }
 
   connect() {
@@ -14,9 +14,9 @@ export default class extends Controller {
 
   handleItemClick(event) {
     event.preventDefault()
-    
+
     const menuItem = event.currentTarget
-    
+
     // Don't select disabled items
     if (menuItem.dataset.disabled === "true" || menuItem.getAttribute("aria-disabled") === "true") {
       return
@@ -38,8 +38,8 @@ export default class extends Controller {
     // Update trigger label
     if (this.hasLabelTarget) {
       this.labelTarget.textContent = label
-      this.labelTarget.classList.remove('Orbital-Select-Placeholder')
-      this.labelTarget.classList.add('Orbital-Select-Label')
+      this.labelTarget.classList.remove("Orbital-Select-Placeholder")
+      this.labelTarget.classList.add("Orbital-Select-Label")
     }
 
     // Update stored value
@@ -49,33 +49,34 @@ export default class extends Controller {
     this.updateMenuStates(value)
 
     // Dispatch custom event for external listeners
-    this.element.dispatchEvent(new CustomEvent('orbital:select:changed', {
-      bubbles: true,
-      detail: { value, label }
-    }))
+    this.element.dispatchEvent(
+      new CustomEvent("orbital:select:changed", {
+        bubbles: true,
+        detail: { value, label },
+      }),
+    )
 
     // Trigger native change event on hidden input for form integration
     if (this.hasInputTarget) {
-      this.inputTarget.dispatchEvent(new Event('change', { bubbles: true }))
+      this.inputTarget.dispatchEvent(new Event("change", { bubbles: true }))
     }
   }
 
   updateMenuStates(selectedValue) {
-    const menuItems = this.element.querySelectorAll('.Orbital-Menu-Item')
-    
-    menuItems.forEach(item => {
+    const menuItems = this.element.querySelectorAll(".Orbital-Menu-Item")
+
+    menuItems.forEach((item) => {
       const itemValue = item.dataset.value
       const isSelected = itemValue === selectedValue
 
       // Update data attribute for CSS styling
       if (isSelected) {
-        item.setAttribute('data-selected', 'true')
-        item.setAttribute('aria-selected', 'true')
+        item.setAttribute("data-selected", "true")
+        item.setAttribute("aria-selected", "true")
       } else {
-        item.removeAttribute('data-selected')
-        item.setAttribute('aria-selected', 'false')
+        item.removeAttribute("data-selected")
+        item.setAttribute("aria-selected", "false")
       }
-
     })
   }
 
@@ -84,7 +85,7 @@ export default class extends Controller {
     if (!container) return
 
     const app = this.application
-    const popoverCtrl = app.getControllerForElementAndIdentifier(container, 'orbital-popover')
+    const popoverCtrl = app.getControllerForElementAndIdentifier(container, "orbital-popover")
     if (popoverCtrl) {
       popoverCtrl.hide()
     }

@@ -15,7 +15,7 @@ module Orbital
     private
 
     def fill_style
-      percent = @max.to_f > 0 ? [[@value.to_f / @max.to_f * 100, 0].max, 100].min.round(1) : 0
+      percent = @max.to_f.positive? ? [[@value.to_f / @max * 100, 0].max, 100].min.round(1) : 0
       "width: #{percent}%"
     end
 

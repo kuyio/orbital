@@ -212,18 +212,18 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "application", ()=>application);
 var _stimulus = require("@hotwired/stimulus");
-var _avatarController = require("./controllers/avatar_controller");
-var _avatarControllerDefault = parcelHelpers.interopDefault(_avatarController);
 var _accordionController = require("./controllers/accordion_controller");
 var _accordionControllerDefault = parcelHelpers.interopDefault(_accordionController);
-var _modalController = require("./controllers/modal_controller");
-var _modalControllerDefault = parcelHelpers.interopDefault(_modalController);
-var _popoverController = require("./controllers/popover_controller");
-var _popoverControllerDefault = parcelHelpers.interopDefault(_popoverController);
+var _avatarController = require("./controllers/avatar_controller");
+var _avatarControllerDefault = parcelHelpers.interopDefault(_avatarController);
 var _menuController = require("./controllers/menu_controller");
 var _menuControllerDefault = parcelHelpers.interopDefault(_menuController);
 var _menuSubController = require("./controllers/menu_sub_controller");
 var _menuSubControllerDefault = parcelHelpers.interopDefault(_menuSubController);
+var _modalController = require("./controllers/modal_controller");
+var _modalControllerDefault = parcelHelpers.interopDefault(_modalController);
+var _popoverController = require("./controllers/popover_controller");
+var _popoverControllerDefault = parcelHelpers.interopDefault(_popoverController);
 var _selectController = require("./controllers/select_controller");
 var _selectControllerDefault = parcelHelpers.interopDefault(_selectController);
 let application;
@@ -2692,7 +2692,7 @@ exports.default = class extends (0, _stimulus.Controller) {
         if (!content) return;
         const isOpen = content.dataset.state === "open";
         if (isOpen) {
-            content.style.height = content.scrollHeight + "px";
+            content.style.height = `${content.scrollHeight}px`;
             content.offsetHeight // force reflow
             ;
             content.style.height = "0px";
@@ -2707,7 +2707,7 @@ exports.default = class extends (0, _stimulus.Controller) {
             content.style.height = "0px";
             content.offsetHeight // force reflow
             ;
-            content.style.height = content.scrollHeight + "px";
+            content.style.height = `${content.scrollHeight}px`;
             content.addEventListener("transitionend", ()=>{
                 content.style.height = "";
             }, {
@@ -2865,8 +2865,8 @@ exports.default = class extends (0, _stimulus.Controller) {
 },{"@hotwired/stimulus":"hVNih","@parcel/transformer-js/src/esmodule-helpers.js":"5oERU"}],"8Qta5":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _stimulus = require("@hotwired/stimulus");
 var _dom = require("@floating-ui/dom");
+var _stimulus = require("@hotwired/stimulus");
 // Connects to data-controller="orbital-popover"
 exports.default = class extends (0, _stimulus.Controller) {
     static values = {
@@ -2902,19 +2902,19 @@ exports.default = class extends (0, _stimulus.Controller) {
         if (this.triggerValue === "hover") this.setupHoverTrigger();
         else this.setupClickTrigger();
         // Sync data-state when the native popover API light-dismisses
-        if (this.hasContentTarget) this.contentTarget.addEventListener('toggle', this.boundOnNativeToggle);
+        if (this.hasContentTarget) this.contentTarget.addEventListener("toggle", this.boundOnNativeToggle);
     }
     disconnect() {
         this.teardownTrigger();
         this.teardownPositioning();
         this.cancelShowTimeout();
         if (this.hideTimeout) clearTimeout(this.hideTimeout);
-        if (this.hasContentTarget) this.contentTarget.removeEventListener('toggle', this.boundOnNativeToggle);
+        if (this.hasContentTarget) this.contentTarget.removeEventListener("toggle", this.boundOnNativeToggle);
     }
     onNativeToggle(event) {
-        if (event.newState === 'closed' && this.element.getAttribute('data-state') === 'open') {
-            this.element.setAttribute('data-state', 'closed');
-            this.contentTarget.removeAttribute('data-positioned');
+        if (event.newState === "closed" && this.element.getAttribute("data-state") === "open") {
+            this.element.setAttribute("data-state", "closed");
+            this.contentTarget.removeAttribute("data-positioned");
             this.teardownPositioning();
         }
     }
@@ -2924,21 +2924,21 @@ exports.default = class extends (0, _stimulus.Controller) {
             clearTimeout(this.hideTimeout);
             this.hideTimeout = null;
         }
-        if (this.element.getAttribute('data-state') === 'open') return;
+        if (this.element.getAttribute("data-state") === "open") return;
         if (this.hasContentTarget) try {
             // Show popover invisibly first (CSS gate hides it until data-positioned is set)
-            this.contentTarget.removeAttribute('data-positioned');
+            this.contentTarget.removeAttribute("data-positioned");
             this.contentTarget.showPopover();
-            this.element.setAttribute('data-state', 'open');
+            this.element.setAttribute("data-state", "open");
             // Now calculate position with the element visible and measurable
             const { x, y, placement } = await this.calculatePosition();
             this.contentTarget.style.left = `${x}px`;
             this.contentTarget.style.top = `${y}px`;
             this.contentTarget.dataset.placement = placement;
             // Reveal at the correct position
-            this.contentTarget.setAttribute('data-positioned', 'true');
+            this.contentTarget.setAttribute("data-positioned", "true");
             this.setupPositioning();
-            this.element.dispatchEvent(new CustomEvent('orbital:popover:shown', {
+            this.element.dispatchEvent(new CustomEvent("orbital:popover:shown", {
                 bubbles: true,
                 detail: {
                     popover: this.contentTarget
@@ -2946,19 +2946,19 @@ exports.default = class extends (0, _stimulus.Controller) {
             }));
         } catch (e) {
             // Popover API not supported, fallback gracefully
-            console.warn('Popover API not supported:', e);
+            console.warn("Popover API not supported:", e);
         }
     }
     hide() {
         if (this.hasContentTarget) try {
             this.contentTarget.hidePopover();
-            this.element.setAttribute('data-state', 'closed');
+            this.element.setAttribute("data-state", "closed");
             // Clear positioned flag for next open
-            this.contentTarget.removeAttribute('data-positioned');
+            this.contentTarget.removeAttribute("data-positioned");
             // Clean up positioning listeners
             this.teardownPositioning();
             // Dispatch custom event
-            this.element.dispatchEvent(new CustomEvent('orbital:popover:hidden', {
+            this.element.dispatchEvent(new CustomEvent("orbital:popover:hidden", {
                 bubbles: true,
                 detail: {
                     popover: this.contentTarget
@@ -2966,7 +2966,7 @@ exports.default = class extends (0, _stimulus.Controller) {
             }));
         } catch (e) {
             // Popover API not supported, fallback gracefully
-            console.warn('Popover API not supported:', e);
+            console.warn("Popover API not supported:", e);
         }
     }
     delayedHide() {
@@ -2980,49 +2980,49 @@ exports.default = class extends (0, _stimulus.Controller) {
     }
     async toggle() {
         if (this.hasContentTarget) try {
-            const isOpen = this.element.getAttribute('data-state') === 'open';
+            const isOpen = this.element.getAttribute("data-state") === "open";
             if (isOpen) {
                 this.contentTarget.hidePopover();
-                this.element.setAttribute('data-state', 'closed');
-                this.contentTarget.removeAttribute('data-positioned');
+                this.element.setAttribute("data-state", "closed");
+                this.contentTarget.removeAttribute("data-positioned");
                 this.teardownPositioning();
             } else {
-                this.contentTarget.removeAttribute('data-positioned');
+                this.contentTarget.removeAttribute("data-positioned");
                 this.contentTarget.showPopover();
-                this.element.setAttribute('data-state', 'open');
+                this.element.setAttribute("data-state", "open");
                 const { x, y, placement } = await this.calculatePosition();
                 this.contentTarget.style.left = `${x}px`;
                 this.contentTarget.style.top = `${y}px`;
                 this.contentTarget.dataset.placement = placement;
-                this.contentTarget.setAttribute('data-positioned', 'true');
+                this.contentTarget.setAttribute("data-positioned", "true");
                 this.setupPositioning();
             }
         } catch (e) {
             // Popover API not supported, fallback gracefully
-            console.warn('Popover API not supported:', e);
+            console.warn("Popover API not supported:", e);
         }
     }
     static COMPASS_TO_PLACEMENT = {
-        n: 'top',
-        ne: 'top-end',
-        e: 'right',
-        se: 'bottom-end',
-        s: 'bottom',
-        sw: 'bottom-start',
-        w: 'left',
-        nw: 'top-start'
+        n: "top",
+        ne: "top-end",
+        e: "right",
+        se: "bottom-end",
+        s: "bottom",
+        sw: "bottom-start",
+        w: "left",
+        nw: "top-start"
     };
     // Calculate position without applying it (for pre-positioning)
     async calculatePosition() {
         if (!this.hasTriggerTarget || !this.hasContentTarget) return {
             x: 0,
             y: 0,
-            placement: 'bottom'
+            placement: "bottom"
         };
         const referenceEl = this.triggerTarget;
         const floatingEl = this.contentTarget;
         let middleware, placement;
-        if (this.positionValue === 'auto') middleware = [
+        if (this.positionValue === "auto") middleware = [
             (0, _dom.offset)(8),
             (0, _dom.autoPlacement)(),
             (0, _dom.shift)({
@@ -3047,14 +3047,14 @@ exports.default = class extends (0, _stimulus.Controller) {
             return {
                 x: result.x,
                 y: result.y,
-                placement: result.placement || placement || 'bottom'
+                placement: result.placement || placement || "bottom"
             };
         } catch (e) {
-            console.warn('Failed to compute position:', e);
+            console.warn("Failed to compute position:", e);
             return {
                 x: 0,
                 y: 0,
-                placement: 'bottom'
+                placement: "bottom"
             };
         }
     }
@@ -3071,17 +3071,17 @@ exports.default = class extends (0, _stimulus.Controller) {
     }
     setupPositioning() {
         // Reposition on scroll and resize
-        window.addEventListener('scroll', this.boundUpdatePosition, true);
-        window.addEventListener('resize', this.boundUpdatePosition);
+        window.addEventListener("scroll", this.boundUpdatePosition, true);
+        window.addEventListener("resize", this.boundUpdatePosition);
     }
     teardownPositioning() {
-        window.removeEventListener('scroll', this.boundUpdatePosition, true);
-        window.removeEventListener('resize', this.boundUpdatePosition);
+        window.removeEventListener("scroll", this.boundUpdatePosition, true);
+        window.removeEventListener("resize", this.boundUpdatePosition);
     }
     // Lifecycle callback when position value changes
     positionValueChanged() {
         // Reposition if popover is currently open
-        if (this.element.getAttribute('data-state') === 'open') this.updatePosition();
+        if (this.element.getAttribute("data-state") === "open") this.updatePosition();
     }
     // Private methods
     setupHoverTrigger() {
@@ -3100,13 +3100,13 @@ exports.default = class extends (0, _stimulus.Controller) {
             this.cancelShowTimeout();
         };
         if (this.hasTriggerTarget) {
-            this.triggerTarget.addEventListener('mouseenter', this.boundDelayedShow);
-            this.triggerTarget.addEventListener('mouseleave', this.boundDelayedHide);
-            this.triggerTarget.addEventListener('mouseleave', this.boundCancelShow);
+            this.triggerTarget.addEventListener("mouseenter", this.boundDelayedShow);
+            this.triggerTarget.addEventListener("mouseleave", this.boundDelayedHide);
+            this.triggerTarget.addEventListener("mouseleave", this.boundCancelShow);
         }
         if (this.hasContentTarget) {
-            this.contentTarget.addEventListener('mouseenter', this.boundCancelHide);
-            this.contentTarget.addEventListener('mouseleave', this.boundDelayedHide);
+            this.contentTarget.addEventListener("mouseenter", this.boundCancelHide);
+            this.contentTarget.addEventListener("mouseleave", this.boundDelayedHide);
         }
     }
     cancelShowTimeout() {
@@ -3116,18 +3116,18 @@ exports.default = class extends (0, _stimulus.Controller) {
         }
     }
     setupClickTrigger() {
-        if (this.hasTriggerTarget) this.triggerTarget.addEventListener('click', this.handleClick.bind(this));
+        if (this.hasTriggerTarget) this.triggerTarget.addEventListener("click", this.handleClick.bind(this));
     }
     teardownTrigger() {
         if (this.hasTriggerTarget) {
-            this.triggerTarget.removeEventListener('mouseenter', this.boundDelayedShow);
-            this.triggerTarget.removeEventListener('mouseleave', this.boundDelayedHide);
-            this.triggerTarget.removeEventListener('mouseleave', this.boundCancelShow);
-            this.triggerTarget.removeEventListener('click', this.handleClick.bind(this));
+            this.triggerTarget.removeEventListener("mouseenter", this.boundDelayedShow);
+            this.triggerTarget.removeEventListener("mouseleave", this.boundDelayedHide);
+            this.triggerTarget.removeEventListener("mouseleave", this.boundCancelShow);
+            this.triggerTarget.removeEventListener("click", this.handleClick.bind(this));
         }
         if (this.hasContentTarget) {
-            this.contentTarget.removeEventListener('mouseenter', this.boundCancelHide);
-            this.contentTarget.removeEventListener('mouseleave', this.boundDelayedHide);
+            this.contentTarget.removeEventListener("mouseenter", this.boundCancelHide);
+            this.contentTarget.removeEventListener("mouseleave", this.boundDelayedHide);
         }
     }
     handleClick(event) {
@@ -3140,18 +3140,18 @@ exports.default = class extends (0, _stimulus.Controller) {
     async handleToggle(event) {
         const state = event.newState // "open" or "closed"
         ;
-        this.element.setAttribute('data-state', state);
+        this.element.setAttribute("data-state", state);
         // Update position when opened via native toggle event
-        if (state === 'open') {
+        if (state === "open") {
             // Clear positioned flag during position calculation
-            this.contentTarget.removeAttribute('data-positioned');
+            this.contentTarget.removeAttribute("data-positioned");
             // Position immediately (popover is already shown by native API)
             const { x, y, placement } = await this.calculatePosition();
             this.contentTarget.style.left = `${x}px`;
             this.contentTarget.style.top = `${y}px`;
             this.contentTarget.dataset.placement = placement;
             // Mark as positioned to trigger CSS visibility
-            this.contentTarget.setAttribute('data-positioned', 'true');
+            this.contentTarget.setAttribute("data-positioned", "true");
             this.setupPositioning();
             // Focus first focusable item inside the popover (e.g. menu item)
             requestAnimationFrame(()=>{
@@ -3160,7 +3160,7 @@ exports.default = class extends (0, _stimulus.Controller) {
             });
         } else this.teardownPositioning();
         // Dispatch custom event
-        const eventName = state === 'open' ? 'orbital:popover:shown' : 'orbital:popover:hidden';
+        const eventName = state === "open" ? "orbital:popover:shown" : "orbital:popover:hidden";
         this.element.dispatchEvent(new CustomEvent(eventName, {
             bubbles: true,
             detail: {
@@ -4979,7 +4979,7 @@ exports.default = class extends (0, _stimulus.Controller) {
                 this.focusLast(items);
                 break;
             case "ArrowRight":
-                if (event.target.hasAttribute('aria-haspopup')) {
+                if (event.target.hasAttribute("aria-haspopup")) {
                     event.preventDefault();
                     this.activateItem(event.target);
                 }
@@ -5001,9 +5001,9 @@ exports.default = class extends (0, _stimulus.Controller) {
     getEnabledItems() {
         const items = [];
         for (const child of this.element.children){
-            if (child.getAttribute('role') === 'menuitem' && !child.hasAttribute('data-disabled') && child.getAttribute('aria-disabled') !== 'true') items.push(child);
-            else if (child.classList.contains('Orbital-Menu-Sub')) {
-                const trigger = child.querySelector(':scope > .Orbital-Menu-Sub-Trigger');
+            if (child.getAttribute("role") === "menuitem" && !child.hasAttribute("data-disabled") && child.getAttribute("aria-disabled") !== "true") items.push(child);
+            else if (child.classList.contains("Orbital-Menu-Sub")) {
+                const trigger = child.querySelector(":scope > .Orbital-Menu-Sub-Trigger");
                 if (trigger) items.push(trigger);
             }
         }
@@ -5035,15 +5035,15 @@ exports.default = class extends (0, _stimulus.Controller) {
         // Update tabindex for roving tabindex pattern
         enabledItems.forEach((item, index)=>{
             if (index === this.currentIndex) {
-                item.setAttribute('tabindex', '0');
+                item.setAttribute("tabindex", "0");
                 item.focus();
-            } else item.setAttribute('tabindex', '-1');
+            } else item.setAttribute("tabindex", "-1");
         });
     }
     activateItem(item) {
         // Check if it's a submenu trigger
-        if (item.hasAttribute('aria-haspopup')) {
-            const subController = this.application.getControllerForElementAndIdentifier(item.closest('[data-controller*="orbital-menu-sub"]'), 'orbital-menu-sub');
+        if (item.hasAttribute("aria-haspopup")) {
+            const subController = this.application.getControllerForElementAndIdentifier(item.closest('[data-controller*="orbital-menu-sub"]'), "orbital-menu-sub");
             if (subController) subController.toggle();
         } else // Activate the menu item (trigger click)
         item.click();
@@ -5065,12 +5065,12 @@ exports.default = class extends (0, _stimulus.Controller) {
     }
     closeMenu() {
         // If inside a popover, close it
-        const popover = this.element.closest('[popover]');
+        const popover = this.element.closest("[popover]");
         if (popover) popover.hidePopover();
         // If inside a submenu, close it
-        const submenu = this.element.closest('.Orbital-Menu-Sub');
+        const submenu = this.element.closest(".Orbital-Menu-Sub");
         if (submenu) {
-            const subController = this.application.getControllerForElementAndIdentifier(submenu, 'orbital-menu-sub');
+            const subController = this.application.getControllerForElementAndIdentifier(submenu, "orbital-menu-sub");
             if (subController) subController.close();
         }
     }
@@ -5088,30 +5088,30 @@ exports.default = class extends (0, _stimulus.Controller) {
     ];
     connect() {
         this._onClickOutside = (e)=>{
-            if (this.element.getAttribute('data-state') === 'open' && !this.element.contains(e.target)) this.close(false);
+            if (this.element.getAttribute("data-state") === "open" && !this.element.contains(e.target)) this.close(false);
         };
     }
     disconnect() {
-        document.removeEventListener('click', this._onClickOutside);
+        document.removeEventListener("click", this._onClickOutside);
     }
     toggle() {
-        const isOpen = this.element.getAttribute('data-state') === 'open';
+        const isOpen = this.element.getAttribute("data-state") === "open";
         if (isOpen) this.close();
         else this.open();
     }
     open() {
-        this.element.setAttribute('data-state', 'open');
-        this.triggerTarget.setAttribute('aria-expanded', 'true');
-        document.addEventListener('click', this._onClickOutside);
+        this.element.setAttribute("data-state", "open");
+        this.triggerTarget.setAttribute("aria-expanded", "true");
+        document.addEventListener("click", this._onClickOutside);
         requestAnimationFrame(()=>{
             const firstItem = this.contentTarget.querySelector('[role="menuitem"]');
             if (firstItem) firstItem.focus();
         });
     }
     close(refocus = true) {
-        this.element.setAttribute('data-state', 'closed');
-        this.triggerTarget.setAttribute('aria-expanded', 'false');
-        document.removeEventListener('click', this._onClickOutside);
+        this.element.setAttribute("data-state", "closed");
+        this.triggerTarget.setAttribute("aria-expanded", "false");
+        document.removeEventListener("click", this._onClickOutside);
         if (refocus) this.triggerTarget.focus();
     }
     handleKeydown(event) {
@@ -5121,24 +5121,24 @@ exports.default = class extends (0, _stimulus.Controller) {
         if (!items.length) return;
         const current = items.indexOf(document.activeElement);
         switch(event.key){
-            case 'ArrowDown':
+            case "ArrowDown":
                 event.preventDefault();
                 event.stopPropagation();
                 items[current < items.length - 1 ? current + 1 : 0].focus();
                 break;
-            case 'ArrowUp':
+            case "ArrowUp":
                 event.preventDefault();
                 event.stopPropagation();
                 items[current > 0 ? current - 1 : items.length - 1].focus();
                 break;
-            case 'ArrowLeft':
-            case 'Escape':
+            case "ArrowLeft":
+            case "Escape":
                 event.preventDefault();
                 event.stopPropagation();
                 this.close();
                 break;
-            case 'Enter':
-            case ' ':
+            case "Enter":
+            case " ":
                 event.stopPropagation();
                 break;
         }
@@ -5178,15 +5178,15 @@ exports.default = class extends (0, _stimulus.Controller) {
         // Update trigger label
         if (this.hasLabelTarget) {
             this.labelTarget.textContent = label;
-            this.labelTarget.classList.remove('Orbital-Select-Placeholder');
-            this.labelTarget.classList.add('Orbital-Select-Label');
+            this.labelTarget.classList.remove("Orbital-Select-Placeholder");
+            this.labelTarget.classList.add("Orbital-Select-Label");
         }
         // Update stored value
         this.selectedValue = value;
         // Update menu item selected states
         this.updateMenuStates(value);
         // Dispatch custom event for external listeners
-        this.element.dispatchEvent(new CustomEvent('orbital:select:changed', {
+        this.element.dispatchEvent(new CustomEvent("orbital:select:changed", {
             bubbles: true,
             detail: {
                 value,
@@ -5194,22 +5194,22 @@ exports.default = class extends (0, _stimulus.Controller) {
             }
         }));
         // Trigger native change event on hidden input for form integration
-        if (this.hasInputTarget) this.inputTarget.dispatchEvent(new Event('change', {
+        if (this.hasInputTarget) this.inputTarget.dispatchEvent(new Event("change", {
             bubbles: true
         }));
     }
     updateMenuStates(selectedValue) {
-        const menuItems = this.element.querySelectorAll('.Orbital-Menu-Item');
+        const menuItems = this.element.querySelectorAll(".Orbital-Menu-Item");
         menuItems.forEach((item)=>{
             const itemValue = item.dataset.value;
             const isSelected = itemValue === selectedValue;
             // Update data attribute for CSS styling
             if (isSelected) {
-                item.setAttribute('data-selected', 'true');
-                item.setAttribute('aria-selected', 'true');
+                item.setAttribute("data-selected", "true");
+                item.setAttribute("aria-selected", "true");
             } else {
-                item.removeAttribute('data-selected');
-                item.setAttribute('aria-selected', 'false');
+                item.removeAttribute("data-selected");
+                item.setAttribute("aria-selected", "false");
             }
         });
     }
@@ -5217,7 +5217,7 @@ exports.default = class extends (0, _stimulus.Controller) {
         const container = this.element.querySelector('[data-controller="orbital-popover"]');
         if (!container) return;
         const app = this.application;
-        const popoverCtrl = app.getControllerForElementAndIdentifier(container, 'orbital-popover');
+        const popoverCtrl = app.getControllerForElementAndIdentifier(container, "orbital-popover");
         if (popoverCtrl) popoverCtrl.hide();
     }
     // Lifecycle callback when selected value changes externally

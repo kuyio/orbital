@@ -3,7 +3,7 @@
 class Demo::Example < Orbital::Component
   attribute :source, :string, default: ""
   attribute :context, :any, default: -> { {} }
-  attribute :align, :symbol, default: :center, only: [:center, :start]
+  attribute :align, :symbol, default: :center, only: [ :center, :start ]
   attribute :resizable, :boolean, default: false
 
   def before_render
