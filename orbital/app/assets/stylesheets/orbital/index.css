@@ -793,11 +793,16 @@
   }
 
   .Orbital-Badge-Dot {
-    margin-right: calc(var(--spacing) * 1.5);
+    margin-left: calc(var(--spacing) * 1.5);
     height: calc(var(--spacing) * 2);
     width: calc(var(--spacing) * 2);
     border-radius: 3.40282e38px;
     display: inline-block;
+  }
+
+  .Orbital-Badge > .Orbital-Icon {
+    margin-right: var(--spacing);
+    margin-left: calc(var(--spacing) * -.5);
   }
 
   .Orbital-Badge-Dot[data-tone="default"] {

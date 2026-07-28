@@ -84,26 +84,11 @@
   </div>
 
   <div>
-    <Heading size="md" as="h3" class="mb-2">With Icons</Heading>
-    <Prose class="mb-4">
-      <p>Combine badges with icons for richer status indicators. Add <code>gap-1.5</code> for spacing
-        between icon and text. Small icons like notification dots can sit flush against the label.</p>
-    </Prose>
-    <Example source={'
-      <div class="flex flex-wrap items-center gap-3">
-        <Badge variant="default" class="gap-1.5"><Icon name="circle-check" size="sm"/> Completed</Badge>
-        <Badge variant="secondary" class="gap-1.5"><Icon name="spinner" size="sm"/> Processing</Badge>
-        <Badge variant="outline" class="pl-4">(5) New messages <Icon name="circle" size="xs" class="text-blue-500 ml-1"/></Badge>
-      </div>
-    '}/>
-  </div>
-
-  <div>
     <Heading size="md" as="h3" class="mb-2">Status Dots</Heading>
     <Prose class="mb-4">
-      <p>Use the <code>dot</code> prop to render a small colored circle before the badge text.
-        The dot color adapts to the badge variant — on filled badges it inherits the text color,
-        on outline and secondary badges the tone color is visible directly.</p>
+      <p>Use the <code>dot</code> prop to render a small colored circle after the badge text.
+        The dot color adapts to the badge variant — on filled badges it uses lighter tones
+        for contrast, on outline and secondary badges the tone color is visible directly.</p>
     </Prose>
     <Example source={'
       <Stack gap="4">
@@ -141,6 +126,38 @@
           </InlineStack>
         </div>
       </Stack>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Icons</Heading>
+    <Prose class="mb-4">
+      <p>Use the <code>icon</code> prop to render an icon before the badge text. The icon
+        inherits the badge's text color automatically. Pass a string name or a hash for
+        more control (e.g. variant, custom class).</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center gap-3">
+        <Badge icon="circle-check">Completed</Badge>
+        <Badge icon="spinner" variant="secondary">Processing</Badge>
+        <Badge icon="clock" variant="outline">Scheduled</Badge>
+        <Badge icon="bolt" variant="ghost">Fast</Badge>
+      </div>
+    '}/>
+  </div>
+
+  <div>
+    <Heading size="md" as="h3" class="mb-2">Icon with Dot</Heading>
+    <Prose class="mb-4">
+      <p>The <code>icon</code> and <code>dot</code> props can be combined. The icon renders
+        on the left, the dot on the right.</p>
+    </Prose>
+    <Example source={'
+      <div class="flex flex-wrap items-center gap-3">
+        <Badge icon="server" dot="success">Healthy</Badge>
+        <Badge icon="server" dot="warning" variant="secondary">Degraded</Badge>
+        <Badge icon="server" dot="danger" variant="outline">Down</Badge>
+      </div>
     '}/>
   </div>
 </div>
@@ -193,6 +210,12 @@
           <td class="px-4 py-2">Symbol</td>
           <td class="px-4 py-2 font-mono text-xs">default, secondary, destructive, ghost, outline</td>
           <td class="px-4 py-2 font-mono text-xs">default</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-mono text-xs">icon</td>
+          <td class="px-4 py-2">String / Hash</td>
+          <td class="px-4 py-2">Icon name or options hash</td>
+          <td class="px-4 py-2 font-mono text-xs">nil</td>
         </tr>
         <tr>
           <td class="px-4 py-2 font-mono text-xs">dot</td>

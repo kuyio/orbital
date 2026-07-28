@@ -2,13 +2,27 @@
 
 module Orbital
   class Badge < Component
+    include Orbital::Concerns::IconProp
+
     attribute :variant, :symbol, default: :default, only: [:default, :secondary, :destructive, :ghost, :outline]
     attribute :dot, :symbol, default: nil, only: [:default, :success, :warning, :danger, :info, :subdued]
+    attribute :icon, :any, default: nil
 
-    orb_template <<-ORB
+    # def call
+    #   content_tag :span, **html_attributes do
+    #     safe_join([
+    #       render_icon,
+    #       content,
+    #       (@dot ? content_tag(:span, nil, class: "Orbital-Badge-Dot", "data-tone": @dot) : nil)
+    #     ].compact)
+    #   end
+    # end
+
+    orb_template <<~ORB
       <span **html_attributes>
-        <span class="Orbital-Badge-Dot" data-tone={@dot} :if={@dot}></span>
+        {{render_icon}}
         {{content}}
+        <span class="Orbital-Badge-Dot" data-tone={@dot} :if={@dot}/>
       </span>
     ORB
 
