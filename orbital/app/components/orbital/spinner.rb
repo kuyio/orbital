@@ -8,7 +8,7 @@ class Orbital::Spinner < Orbital::Component
   orb_template <<-ORB
     <div class="Orbital-Spinner" data-kind={@kind} data-size={@size} role="status" aria-live="polite" aria-busy="true">
       <span class="sr-only">Loading...</span>
-      <Icon name="circle-notch" size={@size}/>
+      <Icon name="loader-circle" size={@size}/>
     </div>
   ORB
 end

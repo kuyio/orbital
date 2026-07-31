@@ -27,7 +27,7 @@ class Orbital::NavigationMenu < Orbital::Component
       popovertargetaction: "toggle",
       style: "anchor-name: --nav-toggle-#{popover_id}",
       "aria-label": "Menu") do
-      render Orbital::Icon.new(name: "bars", size: :md)
+      render Orbital::Icon.new(name: "menu", size: :md)
     end
   end
 

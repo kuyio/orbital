@@ -140,9 +140,9 @@
         <Menu>
           <Menu:Item icon="scissors" shortcut="⌘X">Cut</Menu:Item>
           <Menu:Item icon="copy" shortcut="⌘C">Copy</Menu:Item>
-          <Menu:Item icon="paste" shortcut="⌘V">Paste</Menu:Item>
+          <Menu:Item icon="clipboard-paste" shortcut="⌘V">Paste</Menu:Item>
           <Menu:Separator/>
-          <Menu:Item icon="trash-can" shortcut="⌫" destructive>Delete</Menu:Item>
+          <Menu:Item icon="trash-2" shortcut="⌫" destructive>Delete</Menu:Item>
         </Menu>
       </Dropdown>
     '}/>

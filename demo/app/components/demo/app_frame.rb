@@ -21,12 +21,12 @@ class Demo::AppFrame < Orbital::Component
 
             <NavigationMenu:Mobile>
               <Menu>
-                <Menu:Item url="/components" icon="cube">Components</Menu:Item>
-                <Menu:Item url="/blocks" icon="table-cells">Blocks</Menu:Item>
+                <Menu:Item url="/components" icon="box">Components</Menu:Item>
+                <Menu:Item url="/blocks" icon="layout-grid">Blocks</Menu:Item>
                 <Menu:Item url="/themes" icon="palette">Themes</Menu:Item>
-                <Menu:Item url="/colors" icon="swatchbook">Colors</Menu:Item>
+                <Menu:Item url="/colors" icon="paintbrush">Colors</Menu:Item>
                 <Menu:Separator/>
-                <Menu:Item url="https://github.com/kuyio/orb_template" icon={{name: "github", variant: "brands"}}>GitHub</Menu:Item>
+                <Menu:Item url="https://github.com/kuyio/orb_template" icon="github">GitHub</Menu:Item>
                 <Menu:Item url="https://kuy.io" icon="compass">kuy.io</Menu:Item>
               </Menu>
             </NavigationMenu:Mobile>
@@ -36,7 +36,7 @@ class Demo::AppFrame < Orbital::Component
             <Dropdown label="Customization" variant="ghost">
               <Menu>
                 <Menu:Item url="/themes" icon="palette">Themes</Menu:Item>
-                <Menu:Item url="/colors" icon="swatchbook">Colors</Menu:Item>
+                <Menu:Item url="/colors" icon="paintbrush">Colors</Menu:Item>
               </Menu>
             </Dropdown>
             <Expander/>
@@ -49,17 +49,17 @@ class Demo::AppFrame < Orbital::Component
             </Button>
             <Separator orientation="vertical" class="h-8"/>
             <Button variant="ghost" size="icon" url="https://github.com/kuyio/orb_template">
-              <Icon name="github" variant="brands"/>
+              <Icon name="github"/>
             </Button>
             <Separator orientation="vertical" class="h-8"/>
             <Button variant="ghost" size="icon" url="https://kuy.io">
-              <Icon name="compass" variant="regular"/>
+              <Icon name="compass"/>
             </Button>
             <Separator orientation="vertical" class="h-8"/>
             <div data-controller="dark-mode">
               <Button variant="ghost" size="icon" data-action="click->dark-mode#toggle">
-                <span data-icon="moon"><Icon name="moon" variant="regular"/></span>
-                <span data-icon="sun" style="display:none"><Icon name="sun" variant="regular"/></span>
+                <span data-icon="moon"><Icon name="moon"/></span>
+                <span data-icon="sun" style="display:none"><Icon name="sun"/></span>
               </Button>
             </div>
           </NavigationMenu>
@@ -71,7 +71,7 @@ class Demo::AppFrame < Orbital::Component
       <dialog class="command-palette-dialog" data-command-palette-target="dialog" data-action="click->command-palette#backdropClick">
         <div class="command-palette">
           <div class="command-palette-header">
-            <Icon name="magnifying-glass" size="sm" class="command-palette-search-icon"/>
+            <Icon name="search" size="sm" class="command-palette-search-icon"/>
             <input
               type="text"
               class="command-palette-input"

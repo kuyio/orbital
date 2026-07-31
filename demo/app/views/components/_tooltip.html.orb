@@ -107,16 +107,16 @@
     <Example source={'
       <div class="flex flex-wrap items-center justify-center gap-3">
         <Tooltip text="Settings">
-          <Button variant="ghost" size="icon"><Icon name="gear"/></Button>
+          <Button variant="ghost" size="icon"><Icon name="settings"/></Button>
         </Tooltip>
         <Tooltip text="Delete">
-          <Button variant="ghost" size="icon"><Icon name="trash"/></Button>
+          <Button variant="ghost" size="icon"><Icon name="trash-2"/></Button>
         </Tooltip>
         <Tooltip text="Download">
           <Button variant="ghost" size="icon"><Icon name="download"/></Button>
         </Tooltip>
         <Tooltip text="Share">
-          <Button variant="ghost" size="icon"><Icon name="share-nodes"/></Button>
+          <Button variant="ghost" size="icon"><Icon name="share-2"/></Button>
         </Tooltip>
       </div>
     '}/>

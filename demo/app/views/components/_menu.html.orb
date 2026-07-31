@@ -15,9 +15,9 @@
         <Menu:Separator/>
         <Menu:Item icon="user">Profile</Menu:Item>
         <Menu:Item icon="credit-card">Billing</Menu:Item>
-        <Menu:Item icon="gear" shortcut="⌘S">Settings</Menu:Item>
+        <Menu:Item icon="settings" shortcut="⌘S">Settings</Menu:Item>
         <Menu:Separator/>
-        <Menu:Item destructive icon="arrow-right-from-bracket">Log out</Menu:Item>
+        <Menu:Item destructive icon="log-out">Log out</Menu:Item>
       </Menu>
     </div>
   '}/>
@@ -117,9 +117,9 @@
         <Menu>
           <Menu:Item icon="scissors" shortcut="⌘X">Cut</Menu:Item>
           <Menu:Item icon="copy" shortcut="⌘C">Copy</Menu:Item>
-          <Menu:Item icon="paste" shortcut="⌘V">Paste</Menu:Item>
-          <Menu:Item icon="rotate-left" shortcut="⌘Z">Undo</Menu:Item>
-          <Menu:Item icon="rotate-right" shortcut="⇧⌘Z">Redo</Menu:Item>
+          <Menu:Item icon="clipboard-paste" shortcut="⌘V">Paste</Menu:Item>
+          <Menu:Item icon="undo-2" shortcut="⌘Z">Undo</Menu:Item>
+          <Menu:Item icon="redo-2" shortcut="⇧⌘Z">Redo</Menu:Item>
         </Menu>
       </div>
     '}/>
@@ -136,13 +136,13 @@
         <Menu>
           <Menu:Label>Navigation</Menu:Label>
           <Menu:Item icon="house">Home</Menu:Item>
-          <Menu:Item icon="chart-simple">Dashboard</Menu:Item>
+          <Menu:Item icon="layout-dashboard">Dashboard</Menu:Item>
           <Menu:Separator/>
           <Menu:Label>Account</Menu:Label>
           <Menu:Item icon="user">Profile</Menu:Item>
-          <Menu:Item icon="gear">Settings</Menu:Item>
+          <Menu:Item icon="settings">Settings</Menu:Item>
           <Menu:Separator/>
-          <Menu:Item destructive icon="arrow-right-from-bracket">Log out</Menu:Item>
+          <Menu:Item destructive icon="log-out">Log out</Menu:Item>
         </Menu>
       </div>
     '}/>
@@ -160,13 +160,13 @@
           <Menu:Item icon="file">New File</Menu:Item>
           <Menu:Item icon="folder">New Folder</Menu:Item>
           <Menu:Separator/>
-          <Menu:Sub label="Share" icon="share-nodes">
-            <Sub:Item icon="envelope">Email</Sub:Item>
-            <Sub:Item icon="comment">Slack</Sub:Item>
+          <Menu:Sub label="Share" icon="share-2">
+            <Sub:Item icon="mail">Email</Sub:Item>
+            <Sub:Item icon="message-circle">Slack</Sub:Item>
             <Sub:Item icon="link">Copy Link</Sub:Item>
           </Menu:Sub>
           <Menu:Separator/>
-          <Menu:Item icon="gear">Settings</Menu:Item>
+          <Menu:Item icon="settings">Settings</Menu:Item>
         </Menu>
       </div>
     '}/>
@@ -186,11 +186,11 @@
           <Menu:Item icon="copy">Duplicate</Menu:Item>
           <Menu:Sub label="Export" icon="download">
             <Sub:Item icon="file">CSV</Sub:Item>
-            <Sub:Item icon="file-pdf">PDF</Sub:Item>
+            <Sub:Item icon="file-text">PDF</Sub:Item>
             <Sub:Item icon="file-code">JSON</Sub:Item>
           </Menu:Sub>
           <Menu:Separator/>
-          <Menu:Item icon="trash-can" destructive>Delete</Menu:Item>
+          <Menu:Item icon="trash-2" destructive>Delete</Menu:Item>
         </Menu>
       </Dropdown>
     '}/>

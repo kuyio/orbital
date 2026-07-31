@@ -11,15 +11,15 @@
   <Example align="start" source={'
     <Accordion>
       <Accordion:Item value="item-1">
-        <Item:Trigger><Icon name="universal-access"/>Is it accessible?</Item:Trigger>
+        <Item:Trigger><Icon name="accessibility"/>Is it accessible?</Item:Trigger>
         Yes. It adheres to the WAI-ARIA design pattern.
       </Accordion:Item>
       <Accordion:Item value="item-2">
-        <Item:Trigger><Icon name="brush"/>Is it styled?</Item:Trigger>
+        <Item:Trigger><Icon name="paintbrush"/>Is it styled?</Item:Trigger>
         Yes. It ships with default styles using Tailwind CSS.
       </Accordion:Item>
       <Accordion:Item value="item-3">
-        <Item:Trigger><Icon name="film" />Is it animated?</Item:Trigger>
+        <Item:Trigger><Icon name="clapperboard" />Is it animated?</Item:Trigger>
         Yes. It uses CSS transitions for smooth expand and collapse.
       </Accordion:Item>
     </Accordion>

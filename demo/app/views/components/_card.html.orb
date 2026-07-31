@@ -148,7 +148,7 @@
       <Card>
 
         <div class="flex items-center gap-4">
-          <Icon name="circle-info" size="lg" class="text-blue-500"/>
+          <Icon name="info" size="lg" class="text-blue-500"/>
           <Text as="p">Your trial expires in 7 days. Upgrade to keep your data.</Text>
         </div>
 

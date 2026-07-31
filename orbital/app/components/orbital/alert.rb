@@ -67,9 +67,9 @@ module Orbital
     def variant_icon
       icon_name = case @variant
                   when :success then "circle-check"
-                  when :warning then "triangle-exclamation"
-                  when :danger then "circle-exclamation"
-                  when :info then "circle-info"
+                  when :warning then "triangle-alert"
+                  when :danger then "circle-alert"
+                  when :info then "info"
                   end
 
       return nil unless icon_name

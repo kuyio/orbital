@@ -113,9 +113,9 @@
     </Prose>
     <Example source={'
       <div class="flex flex-wrap items-center gap-3">
-        <Button><Icon name="envelope" size="sm"/> Send Email</Button>
+        <Button><Icon name="mail" size="sm"/> Send Email</Button>
         <Button variant="outline"><Icon name="download" size="sm"/> Download</Button>
-        <Button variant="ghost"><Icon name="gear" size="sm"/> Settings</Button>
+        <Button variant="ghost"><Icon name="settings" size="sm"/> Settings</Button>
       </div>
     '}/>
   </div>

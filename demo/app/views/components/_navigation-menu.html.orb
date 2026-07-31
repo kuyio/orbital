@@ -20,30 +20,30 @@
         <Menu>
           <Menu:Item url="/" icon="house">Home</Menu:Item>
           <Menu:Separator/>
-          <Menu:Item url="/products/analytics" icon="chart-simple">Analytics</Menu:Item>
-          <Menu:Item url="/products/automation" icon="robot">Automation</Menu:Item>
-          <Menu:Item url="/products/security" icon="shield-halved">Security</Menu:Item>
+          <Menu:Item url="/products/analytics" icon="chart-bar">Analytics</Menu:Item>
+          <Menu:Item url="/products/automation" icon="bot">Automation</Menu:Item>
+          <Menu:Item url="/products/security" icon="shield">Security</Menu:Item>
           <Menu:Separator/>
           <Menu:Item url="/pricing" icon="tag">Pricing</Menu:Item>
-          <Menu:Item url="/docs" icon="book">Docs</Menu:Item>
+          <Menu:Item url="/docs" icon="book-open">Docs</Menu:Item>
           <Menu:Separator/>
-          <Menu:Item url="https://github.com" icon={{name: "github", variant: "brands"}}>GitHub</Menu:Item>
-          <Menu:Item url="/sign-in" icon="arrow-right-to-bracket">Sign In</Menu:Item>
+          <Menu:Item url="https://github.com" icon="github">GitHub</Menu:Item>
+          <Menu:Item url="/sign-in" icon="log-in">Sign In</Menu:Item>
         </Menu>
       </NavigationMenu:Mobile>
       <Button url="/" variant="ghost">Home</Button>
       <Dropdown label="Products" variant="ghost">
         <Menu>
-          <Menu:Item url="/products/analytics" icon="chart-simple">Analytics</Menu:Item>
-          <Menu:Item url="/products/automation" icon="robot">Automation</Menu:Item>
-          <Menu:Item url="/products/security" icon="shield-halved">Security</Menu:Item>
+          <Menu:Item url="/products/analytics" icon="chart-bar">Analytics</Menu:Item>
+          <Menu:Item url="/products/automation" icon="bot">Automation</Menu:Item>
+          <Menu:Item url="/products/security" icon="shield">Security</Menu:Item>
         </Menu>
       </Dropdown>
       <Button url="/pricing" variant="ghost">Pricing</Button>
       <Button url="/docs" variant="ghost">Docs</Button>
       <Expander/>
       <Button url="https://github.com" variant="secondary" size="icon">
-        <Icon name="github" variant="brands"/>
+        <Icon name="github"/>
       </Button>
       <Button url="/sign-in">Sign In</Button>
     </NavigationMenu>
@@ -134,8 +134,8 @@
     <Example source={'
       <NavigationMenu>
         <Button url="/" variant="ghost"><Icon name="house" size="sm"/> Home</Button>
-        <Button url="/components" variant="ghost"><Icon name="cube" size="sm"/> Components</Button>
-        <Button url="/blocks" variant="ghost"><Icon name="table-cells" size="sm"/> Blocks</Button>
+        <Button url="/components" variant="ghost"><Icon name="box" size="sm"/> Components</Button>
+        <Button url="/blocks" variant="ghost"><Icon name="layout-grid" size="sm"/> Blocks</Button>
         <Button url="/themes" variant="ghost"><Icon name="palette" size="sm"/> Themes</Button>
       </NavigationMenu>
     '} align="start"/>
@@ -149,7 +149,7 @@
         independent from the desktop nav — you control exactly what appears in each.</p>
     </Prose>
     <div class="border rounded-lg bg-card overflow-hidden">
-      <CodeBlock code={"<NavigationMenu>\n  <NavigationMenu:Brand>\n    <Icon name=\"rocket\" size=\"md\"/>\n    <Heading size=\"lg\" as=\"span\">Acme</Heading>\n  </NavigationMenu:Brand>\n\n  <NavigationMenu:Mobile>\n    <Menu>\n      <Menu:Item url=\"/\" icon=\"house\">Home</Menu:Item>\n      <Menu:Item url=\"/docs\" icon=\"book\">Docs</Menu:Item>\n      <Menu:Separator/>\n      <Menu:Item url=\"/sign-in\" icon=\"arrow-right-to-bracket\">Sign In</Menu:Item>\n    </Menu>\n  </NavigationMenu:Mobile>\n\n  <Button url=\"/\" variant=\"ghost\">Home</Button>\n  <Button url=\"/docs\" variant=\"ghost\">Docs</Button>\n  <Expander/>\n  <Button url=\"/sign-in\" variant=\"outline\">Sign In</Button>\n</NavigationMenu>"}/>
+      <CodeBlock code={"<NavigationMenu>\n  <NavigationMenu:Brand>\n    <Icon name=\"rocket\" size=\"md\"/>\n    <Heading size=\"lg\" as=\"span\">Acme</Heading>\n  </NavigationMenu:Brand>\n\n  <NavigationMenu:Mobile>\n    <Menu>\n      <Menu:Item url=\"/\" icon=\"house\">Home</Menu:Item>\n      <Menu:Item url=\"/docs\" icon=\"book-open\">Docs</Menu:Item>\n      <Menu:Separator/>\n      <Menu:Item url=\"/sign-in\" icon=\"log-in\">Sign In</Menu:Item>\n    </Menu>\n  </NavigationMenu:Mobile>\n\n  <Button url=\"/\" variant=\"ghost\">Home</Button>\n  <Button url=\"/docs\" variant=\"ghost\">Docs</Button>\n  <Expander/>\n  <Button url=\"/sign-in\" variant=\"outline\">Sign In</Button>\n</NavigationMenu>"}/>
     </div>
   </div>
 </div>

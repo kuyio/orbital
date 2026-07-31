@@ -99,11 +99,11 @@
     <Example source={'
       <div class="flex flex-col gap-6 max-w-sm w-full">
         <TextField name="search" label="Search" labelHidden
-          iconLeft="magnifying-glass" placeholder="Search..."/>
+          iconLeft="search" placeholder="Search..."/>
         <TextField name="email" label="Email"
-          iconLeft="envelope" placeholder="you@example.com"/>
+          iconLeft="mail" placeholder="you@example.com"/>
         <TextField name="website" label="Website"
-          iconRight="arrow-up-right-from-square" placeholder="https://example.com"/>
+          iconRight="external-link" placeholder="https://example.com"/>
       </div>
     '}/>
   </div>

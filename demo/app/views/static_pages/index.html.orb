@@ -50,7 +50,7 @@
             <div class="flex w-full items-center justify-between">
               <Heading size="sm">Payment Method</Heading>
               <Tooltip text="We accept Visa, MasterCard, American Express, and Discover cards.">
-                <Icon name="circle-info"/>
+                <Icon name="info"/>
               </Tooltip>
             </div>
             <Text tone="subdued">
@@ -196,9 +196,9 @@
               <Menu:Separator/>
               <Menu:Item icon="user">Profile</Menu:Item>
               <Menu:Item icon="credit-card" active>Billing</Menu:Item>
-              <Menu:Item icon="gear">Settings</Menu:Item>
+              <Menu:Item icon="settings">Settings</Menu:Item>
               <Menu:Separator/>
-              <Menu:Item destructive icon="arrow-right-from-bracket">Log out</Menu:Item>
+              <Menu:Item destructive icon="log-out">Log out</Menu:Item>
             </Menu>
           </div>
           <div class="w-46 border rounded-lg p-1 bg-card shadow-sm">
@@ -207,13 +207,13 @@
               <Menu:Item icon="folder" shortcut="F">New Folder</Menu:Item>
               <Menu:Item icon="copy" shortcut="C">Copy</Menu:Item>
               <Menu:Separator/>
-              <Menu:Sub label="Share" icon="share-nodes">
-                <Sub:Item icon="envelope">Email</Sub:Item>
-                <Sub:Item icon="comment">Slack</Sub:Item>
+              <Menu:Sub label="Share" icon="share-2">
+                <Sub:Item icon="mail">Email</Sub:Item>
+                <Sub:Item icon="message-circle">Slack</Sub:Item>
                 <Sub:Item icon="link">Copy Link</Sub:Item>
               </Menu:Sub>
               <Menu:Separator/>
-              <Menu:Item icon="gear" shortcut="S">Settings</Menu:Item>
+              <Menu:Item icon="settings" shortcut="S">Settings</Menu:Item>
             </Menu>
           </div>
         </div>
@@ -238,7 +238,7 @@
           <div class="flex flex-col gap-6">
             <div class="flex items-center gap-2">
               <Badge variant="secondary">
-                <Icon name="check-circle" size="sm" class="text-green-500 mr-1"/>
+                <Icon name="circle-check" size="sm" class="text-green-500 mr-1"/>
                 Successful
               </Badge>
               <Badge variant="outline">
@@ -250,7 +250,7 @@
                 <span class="mx-1">Processing</span>
               </Badge>
             </div>
-            <TextField name="search" iconLeft="magnifying-glass" placeholder="Search..." labelHidden suffix="12 results"/>
+            <TextField name="search" iconLeft="search" placeholder="Search..." labelHidden suffix="12 results"/>
             <div class="flex items-center gap-2">
               <Button variant="outline" size="icon"><Icon name="arrow-left" size=sm/></Button>
               <ButtonGroup>
@@ -267,7 +267,7 @@
             <div class="flex items-center gap-2">
               <ButtonGroup>
                 <Button variant="outline">
-                  <Icon name="robot"/>
+                  <Icon name="bot"/>
                   <Text>Copilot</Text>
                 </Button>
                 <Dropdown variant="outline">
@@ -377,7 +377,7 @@
           <div class="grid grid-cols-2 gap-4">
             <Dropdown variant="outline" label="Navigation Menu" fullwidth>
               <Menu>
-                <Menu:Item active url="/dashboard" icon="home">
+                <Menu:Item active url="/dashboard" icon="house">
                   Dashboard
                 </Menu:Item>
                 <Menu:Item url="/projects" icon="folder">
@@ -386,7 +386,7 @@
                 <Menu:Item url="/team" icon="users">
                   Team
                 </Menu:Item>
-                <Menu:Item url="/settings" icon="cog">
+                <Menu:Item url="/settings" icon="settings">
                   Settings
                 </Menu:Item>
               </Menu>
@@ -397,7 +397,7 @@
                 <Menu:Item selected icon="list">
                   List View
                 </Menu:Item>
-                <Menu:Item icon="table-cells">
+                <Menu:Item icon="layout-grid">
                   Grid View
                 </Menu:Item>
                 <Menu:Item icon="table">
@@ -428,10 +428,10 @@
                   Notifications (Coming Soon)
                 </Menu:Item>
                 <Menu:Separator/>
-                <Menu:Item destructive icon="trash" url="/delete-account">
+                <Menu:Item destructive icon="trash-2" url="/delete-account">
                   Delete Account
                 </Menu:Item>
-                <Menu:Item icon="door-open" url="/logout">
+                <Menu:Item icon="log-out" url="/logout">
                   Sign Out
                 </Menu:Item>
               </Menu>
@@ -455,7 +455,7 @@
                   Export...
                 </Menu:Item>
                 <Menu:Separator/>
-                <Menu:Item destructive icon="trash">
+                <Menu:Item destructive icon="trash-2">
                   Delete
                 </Menu:Item>
               </Menu>

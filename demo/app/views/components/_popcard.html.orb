@@ -131,7 +131,7 @@
     <Example source={'
       <Popcard on="click">
         <Popcard:Trigger>
-          <Button variant="outline"><Icon name="circle-info" size="sm"/> Details</Button>
+          <Button variant="outline"><Icon name="info" size="sm"/> Details</Button>
         </Popcard:Trigger>
         <div class="flex flex-col gap-2">
           <Heading size="sm" as="div">Project Status</Heading>

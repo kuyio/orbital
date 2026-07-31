@@ -22,7 +22,7 @@
 
       <ComponentCard name="alert">
         <div class="flex items-center gap-2 px-3 py-2 rounded-md bg-amber-500/10 border border-amber-500/30 text-xs">
-          <Icon name="triangle-exclamation" size="sm" class="text-amber-500 shrink-0"/>
+          <Icon name="triangle-alert" size="sm" class="text-amber-500 shrink-0"/>
           <span>Heads up! Check your settings.</span>
         </div>
       </ComponentCard>
@@ -80,7 +80,7 @@
             <Menu>
               <Menu::Item icon="pencil">Edit</Menu::Item>
               <Menu::Item icon="copy">Duplicate</Menu::Item>
-              <Menu::Item icon="trash" destructive={true}>Delete</Menu::Item>
+              <Menu::Item icon="trash-2" destructive={true}>Delete</Menu::Item>
             </Menu>
           </Dropdown>
           <Text size="xs" tone="subdued" as="span">Click to open</Text>
@@ -119,8 +119,8 @@
           <Icon name="star" size="md"/>
           <Icon name="heart" size="md"/>
           <Icon name="bell" size="md"/>
-          <Icon name="gear" size="md"/>
-          <Icon name="bolt" size="md"/>
+          <Icon name="settings" size="md"/>
+          <Icon name="zap" size="md"/>
           <Icon name="bookmark" size="md"/>
         </div>
       </ComponentCard>
@@ -158,7 +158,7 @@
             <Menu::Item icon="file">New File</Menu::Item>
             <Menu::Item icon="folder">New Folder</Menu::Item>
             <Menu::Separator/>
-            <Menu::Item icon="gear">Settings</Menu::Item>
+            <Menu::Item icon="settings">Settings</Menu::Item>
           </Menu>
         </div>
       </ComponentCard>
@@ -257,7 +257,7 @@
 
       <ComponentCard name="text-field">
         <div class="w-full max-w-48">
-          <TextField label="Email" placeholder="you@example.com" iconLeft="envelope"/>
+          <TextField label="Email" placeholder="you@example.com" iconLeft="mail"/>
         </div>
       </ComponentCard>
 
@@ -268,7 +268,7 @@
           </div>
           <div class="w-2 h-2 bg-foreground rotate-45 -mt-3.5"></div>
           <Button variant="outline" size="icon" class="mt-1">
-            <Icon name="floppy-disk" size="sm"/>
+            <Icon name="save" size="sm"/>
           </Button>
         </div>
       </ComponentCard>

@@ -29,7 +29,7 @@
               <Text size="lg" tone="subdued" as="p" align="center" class="max-w-lg">A complete component library for Rails apps. Ship polished interfaces in days, not weeks.</Text>
               <div class="flex gap-3 mt-2">
                 <Button>Get started</Button>
-                <Button variant="outline"><Icon name="github" variant="brands" size="sm"/> View on GitHub</Button>
+                <Button variant="outline"><Icon name="github" size="sm"/> View on GitHub</Button>
               </div>
             </div>
           '}/>
@@ -44,7 +44,7 @@
               <Card>
                   <div class="flex flex-col gap-2">
                     <div class="rounded-lg bg-primary/10 w-10 h-10 flex items-center justify-center">
-                      <Icon name="bolt" size="md" class="text-primary"/>
+                      <Icon name="zap" size="md" class="text-primary"/>
                     </div>
                     <Heading size="sm" as="div">Lightning fast</Heading>
                     <Text size="sm" tone="subdued" as="p">Server-rendered components with zero client-side framework overhead.</Text>
@@ -53,7 +53,7 @@
               <Card>
                   <div class="flex flex-col gap-2">
                     <div class="rounded-lg bg-primary/10 w-10 h-10 flex items-center justify-center">
-                      <Icon name="puzzle-piece" size="md" class="text-primary"/>
+                      <Icon name="puzzle" size="md" class="text-primary"/>
                     </div>
                     <Heading size="sm" as="div">Composable</Heading>
                     <Text size="sm" tone="subdued" as="p">Mix and match components to build any interface without fighting the framework.</Text>
@@ -162,7 +162,7 @@
           <Example source={'
             <Card class="max-w-lg w-full mx-auto">
                 <div class="flex flex-col items-center text-center gap-3">
-                  <Icon name="envelope" size="lg" class="text-primary"/>
+                  <Icon name="mail" size="lg" class="text-primary"/>
                   <Heading size="md" as="div">Stay in the loop</Heading>
                   <Text size="sm" tone="subdued" as="p">Get notified about new components, releases, and tips. No spam, unsubscribe anytime.</Text>
                   <div class="flex gap-2 w-full mt-2">
@@ -199,7 +199,7 @@
                 <Header:Description>Enter your credentials to access your account.</Header:Description>
               </Card:Header>
                 <div class="flex flex-col gap-4">
-                  <TextField name="signin_email" label="Email" type="email" placeholder="you@example.com" iconLeft="envelope"/>
+                  <TextField name="signin_email" label="Email" type="email" placeholder="you@example.com" iconLeft="mail"/>
                   <TextField name="signin_password" label="Password" type="password" placeholder="••••••••"/>
                   <div class="flex items-center justify-between">
                     <CheckBox name="remember" label="Remember me"/>
@@ -249,7 +249,7 @@
                 <Header:Title>Reset password</Header:Title>
                 <Header:Description>Enter your email and we will send you a reset link.</Header:Description>
               </Card:Header>
-                <TextField name="reset_email" label="Email" type="email" placeholder="you@example.com" iconLeft="envelope"/>
+                <TextField name="reset_email" label="Email" type="email" placeholder="you@example.com" iconLeft="mail"/>
               <Card:Footer>
                 <div class="flex flex-col gap-3 w-full">
                   <Button class="w-full">Send reset link</Button>
@@ -333,7 +333,7 @@
             <Card class="w-full">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                   <div class="flex items-center gap-2 w-full sm:w-auto">
-                    <TextField name="table_search" label="Search" labelHidden iconLeft="magnifying-glass" placeholder="Search users..."/>
+                    <TextField name="table_search" label="Search" labelHidden iconLeft="search" placeholder="Search users..."/>
                     <Dropdown label="Status" variant="outline">
                       <Menu>
                         <Menu:Item>All</Menu:Item>
@@ -463,7 +463,7 @@
                 </div>
               <Card:Footer>
                 <div class="flex gap-2 w-full">
-                  <Button variant="outline" class="flex-1"><Icon name="envelope" size="sm"/> Message</Button>
+                  <Button variant="outline" class="flex-1"><Icon name="mail" size="sm"/> Message</Button>
                   <Button class="flex-1"><Icon name="user-plus" size="sm"/> Follow</Button>
                 </div>
               </Card:Footer>

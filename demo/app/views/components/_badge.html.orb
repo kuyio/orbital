@@ -133,15 +133,14 @@
     <Heading size="md" as="h3" class="mb-2">Icons</Heading>
     <Prose class="mb-4">
       <p>Use the <code>icon</code> prop to render an icon before the badge text. The icon
-        inherits the badge's text color automatically. Pass a string name or a hash for
-        more control (e.g. variant, custom class).</p>
+        inherits the badge's text color automatically.</p>
     </Prose>
     <Example source={'
       <div class="flex flex-wrap items-center gap-3">
         <Badge icon="circle-check">Completed</Badge>
-        <Badge icon="spinner" variant="secondary">Processing</Badge>
+        <Badge icon="loader-circle" variant="secondary">Processing</Badge>
         <Badge icon="clock" variant="outline">Scheduled</Badge>
-        <Badge icon="bolt" variant="ghost">Fast</Badge>
+        <Badge icon="zap" variant="ghost">Fast</Badge>
       </div>
     '}/>
   </div>
@@ -213,8 +212,8 @@
         </tr>
         <tr>
           <td class="px-4 py-2 font-mono text-xs">icon</td>
-          <td class="px-4 py-2">String / Hash</td>
-          <td class="px-4 py-2">Icon name or options hash</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Icon name</td>
           <td class="px-4 py-2 font-mono text-xs">nil</td>
         </tr>
         <tr>

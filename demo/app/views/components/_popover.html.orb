@@ -161,7 +161,7 @@
       <Popover position="s">
         <Popover:Trigger>
           <Button variant="outline">
-            <Icon name="sliders" size="sm"/> Preferences
+            <Icon name="sliders-horizontal" size="sm"/> Preferences
           </Button>
         </Popover:Trigger>
         <div class="w-72 flex flex-col gap-3">

@@ -106,15 +106,15 @@
   <div>
     <Heading size="md" as="h3" class="mb-2">Custom Icon</Heading>
     <Prose class="mb-4">
-      <p>Override the default user icon with the <code>icon</code> prop. Accepts a string
-        name or a hash for variant control. Useful for bots, service accounts, or role indicators.</p>
+      <p>Override the default user icon with the <code>icon</code> prop. Useful for bots,
+        service accounts, or role indicators.</p>
     </Prose>
     <Example source={'
       <div class="flex items-center gap-4">
-        <Avatar name="Admin" icon="shield-halved" size="lg"/>
-        <Avatar name="Bot" icon="robot" size="lg"/>
-        <Avatar name="Support" icon="headset" size="lg"/>
-        <Avatar name="GitHub" icon={{name: "github", variant: "brands"}} size="lg" square/>
+        <Avatar name="Admin" icon="shield" size="lg"/>
+        <Avatar name="Bot" icon="bot" size="lg"/>
+        <Avatar name="Support" icon="headphones" size="lg"/>
+        <Avatar name="GitHub" icon="github" size="lg" square/>
       </div>
     '}/>
   </div>
@@ -222,8 +222,8 @@
         </tr>
         <tr>
           <td class="px-4 py-2 font-mono text-xs">icon</td>
-          <td class="px-4 py-2">String / Hash</td>
-          <td class="px-4 py-2">Icon name or {name:, variant:}</td>
+          <td class="px-4 py-2">String</td>
+          <td class="px-4 py-2">Icon name</td>
           <td class="px-4 py-2 font-mono text-xs">"user"</td>
         </tr>
         <tr>
